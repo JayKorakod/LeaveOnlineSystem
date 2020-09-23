@@ -1,0 +1,121 @@
+﻿@model IEnumerable<LeaveSystemOnline.EMPLOYEE>
+
+@{
+    ViewBag.Title = "ListEmployee";
+}
+
+<h2>View</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div style="overflow:auto">
+    <div class=" no-padding    container-fixed-lg bg-white">
+        <div class="container">
+            <!-- START card -->
+            <div class="card card-transparent">
+                <div class="card-body">
+                    <table class="table table-striped" id="tableWithExportOptions">
+                            <tr>
+                                <th>
+                                    <p>รหัสพนักงาน</p>
+                                </th>
+                                <th>
+                                    <p>ชื่อจริง</p>
+                                </th>
+                                <th>
+                                    <p>นามสกุล</p>
+                                </th>
+                                <th>
+                                    <p>วันเกิด</p>
+                                </th>
+                                <th>
+                                    <p>รหัสบัตรประชาชน</p>
+                                </th>
+                                <th>
+                                    <p>บ้านเลขที่</p>
+                                </th>
+                                <th>
+                                    <p>ซอย</p>
+                                </th>
+                                <th>
+                                    <p>ถนน</p>
+                                </th>
+                                <th>
+                                    <p>แขวง</p>
+                                </th>
+                                <th>
+                                    <p>เขต</p>
+                                </th>
+                                <th>
+                                    <p>จังหวัด</p>
+                                </th>
+                                <th>
+                                    <p>รหัสไปรษณีย์</p>
+                                </th>
+                                <th>
+                                    <p>รหัสสิทธิ์เข้าใช้งาน</p>
+                                </th>
+                                <th>
+                                    <p>รหัสผ่าน</p>
+                                </th>
+                                <th></th>
+                            </tr>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem=>item.id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.firstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.lastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.birthdate, "{0:dd/MM/yyyy}")
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.identificationNo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.homeNo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.soi)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.road)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.subdistrict)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.district)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.province)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.postalCode)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.authorization_id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.password)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>

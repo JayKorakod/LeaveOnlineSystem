@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LEAVESYSTEM_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AUTHOR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tier" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="nvarchar" MaxLength="30" />
+          <Property Name="lastName" Type="nvarchar" MaxLength="30" />
+          <Property Name="birthdate" Type="date" />
+          <Property Name="identificationNo" Type="nvarchar" MaxLength="13" />
+          <Property Name="homeNo" Type="nvarchar" MaxLength="7" />
+          <Property Name="soi" Type="nvarchar" MaxLength="30" />
+          <Property Name="road" Type="nvarchar" MaxLength="30" />
+          <Property Name="subdistrict" Type="nvarchar" MaxLength="30" />
+          <Property Name="district" Type="nvarchar" MaxLength="30" />
+          <Property Name="province" Type="nvarchar" MaxLength="30" />
+          <Property Name="postalCode" Type="nvarchar" MaxLength="5" />
+          <Property Name="authorization_id" Type="int" />
+          <Property Name="password" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="LEAVEDATA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emp_id" Type="int" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" />
+          <Property Name="firstDayOfLeave" Type="date" />
+          <Property Name="LastDayOfLeave" Type="date" />
+          <Property Name="leaveStatus_id" Type="int" />
+          <Property Name="leaveType_id" Type="int" />
+          <Property Name="revisionDate" Type="date" />
+        </EntityType>
+        <EntityType Name="LEAVESTATUS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="LEAVETYPE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK_EMPLOYEE_AUTHOR">
+          <End Role="AUTHOR" Type="Self.AUTHOR" Multiplicity="0..1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AUTHOR">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="authorization_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LEAVEDATA_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LEAVEDATA">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LEAVEDATA_LEAVESTATUS">
+          <End Role="LEAVESTATUS" Type="Self.LEAVESTATUS" Multiplicity="0..1" />
+          <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LEAVESTATUS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LEAVEDATA">
+              <PropertyRef Name="leaveStatus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LEAVEDATA_LEAVETYPE">
+          <End Role="LEAVETYPE" Type="Self.LEAVETYPE" Multiplicity="1" />
+          <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="LEAVETYPE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LEAVEDATA">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LEAVESYSTEM_DBModelStoreContainer">
+          <EntitySet Name="AUTHOR" EntityType="Self.AUTHOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LEAVEDATA" EntityType="Self.LEAVEDATA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LEAVESTATUS" EntityType="Self.LEAVESTATUS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LEAVETYPE" EntityType="Self.LEAVETYPE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EMPLOYEE_AUTHOR" Association="Self.FK_EMPLOYEE_AUTHOR">
+            <End Role="AUTHOR" EntitySet="AUTHOR" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LEAVEDATA_EMPLOYEE" Association="Self.FK_LEAVEDATA_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LEAVEDATA_LEAVESTATUS" Association="Self.FK_LEAVEDATA_LEAVESTATUS">
+            <End Role="LEAVESTATUS" EntitySet="LEAVESTATUS" />
+            <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LEAVEDATA_LEAVETYPE" Association="Self.FK_LEAVEDATA_LEAVETYPE">
+            <End Role="LEAVETYPE" EntitySet="LEAVETYPE" />
+            <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LEAVESYSTEM_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AUTHOR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tier" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_EMPLOYEE_AUTHOR" FromRole="AUTHOR" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="lastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="birthdate" Type="DateTime" Precision="0" />
+          <Property Name="identificationNo" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="homeNo" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Name="soi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="road" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="subdistrict" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="district" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="province" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="postalCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="authorization_id" Type="Int32" />
+          <NavigationProperty Name="AUTHOR" Relationship="Self.FK_EMPLOYEE_AUTHOR" FromRole="EMPLOYEE" ToRole="AUTHOR" />
+          <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="EMPLOYEE" ToRole="LEAVEDATA" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LEAVEDATA">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emp_id" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="firstDayOfLeave" Type="DateTime" Precision="0" />
+          <Property Name="LastDayOfLeave" Type="DateTime" Precision="0" />
+          <Property Name="leaveStatus_id" Type="Int32" />
+          <Property Name="leaveType_id" Type="Int32" />
+          <Property Name="revisionDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="LEAVEDATA" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="LEAVESTATUS" Relationship="Self.FK_LEAVEDATA_LEAVESTATUS" FromRole="LEAVEDATA" ToRole="LEAVESTATUS" />
+          <NavigationProperty Name="LEAVETYPE" Relationship="Self.FK_LEAVEDATA_LEAVETYPE" FromRole="LEAVEDATA" ToRole="LEAVETYPE" />
+        </EntityType>
+        <EntityType Name="LEAVESTATUS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_LEAVESTATUS" FromRole="LEAVESTATUS" ToRole="LEAVEDATA" />
+        </EntityType>
+        <EntityType Name="LEAVETYPE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_LEAVETYPE" FromRole="LEAVETYPE" ToRole="LEAVEDATA" />
+        </EntityType>
+        <Association Name="FK_EMPLOYEE_AUTHOR">
+          <End Role="AUTHOR" Type="Self.AUTHOR" Multiplicity="0..1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AUTHOR">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="authorization_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LEAVEDATA_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LEAVEDATA">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LEAVEDATA_LEAVESTATUS">
+          <End Role="LEAVESTATUS" Type="Self.LEAVESTATUS" Multiplicity="0..1" />
+          <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LEAVESTATUS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LEAVEDATA">
+              <PropertyRef Name="leaveStatus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LEAVEDATA_LEAVETYPE">
+          <End Role="LEAVETYPE" Type="Self.LEAVETYPE" Multiplicity="1" />
+          <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="LEAVETYPE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LEAVEDATA">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LEAVESYSTEM_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AUTHOR" EntityType="Self.AUTHOR" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="LEAVEDATA" EntityType="Self.LEAVEDATA" />
+          <EntitySet Name="LEAVESTATUS" EntityType="Self.LEAVESTATUS" />
+          <EntitySet Name="LEAVETYPE" EntityType="Self.LEAVETYPE" />
+          <AssociationSet Name="FK_EMPLOYEE_AUTHOR" Association="Self.FK_EMPLOYEE_AUTHOR">
+            <End Role="AUTHOR" EntitySet="AUTHOR" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LEAVEDATA_EMPLOYEE" Association="Self.FK_LEAVEDATA_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LEAVEDATA_LEAVESTATUS" Association="Self.FK_LEAVEDATA_LEAVESTATUS">
+            <End Role="LEAVESTATUS" EntitySet="LEAVESTATUS" />
+            <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LEAVEDATA_LEAVETYPE" Association="Self.FK_LEAVEDATA_LEAVETYPE">
+            <End Role="LEAVETYPE" EntitySet="LEAVETYPE" />
+            <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LEAVESYSTEM_DBModelStoreContainer" CdmEntityContainer="LEAVESYSTEM_DBEntities">
+          <EntitySetMapping Name="AUTHOR">
+            <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.AUTHOR">
+              <MappingFragment StoreEntitySet="AUTHOR">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tier" ColumnName="tier" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEE">
+            <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="identificationNo" ColumnName="identificationNo" />
+                <ScalarProperty Name="homeNo" ColumnName="homeNo" />
+                <ScalarProperty Name="soi" ColumnName="soi" />
+                <ScalarProperty Name="road" ColumnName="road" />
+                <ScalarProperty Name="subdistrict" ColumnName="subdistrict" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+                <ScalarProperty Name="authorization_id" ColumnName="authorization_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LEAVEDATA">
+            <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.LEAVEDATA">
+              <MappingFragment StoreEntitySet="LEAVEDATA">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="firstDayOfLeave" ColumnName="firstDayOfLeave" />
+                <ScalarProperty Name="LastDayOfLeave" ColumnName="LastDayOfLeave" />
+                <ScalarProperty Name="leaveStatus_id" ColumnName="leaveStatus_id" />
+                <ScalarProperty Name="leaveType_id" ColumnName="leaveType_id" />
+                <ScalarProperty Name="revisionDate" ColumnName="revisionDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LEAVESTATUS">
+            <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.LEAVESTATUS">
+              <MappingFragment StoreEntitySet="LEAVESTATUS">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LEAVETYPE">
+            <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.LEAVETYPE">
+              <MappingFragment StoreEntitySet="LEAVETYPE">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

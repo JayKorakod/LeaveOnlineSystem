@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LEAVESYSTEM_DBModelStoreContainer" CdmEntityContainer="LEAVESYSTEM_DBEntities">
+    <EntitySetMapping Name="AUTHOR">
+      <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.AUTHOR">
+        <MappingFragment StoreEntitySet="AUTHOR">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tier" ColumnName="tier" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEE">
+      <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.EMPLOYEE">
+        <MappingFragment StoreEntitySet="EMPLOYEE">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+          <ScalarProperty Name="identificationNo" ColumnName="identificationNo" />
+          <ScalarProperty Name="homeNo" ColumnName="homeNo" />
+          <ScalarProperty Name="soi" ColumnName="soi" />
+          <ScalarProperty Name="road" ColumnName="road" />
+          <ScalarProperty Name="subdistrict" ColumnName="subdistrict" />
+          <ScalarProperty Name="district" ColumnName="district" />
+          <ScalarProperty Name="province" ColumnName="province" />
+          <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+          <ScalarProperty Name="authorization_id" ColumnName="authorization_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LEAVEDATA">
+      <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.LEAVEDATA">
+        <MappingFragment StoreEntitySet="LEAVEDATA">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="firstDayOfLeave" ColumnName="firstDayOfLeave" />
+          <ScalarProperty Name="LastDayOfLeave" ColumnName="LastDayOfLeave" />
+          <ScalarProperty Name="leaveStatus_id" ColumnName="leaveStatus_id" />
+          <ScalarProperty Name="leaveType_id" ColumnName="leaveType_id" />
+          <ScalarProperty Name="revisionDate" ColumnName="revisionDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LEAVESTATUS">
+      <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.LEAVESTATUS">
+        <MappingFragment StoreEntitySet="LEAVESTATUS">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LEAVETYPE">
+      <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.LEAVETYPE">
+        <MappingFragment StoreEntitySet="LEAVETYPE">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
