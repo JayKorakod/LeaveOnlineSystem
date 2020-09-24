@@ -2,5 +2,23 @@
     ViewBag.Title = "Home Page";
 }
 
-<p><a href="~/Employee/CreateEmployee">CreateEmployee</p>
-<p><a href="~/Employee/ListEmployee">ListEmployee</p>
+<div>
+    <div class="row">
+        <div class="col-xl-2 col-md-4 col-sm-6">
+            <div class="card text-center">
+                <div>
+                    <div class="card-body">
+                        <a href="@Url.Action("Index","Employee")">
+                            <div class="avatar bg-danger p-50 m-0 mb-1">
+                                <div class="avatar" style="width:115px;height:115px;">
+                                    <img width="110" height="100" src="~/Content/Theme/menu/id-card.png" style="border-radius:0px">
+                                </div>
+                            </div>
+                        </a>
+                        <p class="text-xl-center">Employee</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
