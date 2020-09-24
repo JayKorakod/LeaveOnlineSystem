@@ -76,7 +76,6 @@ D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\bin\System.Web.WebPages.Razo
 D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\bin\Newtonsoft.Json.xml
 D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\bin\Antlr3.Runtime.pdb
 D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\obj\Debug\LeaveSystemOnline.csprojAssemblyReference.cache
 D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\obj\Debug\LeaveSystemOnline.csproj.CoreCompileInputs.cache
 D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\obj\Debug\LeaveSystemOnline.csproj.CopyComplete
 D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\obj\Debug\LeaveSystemOnline.dll

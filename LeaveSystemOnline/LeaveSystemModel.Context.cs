@@ -13,10 +13,10 @@ namespace LeaveSystemOnline
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LEAVESYSTEM_DBEntities : DbContext
+    public partial class LEAVE_STSTEM_ONLINEEntities : DbContext
     {
-        public LEAVESYSTEM_DBEntities()
-            : base("name=LEAVESYSTEM_DBEntities")
+        public LEAVE_STSTEM_ONLINEEntities()
+            : base("name=LEAVE_STSTEM_ONLINEEntities")
         {
         }
     

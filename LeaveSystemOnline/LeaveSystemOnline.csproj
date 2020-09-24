@@ -129,39 +129,39 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AUTHOR.cs">
-      <DependentUpon>LEAVEMODEL.tt</DependentUpon>
+      <DependentUpon>LeaveSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="EMPLOYEE.cs">
-      <DependentUpon>LEAVEMODEL.tt</DependentUpon>
+      <DependentUpon>LeaveSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LEAVEDATA.cs">
-      <DependentUpon>LEAVEMODEL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LEAVEMODEL.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LEAVEMODEL.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LEAVEMODEL.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LEAVEMODEL.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LEAVEMODEL.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LEAVEMODEL.edmx</DependentUpon>
+      <DependentUpon>LeaveSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LEAVESTATUS.cs">
-      <DependentUpon>LEAVEMODEL.tt</DependentUpon>
+      <DependentUpon>LeaveSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveSystemModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeaveSystemModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveSystemModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeaveSystemModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveSystemModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LeaveSystemModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="LEAVETYPE.cs">
-      <DependentUpon>LEAVEMODEL.tt</DependentUpon>
+      <DependentUpon>LeaveSystemModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\LeaveRepo.cs" />
@@ -1555,15 +1555,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="LEAVEMODEL.Context.tt">
+    <Content Include="LeaveSystemModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>LEAVEMODEL.Context.cs</LastGenOutput>
-      <DependentUpon>LEAVEMODEL.edmx</DependentUpon>
+      <DependentUpon>LeaveSystemModel.edmx</DependentUpon>
+      <LastGenOutput>LeaveSystemModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="LEAVEMODEL.tt">
+    <Content Include="LeaveSystemModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LEAVEMODEL.edmx</DependentUpon>
-      <LastGenOutput>LEAVEMODEL.cs</LastGenOutput>
+      <DependentUpon>LeaveSystemModel.edmx</DependentUpon>
+      <LastGenOutput>LeaveSystemModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1748,12 +1748,12 @@
     <Content Include="Content\Theme\pages\scss\themes\vibes\var.scss" />
     <Content Include="Content\Theme\pages\scss\themes\vibes\vibes.scss" />
     <Content Include="Content\Theme\pages\scss\var.scss" />
-    <EntityDeploy Include="LEAVEMODEL.edmx">
+    <EntityDeploy Include="LeaveSystemModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LEAVEMODEL.Designer.cs</LastGenOutput>
+      <LastGenOutput>LeaveSystemModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="LEAVEMODEL.edmx.diagram">
-      <DependentUpon>LEAVEMODEL.edmx</DependentUpon>
+    <Content Include="LeaveSystemModel.edmx.diagram">
+      <DependentUpon>LeaveSystemModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

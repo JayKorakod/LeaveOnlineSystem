@@ -8,7 +8,7 @@ namespace LeaveSystemOnline.Services
 {
     public class LeaveServices
     {
-        private LEAVESYSTEM_DBEntities context = new LEAVESYSTEM_DBEntities();
+        private LEAVE_STSTEM_ONLINEEntities context = new LEAVE_STSTEM_ONLINEEntities();
         private LeaveRepo repo = new LeaveRepo();
 
         public List<EMPLOYEE> GetAllEmployee()

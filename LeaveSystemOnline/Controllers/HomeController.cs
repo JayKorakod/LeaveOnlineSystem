@@ -9,7 +9,7 @@ namespace LeaveSystemOnline.Controllers
 {
     public class HomeController : Controller
     {
-        LEAVESYSTEM_DBEntities context = new LEAVESYSTEM_DBEntities();
+        LEAVE_STSTEM_ONLINEEntities context = new LEAVE_STSTEM_ONLINEEntities();
         LeaveServices services = new LeaveServices();
         public ActionResult Index()
         {

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="LEAVESYSTEM_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="LEAVE_STSTEM_ONLINEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AUTHOR">
           <Key>
             <PropertyRef Name="id" />
@@ -95,18 +95,18 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LEAVEDATA_LEAVETYPE">
-          <End Role="LEAVETYPE" Type="Self.LEAVETYPE" Multiplicity="1" />
-          <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="0..1" />
+          <End Role="LEAVETYPE" Type="Self.LEAVETYPE" Multiplicity="0..1" />
+          <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LEAVETYPE">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="LEAVEDATA">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="leaveType_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LEAVESYSTEM_DBModelStoreContainer">
+        <EntityContainer Name="LEAVE_STSTEM_ONLINEModelStoreContainer">
           <EntitySet Name="AUTHOR" EntityType="Self.AUTHOR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LEAVEDATA" EntityType="Self.LEAVEDATA" Schema="dbo" store:Type="Tables" />
@@ -129,10 +129,11 @@
             <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LEAVESYSTEM_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="LEAVE_STSTEM_ONLINEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AUTHOR">
           <Key>
             <PropertyRef Name="id" />
@@ -158,9 +159,9 @@
           <Property Name="province" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="postalCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="authorization_id" Type="Int32" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AUTHOR" Relationship="Self.FK_EMPLOYEE_AUTHOR" FromRole="EMPLOYEE" ToRole="AUTHOR" />
           <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="EMPLOYEE" ToRole="LEAVEDATA" />
-          <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="LEAVEDATA">
           <Key>
@@ -231,18 +232,18 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LEAVEDATA_LEAVETYPE">
-          <End Role="LEAVETYPE" Type="Self.LEAVETYPE" Multiplicity="1" />
-          <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="0..1" />
+          <End Role="LEAVETYPE" Type="Self.LEAVETYPE" Multiplicity="0..1" />
+          <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="LEAVETYPE">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="LEAVEDATA">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="leaveType_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LEAVESYSTEM_DBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LEAVE_STSTEM_ONLINEEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AUTHOR" EntityType="Self.AUTHOR" />
           <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" />
           <EntitySet Name="LEAVEDATA" EntityType="Self.LEAVEDATA" />
@@ -270,9 +271,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LEAVESYSTEM_DBModelStoreContainer" CdmEntityContainer="LEAVESYSTEM_DBEntities">
+        <EntityContainerMapping StorageEntityContainer="LEAVE_STSTEM_ONLINEModelStoreContainer" CdmEntityContainer="LEAVE_STSTEM_ONLINEEntities">
           <EntitySetMapping Name="AUTHOR">
-            <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.AUTHOR">
+            <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.AUTHOR">
               <MappingFragment StoreEntitySet="AUTHOR">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="tier" ColumnName="tier" />
@@ -280,9 +281,8 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EMPLOYEE">
-            <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.EMPLOYEE">
+            <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.EMPLOYEE">
               <MappingFragment StoreEntitySet="EMPLOYEE">
-                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="firstName" ColumnName="firstName" />
                 <ScalarProperty Name="lastName" ColumnName="lastName" />
@@ -296,11 +296,12 @@
                 <ScalarProperty Name="province" ColumnName="province" />
                 <ScalarProperty Name="postalCode" ColumnName="postalCode" />
                 <ScalarProperty Name="authorization_id" ColumnName="authorization_id" />
+                <ScalarProperty Name="password" ColumnName="password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LEAVEDATA">
-            <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.LEAVEDATA">
+            <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.LEAVEDATA">
               <MappingFragment StoreEntitySet="LEAVEDATA">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="emp_id" ColumnName="emp_id" />
@@ -314,7 +315,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LEAVESTATUS">
-            <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.LEAVESTATUS">
+            <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.LEAVESTATUS">
               <MappingFragment StoreEntitySet="LEAVESTATUS">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="status" ColumnName="status" />
@@ -322,7 +323,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LEAVETYPE">
-            <EntityTypeMapping TypeName="LEAVESYSTEM_DBModel.LEAVETYPE">
+            <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.LEAVETYPE">
               <MappingFragment StoreEntitySet="LEAVETYPE">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="type" ColumnName="type" />

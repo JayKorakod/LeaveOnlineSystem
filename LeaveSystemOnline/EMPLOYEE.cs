@@ -23,7 +23,7 @@ namespace LeaveSystemOnline
         public int id { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
-        public Nullable<System.DateTime> birthdate { get; set; }
+        public System.DateTime birthdate { get; set; }
         public string identificationNo { get; set; }
         public string homeNo { get; set; }
         public string soi { get; set; }

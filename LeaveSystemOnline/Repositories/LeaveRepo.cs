@@ -7,7 +7,7 @@ namespace LeaveSystemOnline.Repositories
 {
     public class LeaveRepo
     {
-        LEAVESYSTEM_DBEntities context = new LEAVESYSTEM_DBEntities();
+        LEAVE_STSTEM_ONLINEEntities context = new LEAVE_STSTEM_ONLINEEntities();
 
         public void Save()
         {
