@@ -65,22 +65,5 @@ namespace LeaveSystemOnline.Controllers
             Session.Abandon();
             return RedirectToAction("Login");
         }
-        [HttpGet]
-        public ActionResult CreateEmployee()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult CreateEmployee(EMPLOYEE model)
-        {
-            services.CreateEmployee(model);
-            return View(model);
-        }
-
-        public ActionResult ListEmployee()
-        {
-            var a = services.GetAllEmployee();
-            return View(a);
-        }
     }
 }
