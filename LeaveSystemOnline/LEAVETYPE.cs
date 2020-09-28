@@ -22,6 +22,8 @@ namespace LeaveSystemOnline
     
         public int id { get; set; }
         public string type { get; set; }
+        public Nullable<int> numOfLeave { get; set; }
+        public string description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LEAVEDATA> LEAVEDATA { get; set; }

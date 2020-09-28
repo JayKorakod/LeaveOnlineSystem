@@ -8,7 +8,7 @@ namespace LeaveSystemOnline.Services
 {
     public class LeaveServices
     {
-        private LEAVE_STSTEM_ONLINEEntities context = new LEAVE_STSTEM_ONLINEEntities();
+        private LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
         private LeaveRepo repo = new LeaveRepo();
 
         public List<EMPLOYEE> GetAllEmployee()
@@ -19,7 +19,13 @@ namespace LeaveSystemOnline.Services
 
         public void CreateEmployee(EMPLOYEE model)
         {
-            repo.Create(model);
+                repo.Create(model);
+                repo.Save();
+        }
+
+        public void EditAuthor(EMPLOYEE model)
+        {
+            repo.Edit(model);
             repo.Save();
         }
     }

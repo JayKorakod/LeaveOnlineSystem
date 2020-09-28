@@ -26,6 +26,8 @@
     <Property Name="authorization_id" Type="int" />
     <Property Name="password" Type="nvarchar" MaxLength="10" />
     <Property Name="department" Type="nvarchar" MaxLength="30" />
+    <Property Name="email" Type="nvarchar" MaxLength="30" />
+    <Property Name="tel" Type="nvarchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="LEAVEDATA">
     <Key>
@@ -47,7 +49,6 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="status" Type="nvarchar" MaxLength="20" />
-    <Property Name="leaveData_id" Type="int" />
   </EntityType>
   <EntityType Name="LEAVETYPE">
     <Key>
@@ -82,6 +83,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_LEAVEDATA_LEAVESTATUS">
+    <End Role="LEAVESTATUS" Type="Self.LEAVESTATUS" Multiplicity="0..1" />
+    <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LEAVESTATUS">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="LEAVEDATA">
+        <PropertyRef Name="leaveStatus_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_LEAVEDATA_LEAVETYPE">
     <End Role="LEAVETYPE" Type="Self.LEAVETYPE" Multiplicity="0..1" />
     <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="*" />
@@ -91,18 +104,6 @@
       </Principal>
       <Dependent Role="LEAVEDATA">
         <PropertyRef Name="leaveType_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LEAVESTATUS_LEAVEDATA">
-    <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="0..1" />
-    <End Role="LEAVESTATUS" Type="Self.LEAVESTATUS" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LEAVEDATA">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="LEAVESTATUS">
-        <PropertyRef Name="leaveData_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -120,13 +121,13 @@
       <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
       <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
     </AssociationSet>
+    <AssociationSet Name="FK_LEAVEDATA_LEAVESTATUS" Association="Self.FK_LEAVEDATA_LEAVESTATUS">
+      <End Role="LEAVESTATUS" EntitySet="LEAVESTATUS" />
+      <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
+    </AssociationSet>
     <AssociationSet Name="FK_LEAVEDATA_LEAVETYPE" Association="Self.FK_LEAVEDATA_LEAVETYPE">
       <End Role="LEAVETYPE" EntitySet="LEAVETYPE" />
       <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LEAVESTATUS_LEAVEDATA" Association="Self.FK_LEAVESTATUS_LEAVEDATA">
-      <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
-      <End Role="LEAVESTATUS" EntitySet="LEAVESTATUS" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

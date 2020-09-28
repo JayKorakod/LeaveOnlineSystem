@@ -23,7 +23,7 @@ namespace LeaveSystemOnline
         public int id { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
-        public System.DateTime birthdate { get; set; }
+        public Nullable<System.DateTime> birthdate { get; set; }
         public string identificationNo { get; set; }
         public string homeNo { get; set; }
         public string soi { get; set; }
@@ -34,6 +34,9 @@ namespace LeaveSystemOnline
         public string postalCode { get; set; }
         public Nullable<int> authorization_id { get; set; }
         public string password { get; set; }
+        public string department { get; set; }
+        public string email { get; set; }
+        public string tel { get; set; }
     
         public virtual AUTHOR AUTHOR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

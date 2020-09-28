@@ -30,6 +30,9 @@
           <Property Name="postalCode" Type="nvarchar" MaxLength="5" />
           <Property Name="authorization_id" Type="int" />
           <Property Name="password" Type="nvarchar" MaxLength="10" />
+          <Property Name="department" Type="nvarchar" MaxLength="30" />
+          <Property Name="email" Type="nvarchar" MaxLength="30" />
+          <Property Name="tel" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="LEAVEDATA">
           <Key>
@@ -43,6 +46,7 @@
           <Property Name="leaveStatus_id" Type="int" />
           <Property Name="leaveType_id" Type="int" />
           <Property Name="revisionDate" Type="date" />
+          <Property Name="fileDocument" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="LEAVESTATUS">
           <Key>
@@ -57,6 +61,8 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="type" Type="nvarchar" MaxLength="30" />
+          <Property Name="numOfLeave" Type="int" />
+          <Property Name="description" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_EMPLOYEE_AUTHOR">
           <End Role="AUTHOR" Type="Self.AUTHOR" Multiplicity="0..1" />
@@ -160,6 +166,9 @@
           <Property Name="postalCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="authorization_id" Type="Int32" />
           <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="department" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="tel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AUTHOR" Relationship="Self.FK_EMPLOYEE_AUTHOR" FromRole="EMPLOYEE" ToRole="AUTHOR" />
           <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="EMPLOYEE" ToRole="LEAVEDATA" />
         </EntityType>
@@ -175,6 +184,7 @@
           <Property Name="leaveStatus_id" Type="Int32" />
           <Property Name="leaveType_id" Type="Int32" />
           <Property Name="revisionDate" Type="DateTime" Precision="0" />
+          <Property Name="fileDocument" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="LEAVEDATA" ToRole="EMPLOYEE" />
           <NavigationProperty Name="LEAVESTATUS" Relationship="Self.FK_LEAVEDATA_LEAVESTATUS" FromRole="LEAVEDATA" ToRole="LEAVESTATUS" />
           <NavigationProperty Name="LEAVETYPE" Relationship="Self.FK_LEAVEDATA_LEAVETYPE" FromRole="LEAVEDATA" ToRole="LEAVETYPE" />
@@ -193,6 +203,8 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="numOfLeave" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_LEAVETYPE" FromRole="LEAVETYPE" ToRole="LEAVEDATA" />
         </EntityType>
         <Association Name="FK_EMPLOYEE_AUTHOR">
@@ -243,7 +255,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LEAVE_STSTEM_ONLINEEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LEAVE_STSTEM_ONLINEEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AUTHOR" EntityType="Self.AUTHOR" />
           <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" />
           <EntitySet Name="LEAVEDATA" EntityType="Self.LEAVEDATA" />
@@ -271,7 +283,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LEAVE_STSTEM_ONLINEModelStoreContainer" CdmEntityContainer="LEAVE_STSTEM_ONLINEEntities">
+        <EntityContainerMapping StorageEntityContainer="LEAVE_STSTEM_ONLINEModelStoreContainer" CdmEntityContainer="LEAVE_STSTEM_ONLINEEntities1">
           <EntitySetMapping Name="AUTHOR">
             <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.AUTHOR">
               <MappingFragment StoreEntitySet="AUTHOR">
@@ -297,6 +309,9 @@
                 <ScalarProperty Name="postalCode" ColumnName="postalCode" />
                 <ScalarProperty Name="authorization_id" ColumnName="authorization_id" />
                 <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -311,6 +326,7 @@
                 <ScalarProperty Name="leaveStatus_id" ColumnName="leaveStatus_id" />
                 <ScalarProperty Name="leaveType_id" ColumnName="leaveType_id" />
                 <ScalarProperty Name="revisionDate" ColumnName="revisionDate" />
+                <ScalarProperty Name="fileDocument" ColumnName="fileDocument" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -327,6 +343,8 @@
               <MappingFragment StoreEntitySet="LEAVETYPE">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="numOfLeave" ColumnName="numOfLeave" />
+                <ScalarProperty Name="description" ColumnName="description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

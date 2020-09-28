@@ -129,41 +129,42 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AUTHOR.cs">
-      <DependentUpon>LeaveSystemModel.tt</DependentUpon>
+      <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="EMPLOYEE.cs">
-      <DependentUpon>LeaveSystemModel.tt</DependentUpon>
+      <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LEAVEDATA.cs">
-      <DependentUpon>LeaveSystemModel.tt</DependentUpon>
+      <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="LEAVESTATUS.cs">
-      <DependentUpon>LeaveSystemModel.tt</DependentUpon>
+      <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="LeaveSystemModel.Context.cs">
+    <Compile Include="LeaveSystemOnlineModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LeaveSystemModel.Context.tt</DependentUpon>
+      <DependentUpon>LeaveSystemOnlineModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="LeaveSystemModel.cs">
+    <Compile Include="LeaveSystemOnlineModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LeaveSystemModel.tt</DependentUpon>
+      <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="LeaveSystemModel.Designer.cs">
+    <Compile Include="LeaveSystemOnlineModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LeaveSystemModel.edmx</DependentUpon>
+      <DependentUpon>LeaveSystemOnlineModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="LEAVETYPE.cs">
-      <DependentUpon>LeaveSystemModel.tt</DependentUpon>
+      <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\LeaveDataRepo.cs" />
     <Compile Include="Repositories\LeaveRepo.cs" />
     <Compile Include="Services\LeaveServices.cs" />
   </ItemGroup>
@@ -1463,6 +1464,8 @@
     <Content Include="Content\Theme\invoice.html" />
     <Content Include="Content\Theme\lock_screen.html" />
     <Content Include="Content\Theme\login.html" />
+    <Content Include="Content\Theme\login\video-call.png" />
+    <Content Include="Content\Theme\menu\id-card.png" />
     <Content Include="Content\Theme\modals.html" />
     <Content Include="Content\Theme\nestables.html" />
     <Content Include="Content\Theme\notifications.html" />
@@ -1555,15 +1558,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="LeaveSystemModel.Context.tt">
+    <Content Include="LeaveSystemOnlineModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LeaveSystemModel.edmx</DependentUpon>
-      <LastGenOutput>LeaveSystemModel.Context.cs</LastGenOutput>
+      <DependentUpon>LeaveSystemOnlineModel.edmx</DependentUpon>
+      <LastGenOutput>LeaveSystemOnlineModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="LeaveSystemModel.tt">
+    <Content Include="LeaveSystemOnlineModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LeaveSystemModel.edmx</DependentUpon>
-      <LastGenOutput>LeaveSystemModel.cs</LastGenOutput>
+      <DependentUpon>LeaveSystemOnlineModel.edmx</DependentUpon>
+      <LastGenOutput>LeaveSystemOnlineModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1748,12 +1751,12 @@
     <Content Include="Content\Theme\pages\scss\themes\vibes\var.scss" />
     <Content Include="Content\Theme\pages\scss\themes\vibes\vibes.scss" />
     <Content Include="Content\Theme\pages\scss\var.scss" />
-    <EntityDeploy Include="LeaveSystemModel.edmx">
+    <EntityDeploy Include="LeaveSystemOnlineModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LeaveSystemModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>LeaveSystemOnlineModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="LeaveSystemModel.edmx.diagram">
-      <DependentUpon>LeaveSystemModel.edmx</DependentUpon>
+    <Content Include="LeaveSystemOnlineModel.edmx.diagram">
+      <DependentUpon>LeaveSystemOnlineModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -1785,6 +1788,8 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\CreateEmployee.cshtml" />
     <Content Include="Views\Employee\ListEmployee.cshtml" />
+    <Content Include="Views\Employee\DetailEmployee.cshtml" />
+    <Content Include="Views\Employee\EditAuthorEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

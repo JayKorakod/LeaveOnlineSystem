@@ -1,0 +1,130 @@
+﻿@model LeaveSystemOnline.EMPLOYEE
+
+@{
+    ViewBag.Title = "DetailEmployee";
+}
+
+<h2>DetailEmployee</h2>
+
+<div>
+    <h4>EMPLOYEE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birthdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.identificationNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.identificationNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.homeNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.homeNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.soi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.soi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.road)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.road)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subdistrict)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subdistrict)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.district)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.district)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.province)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.province)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postalCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.authorization_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.authorization_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.department)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.department)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

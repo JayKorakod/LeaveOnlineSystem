@@ -1,4 +1,5 @@
-﻿using LeaveSystemOnline.Services;
+﻿using LeaveSystemOnline.Repositories;
+using LeaveSystemOnline.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,9 @@ namespace LeaveSystemOnline.Controllers
 {
     public class EmployeeController : Controller
     {
-        LEAVE_STSTEM_ONLINEEntities context = new LEAVE_STSTEM_ONLINEEntities();
+        LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
         LeaveServices services = new LeaveServices();
+        LeaveRepo repo = new LeaveRepo();
 
         // GET: Employee
         public ActionResult Index()
@@ -35,5 +37,19 @@ namespace LeaveSystemOnline.Controllers
             var a = services.GetAllEmployee();
             return View(a);
         }
+
+        public ActionResult EditAuthorEmployee(int id)
+        {
+            EMPLOYEE detail = repo.Detail(id);
+            return View(detail);
+        }
+
+        [HttpPost]
+        public ActionResult EditAuthorEmployee(EMPLOYEE model)
+        {
+            services.EditAuthor(model);
+            return View(model);
+        }
+
     }
 }

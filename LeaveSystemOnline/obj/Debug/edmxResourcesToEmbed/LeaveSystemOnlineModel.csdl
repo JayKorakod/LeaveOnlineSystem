@@ -26,9 +26,11 @@
     <Property Name="postalCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
     <Property Name="authorization_id" Type="Int32" />
     <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="department" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="tel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AUTHOR" Relationship="Self.FK_EMPLOYEE_AUTHOR" FromRole="EMPLOYEE" ToRole="AUTHOR" />
     <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="EMPLOYEE" ToRole="LEAVEDATA" />
-    <Property Name="department" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="LEAVEDATA">
     <Key>
@@ -42,11 +44,10 @@
     <Property Name="leaveStatus_id" Type="Int32" />
     <Property Name="leaveType_id" Type="Int32" />
     <Property Name="revisionDate" Type="DateTime" Precision="0" />
+    <Property Name="fileDocument" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="LEAVEDATA" ToRole="EMPLOYEE" />
     <NavigationProperty Name="LEAVESTATUS" Relationship="Self.FK_LEAVEDATA_LEAVESTATUS" FromRole="LEAVEDATA" ToRole="LEAVESTATUS" />
     <NavigationProperty Name="LEAVETYPE" Relationship="Self.FK_LEAVEDATA_LEAVETYPE" FromRole="LEAVEDATA" ToRole="LEAVETYPE" />
-    <Property Name="fileDocument" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="LEAVESTATUS1" Relationship="LEAVE_STSTEM_ONLINEModel.FK_LEAVESTATUS_LEAVEDATA" FromRole="LEAVEDATA" ToRole="LEAVESTATUS" />
   </EntityType>
   <EntityType Name="LEAVESTATUS">
     <Key>
@@ -55,8 +56,6 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_LEAVESTATUS" FromRole="LEAVESTATUS" ToRole="LEAVEDATA" />
-    <Property Name="leaveData_id" Type="Int32" />
-    <NavigationProperty Name="LEAVEDATA1" Relationship="LEAVE_STSTEM_ONLINEModel.FK_LEAVESTATUS_LEAVEDATA" FromRole="LEAVESTATUS" ToRole="LEAVEDATA" />
   </EntityType>
   <EntityType Name="LEAVETYPE">
     <Key>
@@ -64,9 +63,9 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_LEAVETYPE" FromRole="LEAVETYPE" ToRole="LEAVEDATA" />
     <Property Name="numOfLeave" Type="Int32" />
     <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_LEAVETYPE" FromRole="LEAVETYPE" ToRole="LEAVEDATA" />
   </EntityType>
   <Association Name="FK_EMPLOYEE_AUTHOR">
     <End Role="AUTHOR" Type="Self.AUTHOR" Multiplicity="0..1" />
@@ -116,7 +115,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="LEAVE_STSTEM_ONLINEEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="LEAVE_STSTEM_ONLINEEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AUTHOR" EntityType="Self.AUTHOR" />
     <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" />
     <EntitySet Name="LEAVEDATA" EntityType="Self.LEAVEDATA" />
@@ -138,21 +137,5 @@
       <End Role="LEAVETYPE" EntitySet="LEAVETYPE" />
       <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
     </AssociationSet>
-    <AssociationSet Name="FK_LEAVESTATUS_LEAVEDATA" Association="LEAVE_STSTEM_ONLINEModel.FK_LEAVESTATUS_LEAVEDATA">
-      <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
-      <End Role="LEAVESTATUS" EntitySet="LEAVESTATUS" />
-    </AssociationSet>
   </EntityContainer>
-  <Association Name="FK_LEAVESTATUS_LEAVEDATA">
-    <End Type="LEAVE_STSTEM_ONLINEModel.LEAVEDATA" Role="LEAVEDATA" Multiplicity="0..1" />
-    <End Type="LEAVE_STSTEM_ONLINEModel.LEAVESTATUS" Role="LEAVESTATUS" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="LEAVEDATA">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="LEAVESTATUS">
-        <PropertyRef Name="leaveData_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

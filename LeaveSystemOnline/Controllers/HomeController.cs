@@ -9,7 +9,7 @@ namespace LeaveSystemOnline.Controllers
 {
     public class HomeController : Controller
     {
-        LEAVE_STSTEM_ONLINEEntities context = new LEAVE_STSTEM_ONLINEEntities();
+        LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
         LeaveServices services = new LeaveServices();
         public ActionResult Index()
         {
@@ -52,7 +52,8 @@ namespace LeaveSystemOnline.Controllers
                 var employee = context.EMPLOYEE.Where(x => x.id.Equals(model.id) && x.password.Equals(model.password)).FirstOrDefault();
                 if(employee  != null)
                 {
-                    Session["name"] = employee.firstName + " " + employee.lastName;
+                    Session["name"]= employee.firstName + " " + employee.lastName;
+                    Session["author"] = employee.AUTHOR.tier;
                     return RedirectToAction("Index");
                 }
             }
