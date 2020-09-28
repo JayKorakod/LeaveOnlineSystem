@@ -12,6 +12,7 @@ namespace LeaveSystemOnline.Repositories
         public void Create(LEAVEDATA model)
         {
             context.LEAVEDATA.Add(model);
+            context.SaveChanges();
         }
     }
 }
