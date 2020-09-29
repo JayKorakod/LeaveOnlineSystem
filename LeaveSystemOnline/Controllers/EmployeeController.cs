@@ -28,8 +28,11 @@ namespace LeaveSystemOnline.Controllers
         [HttpPost]
         public ActionResult CreateEmployee(EMPLOYEE model)
         {
-            ViewBag.ProvinceList = new SelectList(GetProvincesList(), "id", "NameInThai");
-            services.CreateEmployee(model);
+            var iden = context.EMPLOYEE.Where(x => x.identificationNo == model.identificationNo).ToString();
+            if(iden == null) 
+            {
+                services.CreateEmployee(model);
+            }
             return View(model);
         }
 
