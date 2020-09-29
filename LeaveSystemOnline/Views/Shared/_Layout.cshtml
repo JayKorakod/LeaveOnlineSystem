@@ -20,16 +20,18 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="~/Content/Theme/assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="~/Content/Theme/assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="~/Content/Theme/assets/plugins/bootstrap-tag/bootstrap-tagsinput.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Theme/assets/plugins/nvd3/nv.d3.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="~/Content/Theme/assets/plugins/dropzone/css/dropzone.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Theme/assets/plugins/mapplic/css/mapplic.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Theme/assets/plugins/rickshaw/rickshaw.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Theme/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" type="text/css" media="screen">
     <link href="~/Content/Theme/assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="~/Content/Theme/assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css" media="screen">
     <link href="~/Content/Theme/assets/plugins/jquery-datatable/media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Theme/assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Theme/assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="~/Content/Theme/assets/css/dashboard.widgets.css" rel="stylesheet" type="text/css" media="screen" />
-    <link class="main-stylesheet" href="~/Content/Theme/pages/css/themes/modern.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Theme/assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Theme/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -73,12 +75,12 @@
                         <a href="#" class="dropdown-item">
                             <span>
                                 Signed in as <br />
-                                
-                                    @if (Session["name"] != null)
-                                    {
-                                        <b> <text> @Session["name"] </text> </b>
-                                    }
-                                
+
+                                @if (Session["name"] != null)
+                                {
+                                    <b> <text> @Session["name"] </text> </b>
+                                }
+
                             </span>
                         </a>
                         <div class="dropdown-divider"></div>
@@ -281,7 +283,7 @@
             </ol>
         </div>
     </div>
-    <br />           
+    <br />
     <!-- END PAGE CONTAINER -->
     <div class="container body-content">
         @RenderBody()
@@ -310,6 +312,11 @@
     <script src="~/Content/Theme/assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js"></script>
     <script type="text/javascript" src="~/Content/Theme/assets/plugins/select2/js/select2.full.min.js"></script>
     <script type="text/javascript" src="~/Content/Theme/assets/plugins/classie/classie.js"></script>
+    <script type="text/javascript" src="~/Content/Theme/assets/plugins/jquery-autonumeric/autoNumeric.js"></script>
+    <script type="text/javascript" src="~/Content/Theme/assets/plugins/dropzone/dropzone.min.js"></script>
+    <script type="text/javascript" src="~/Content/Theme/assets/plugins/bootstrap-tag/bootstrap-tagsinput.min.js"></script>
+    <script type="text/javascript" src="~/Content/Theme/assets/plugins/jquery-inputmask/jquery.inputmask.min.js"></script>
+    <script src="~/Content/Theme/assets/plugins/bootstrap-form-wizard/js/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp" type="text/javascript"></script>
     <script src="~/Content/Theme/assets/plugins/nvd3/lib/d3.v3.js" type="text/javascript"></script>
     <script src="~/Content/Theme/assets/plugins/nvd3/nv.d3.min.js" type="text/javascript"></script>
@@ -327,12 +334,17 @@
     <script src="~/Content/Theme/assets/plugins/jquery-sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
     <script src="~/Content/Theme/assets/plugins/skycons/skycons.js" type="text/javascript"></script>
     <script src="~/Content/Theme/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="~/Content/Theme/assets/plugins/quill/quill.min.js" type="text/javascript"></script>
     <script src="~/Content/Theme/assets/plugins/moment/moment.min.js"></script>
     <script src="~/Content/Theme/assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="~/Content/Theme/assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
     <script src="~/Content/Theme/assets/plugins/jquery-datatable/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <script src="~/Content/Theme/assets/plugins/jquery-datatable/extensions/TableTools/js/dataTables.tableTools.min.js" type="text/javascript"></script>
     <script src="~/Content/Theme/assets/plugins/jquery-datatable/media/js/dataTables.bootstrap.js" type="text/javascript"></script>
     <script src="~/Content/Theme/assets/plugins/jquery-datatable/extensions/Bootstrap/jquery-datatable-bootstrap.js" type="text/javascript"></script>
+    <script src="~/Content/Theme/assets/plugins/bootstrap-typehead/typeahead.bundle.min.js"></script>
+    <script src="~/Content/Theme/assets/plugins/bootstrap-typehead/typeahead.jquery.min.js"></script>
+    <script src="~/Content/Theme/assets/plugins/handlebars/handlebars-v4.0.5.js"></script>
     <script type="text/javascript" src="~/Content/Theme/assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
     <script type="text/javascript" src="~/Content/Theme/assets/plugins/datatables-responsive/js/lodash.min.js"></script>
     <script src="~/Content/Theme/assets/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
@@ -342,6 +354,7 @@
     <!-- END CORE TEMPLATE JS -->
     <!-- BEGIN PAGE LEVEL JS -->
     <script src="~/Content/Theme/assets/js/dashboard.js" type="text/javascript"></script>
+    <script src="~/Content/Theme/assets/js/form_elements.js" type="text/javascript"></script>
     <script src="~/Content/Theme/assets/js/scripts.js" type="text/javascript"></script>
     <script src="~/Content/Theme/assets/js/datatables.js" type="text/javascript"></script>
     <script src="~/Content/Theme/assets/js/demo.js" type="text/javascript"></script>

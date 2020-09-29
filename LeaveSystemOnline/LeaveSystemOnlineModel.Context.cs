@@ -30,5 +30,8 @@ namespace LeaveSystemOnline
         public virtual DbSet<LEAVEDATA> LEAVEDATA { get; set; }
         public virtual DbSet<LEAVESTATUS> LEAVESTATUS { get; set; }
         public virtual DbSet<LEAVETYPE> LEAVETYPE { get; set; }
+        public virtual DbSet<Districts> Districts { get; set; }
+        public virtual DbSet<Provinces> Provinces { get; set; }
+        public virtual DbSet<Subdistricts> Subdistricts { get; set; }
     }
 }

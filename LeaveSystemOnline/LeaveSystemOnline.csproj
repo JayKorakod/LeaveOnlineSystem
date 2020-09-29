@@ -133,6 +133,9 @@
     </Compile>
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Districts.cs">
+      <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EMPLOYEE.cs">
       <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
@@ -163,10 +166,17 @@
     <Compile Include="LEAVETYPE.cs">
       <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cascading.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provinces.cs">
+      <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\LeaveDataRepo.cs" />
     <Compile Include="Repositories\LeaveRepo.cs" />
     <Compile Include="Services\LeaveServices.cs" />
+    <Compile Include="Subdistricts.cs">
+      <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -1793,7 +1803,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

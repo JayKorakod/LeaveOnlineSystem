@@ -28,6 +28,7 @@ namespace LeaveSystemOnline.Controllers
         [HttpPost]
         public ActionResult CreateEmployee(EMPLOYEE model)
         {
+            ViewBag.ProvinceList = new SelectList(GetProvincesList(), "id", "NameInThai");
             services.CreateEmployee(model);
             return View(model);
         }
@@ -49,6 +50,12 @@ namespace LeaveSystemOnline.Controllers
         {
             services.EditAuthor(model);
             return View(model);
+        }
+
+        public List<Provinces> GetProvincesList()
+        {
+            List<Provinces> provinces = context.Provinces.ToList();
+            return provinces;
         }
 
     }

@@ -80,3 +80,4 @@ D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\obj\Debug\LeaveSystemOnline.
 D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\obj\Debug\LeaveSystemOnline.csproj.CopyComplete
 D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\obj\Debug\LeaveSystemOnline.dll
 D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\obj\Debug\LeaveSystemOnline.pdb
+D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\obj\Debug\LeaveSystemOnline.csprojAssemblyReference.cache
