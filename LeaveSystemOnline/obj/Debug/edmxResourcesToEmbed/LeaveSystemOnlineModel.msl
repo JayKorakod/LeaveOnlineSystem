@@ -1,11 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="LEAVE_STSTEM_ONLINEModelStoreContainer" CdmEntityContainer="LEAVE_STSTEM_ONLINEEntities1">
+  <EntityContainerMapping StorageEntityContainer="LEAVE_STSTEM_ONLINEModelStoreContainer" CdmEntityContainer="LEAVE_STSTEM_ONLINEEntities2">
     <EntitySetMapping Name="AUTHOR">
       <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.AUTHOR">
         <MappingFragment StoreEntitySet="AUTHOR">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="tier" ColumnName="tier" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Districts">
+      <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.Districts">
+        <MappingFragment StoreEntitySet="Districts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="NameInThai" ColumnName="NameInThai" />
+          <ScalarProperty Name="NameInEnglish" ColumnName="NameInEnglish" />
+          <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -62,6 +73,30 @@
           <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="numOfLeave" ColumnName="numOfLeave" />
           <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Provinces">
+      <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.Provinces">
+        <MappingFragment StoreEntitySet="Provinces">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="NameInThai" ColumnName="NameInThai" />
+          <ScalarProperty Name="NameInEnglish" ColumnName="NameInEnglish" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subdistricts">
+      <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.Subdistricts">
+        <MappingFragment StoreEntitySet="Subdistricts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="NameInThai" ColumnName="NameInThai" />
+          <ScalarProperty Name="NameInEnglish" ColumnName="NameInEnglish" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

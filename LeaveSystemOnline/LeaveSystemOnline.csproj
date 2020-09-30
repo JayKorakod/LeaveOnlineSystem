@@ -1800,6 +1800,8 @@
     <Content Include="Views\Employee\ListEmployee.cshtml" />
     <Content Include="Views\Employee\DetailEmployee.cshtml" />
     <Content Include="Views\Employee\EditAuthorEmployee.cshtml" />
+    <Content Include="Views\Shared\DisplayDistrict.cshtml" />
+    <Content Include="Views\Employee\DisplaySubDistrict.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

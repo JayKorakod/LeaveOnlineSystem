@@ -1,150 +1,186 @@
 ﻿@model LeaveSystemOnline.EMPLOYEE
-
 @{
     ViewBag.Title = "เพิ่มข้อมูลผู้ใช้งาน";
 }
 
- <h2 align ="center">เพิ่มข้อมูลผู้ใช้งาน</h2>
+<h2 align="center">เพิ่มข้อมูลผู้ใช้งาน</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div>
+    <div>
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        <h3>ข้อมูลส่วนตัว</h3>
-        <div class="col-md-10">
-            @Html.Label("ชื่อ")
-            @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <h3>ข้อมูลส่วนตัว</h3>
+            <div class="col-md-10">
+                @Html.Label("ชื่อ")
+                @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("นามสกุล")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("วันเกิด")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.birthdate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.birthdate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("รหัสบัตรประชาชน")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.identificationNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.identificationNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("อีเมล")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("เบอร์โทรศัพท์")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.tel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.tel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("แผนก")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.department, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.department, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+
+        <div class="form-group">
+            <h3>ที่อยู่</h3>
+            @Html.Label("บ้านเลขที่")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.homeNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.homeNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("ซอย")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.soi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.soi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("ถนน")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.road, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.road, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("จังหวัด")
+            <div class="col-md-10">
+                @if (ViewBag.ProvinceList != null)
+                {
+                    @Html.DropDownListFor(x => x.province, ViewBag.ProvinceList as SelectList, "-- Select Province --", new { @class = "form-control" })
+                }
+
+                @Html.DropDownListFor(x => x.district, new SelectList(""), "-- Select District -- ", new { @class = "form-control" })
+
+                @Html.DropDownListFor(x => x.subdistrict, new SelectList(""), "-- Select SubDistrict -- ", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.province, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("อำเภอ")
+            <div class="col-md-10">
+
+                @Html.ValidationMessageFor(model => model.district, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("ตำบล")
+            <div class="col-md-10">
+
+                @Html.ValidationMessageFor(model => model.subdistrict, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("รหัสไปรษณีย์")
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.postalCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.postalCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.Label("นามสกุล")
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("วันเกิด")
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.birthdate, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.birthdate, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("รหัสบัตรประชาชน")
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.identificationNo, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.identificationNo, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("อีเมล")
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("เบอร์โทรศัพท์")
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.tel, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.tel, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("แผนก")
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.department, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.department, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <br />
-
-    <div class="form-group">
-        <h3>ที่อยู่</h3>
-        @Html.Label("บ้านเลขที่")
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.homeNo, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.homeNo, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("ซอย")
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.soi, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.soi, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("ถนน")
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.road, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.road, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("จังหวัด")
-        <div class="col-md-10">
-            @if(ViewBag.ProvinceList != null)
-            {
-
-            }
-            @Html.ValidationMessageFor(model => model.province, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("อำเภอ")
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.district, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.district, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("ตำบล")
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.subdistrict, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.subdistrict, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("รหัสไปรษณีย์")
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.postalCode, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.postalCode, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#provinceID").change(function () {
+            var provinceId = $(this).val();
+            debugger
+            $.ajax({
+                type: "post",
+                url: "/Employee/GetDistrictList?provinceID=" + provinceId,
+                contentType: "html",
+                success: function (response) {
+                    debugger
+                    $("#district").empty();
+                    $("#district").append(response);
+                }
+            })
+        })
+
+        $("#district").change(function () {
+            var districtID = $(this).val();
+            debugger
+            $.ajax({
+                type: "post",
+                url: "/Employee/GetSubDistrictList?districtID=" + districtID,
+                contentType: "html",
+                success: function (response) {
+                    debugger
+                    $("#subdistrict").empty();
+                    $("#subdistrict").append(response);
+                }
+            })
+        })
+    })
+</script>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

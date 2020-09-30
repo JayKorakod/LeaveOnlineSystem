@@ -7,7 +7,7 @@ namespace LeaveSystemOnline.Repositories
 {
     public class LeaveDataRepo
     {
-        LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
+        LEAVE_STSTEM_ONLINEEntities2 context = new LEAVE_STSTEM_ONLINEEntities2();
 
         public void Create(LEAVEDATA model)
         {

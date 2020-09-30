@@ -8,6 +8,18 @@
     <Property Name="tier" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_EMPLOYEE_AUTHOR" FromRole="AUTHOR" ToRole="EMPLOYEE" />
   </EntityType>
+  <EntityType Name="Districts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="NameInThai" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NameInEnglish" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProvinceId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Provinces" Relationship="Self.FK_Districts_Provinces" FromRole="Districts" ToRole="Provinces" />
+    <NavigationProperty Name="Subdistricts" Relationship="Self.FK_Subdistricts_Districts" FromRole="Districts" ToRole="Subdistricts" />
+  </EntityType>
   <EntityType Name="EMPLOYEE">
     <Key>
       <PropertyRef Name="id" />
@@ -20,9 +32,9 @@
     <Property Name="homeNo" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
     <Property Name="soi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="road" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="subdistrict" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="district" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="province" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="subdistrict" Type="Int32" Nullable="false" />
+    <Property Name="district" Type="Int32" Nullable="false" />
+    <Property Name="province" Type="Int32" Nullable="false" />
     <Property Name="postalCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
     <Property Name="authorization_id" Type="Int32" />
     <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -30,6 +42,7 @@
     <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="tel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AUTHOR" Relationship="Self.FK_EMPLOYEE_AUTHOR" FromRole="EMPLOYEE" ToRole="AUTHOR" />
+    <NavigationProperty Name="Provinces" Relationship="Self.FK_EMPLOYEE_Provinces" FromRole="EMPLOYEE" ToRole="Provinces" />
     <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="EMPLOYEE" ToRole="LEAVEDATA" />
   </EntityType>
   <EntityType Name="LEAVEDATA">
@@ -67,6 +80,31 @@
     <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_LEAVETYPE" FromRole="LEAVETYPE" ToRole="LEAVEDATA" />
   </EntityType>
+  <EntityType Name="Provinces">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="NameInThai" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NameInEnglish" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Districts" Relationship="Self.FK_Districts_Provinces" FromRole="Provinces" ToRole="Districts" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_EMPLOYEE_Provinces" FromRole="Provinces" ToRole="EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="Subdistricts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="Int32" Nullable="false" />
+    <Property Name="NameInThai" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NameInEnglish" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Latitude" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
+    <Property Name="Longitude" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
+    <Property Name="DistrictId" Type="Int32" Nullable="false" />
+    <Property Name="ZipCode" Type="Int32" />
+    <NavigationProperty Name="Districts" Relationship="Self.FK_Subdistricts_Districts" FromRole="Subdistricts" ToRole="Districts" />
+  </EntityType>
   <Association Name="FK_EMPLOYEE_AUTHOR">
     <End Role="AUTHOR" Type="Self.AUTHOR" Multiplicity="0..1" />
     <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
@@ -76,6 +114,42 @@
       </Principal>
       <Dependent Role="EMPLOYEE">
         <PropertyRef Name="authorization_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Districts_Provinces">
+    <End Role="Provinces" Type="Self.Provinces" Multiplicity="1" />
+    <End Role="Districts" Type="Self.Districts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provinces">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Districts">
+        <PropertyRef Name="ProvinceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subdistricts_Districts">
+    <End Role="Districts" Type="Self.Districts" Multiplicity="1" />
+    <End Role="Subdistricts" Type="Self.Subdistricts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Districts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subdistricts">
+        <PropertyRef Name="DistrictId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEE_Provinces">
+    <End Role="Provinces" Type="Self.Provinces" Multiplicity="1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provinces">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="province" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -115,14 +189,29 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="LEAVE_STSTEM_ONLINEEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="LEAVE_STSTEM_ONLINEEntities2" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AUTHOR" EntityType="Self.AUTHOR" />
+    <EntitySet Name="Districts" EntityType="Self.Districts" />
     <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" />
     <EntitySet Name="LEAVEDATA" EntityType="Self.LEAVEDATA" />
     <EntitySet Name="LEAVESTATUS" EntityType="Self.LEAVESTATUS" />
     <EntitySet Name="LEAVETYPE" EntityType="Self.LEAVETYPE" />
+    <EntitySet Name="Provinces" EntityType="Self.Provinces" />
+    <EntitySet Name="Subdistricts" EntityType="Self.Subdistricts" />
     <AssociationSet Name="FK_EMPLOYEE_AUTHOR" Association="Self.FK_EMPLOYEE_AUTHOR">
       <End Role="AUTHOR" EntitySet="AUTHOR" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Districts_Provinces" Association="Self.FK_Districts_Provinces">
+      <End Role="Provinces" EntitySet="Provinces" />
+      <End Role="Districts" EntitySet="Districts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subdistricts_Districts" Association="Self.FK_Subdistricts_Districts">
+      <End Role="Districts" EntitySet="Districts" />
+      <End Role="Subdistricts" EntitySet="Subdistricts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_Provinces" Association="Self.FK_EMPLOYEE_Provinces">
+      <End Role="Provinces" EntitySet="Provinces" />
       <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
     </AssociationSet>
     <AssociationSet Name="FK_LEAVEDATA_EMPLOYEE" Association="Self.FK_LEAVEDATA_EMPLOYEE">

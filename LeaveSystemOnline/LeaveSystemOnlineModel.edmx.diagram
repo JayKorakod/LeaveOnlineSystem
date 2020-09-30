@@ -4,21 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e8a7b7a7a25b4054b9b0dd3046160600" Name="Diagram1">
-        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.AUTHOR" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.LEAVEDATA" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.LEAVESTATUS" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.LEAVETYPE" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+      <Diagram DiagramId="de4630b6e5af47518f0f63f9864e8888" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.AUTHOR" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.Districts" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.LEAVEDATA" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.LEAVESTATUS" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.LEAVETYPE" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.Provinces" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.Subdistricts" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_AUTHOR" ManuallyRouted="false" />
+        <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_Districts_Provinces" ManuallyRouted="false" />
+        <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_Subdistricts_Districts" ManuallyRouted="false" />
+        <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Provinces" ManuallyRouted="false" />
         <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_EMPLOYEE" ManuallyRouted="false" />
         <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_LEAVESTATUS" ManuallyRouted="false" />
         <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_LEAVETYPE" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.Districts" Width="1.5" PointX="8.375" PointY="6.75" />
-        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.Provinces" Width="1.5" PointX="6.125" PointY="7" />
-        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.Subdistricts" Width="1.5" PointX="10.625" PointY="6.625" />
-        <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_Districts_Provinces" />
-        <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_Subdistricts_Districts" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

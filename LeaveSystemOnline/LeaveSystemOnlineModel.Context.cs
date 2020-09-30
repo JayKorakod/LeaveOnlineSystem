@@ -13,10 +13,10 @@ namespace LeaveSystemOnline
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LEAVE_STSTEM_ONLINEEntities1 : DbContext
+    public partial class LEAVE_STSTEM_ONLINEEntities2 : DbContext
     {
-        public LEAVE_STSTEM_ONLINEEntities1()
-            : base("name=LEAVE_STSTEM_ONLINEEntities1")
+        public LEAVE_STSTEM_ONLINEEntities2()
+            : base("name=LEAVE_STSTEM_ONLINEEntities2")
         {
         }
     
@@ -26,11 +26,11 @@ namespace LeaveSystemOnline
         }
     
         public virtual DbSet<AUTHOR> AUTHOR { get; set; }
+        public virtual DbSet<Districts> Districts { get; set; }
         public virtual DbSet<EMPLOYEE> EMPLOYEE { get; set; }
         public virtual DbSet<LEAVEDATA> LEAVEDATA { get; set; }
         public virtual DbSet<LEAVESTATUS> LEAVESTATUS { get; set; }
         public virtual DbSet<LEAVETYPE> LEAVETYPE { get; set; }
-        public virtual DbSet<Districts> Districts { get; set; }
         public virtual DbSet<Provinces> Provinces { get; set; }
         public virtual DbSet<Subdistricts> Subdistricts { get; set; }
     }

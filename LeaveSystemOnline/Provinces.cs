@@ -18,6 +18,7 @@ namespace LeaveSystemOnline
         public Provinces()
         {
             this.Districts = new HashSet<Districts>();
+            this.EMPLOYEE = new HashSet<EMPLOYEE>();
         }
     
         public int Id { get; set; }
@@ -27,5 +28,7 @@ namespace LeaveSystemOnline
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Districts> Districts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EMPLOYEE> EMPLOYEE { get; set; }
     }
 }
