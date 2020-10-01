@@ -62,6 +62,7 @@ namespace LeaveSystemOnline.Controllers
             return provinces;
         }
 
+        [HttpGet]
         public ActionResult GetDistrictList(int provinceID)
         {
             List<Districts> selectList = context.Districts.Where(x => x.ProvinceId == provinceID).ToList();

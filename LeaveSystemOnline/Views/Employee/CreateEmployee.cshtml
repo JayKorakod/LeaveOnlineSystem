@@ -100,12 +100,8 @@
             <div class="col-md-10">
                 @if (ViewBag.ProvinceList != null)
                 {
-                    @Html.DropDownListFor(x => x.province, ViewBag.ProvinceList as SelectList, "-- Select Province --", new { @class = "form-control" })
+                    @Html.DropDownListFor(x => x.province, ViewBag.ProvinceList as SelectList, "-- Select Province --", new { @class = "form-control", id="province"})
                 }
-
-                @Html.DropDownListFor(x => x.district, new SelectList(""), "-- Select District -- ", new { @class = "form-control" })
-
-                @Html.DropDownListFor(x => x.subdistrict, new SelectList(""), "-- Select SubDistrict -- ", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.province, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -113,7 +109,7 @@
         <div class="form-group">
             @Html.Label("อำเภอ")
             <div class="col-md-10">
-
+                @Html.DropDownListFor(x => x.district, new SelectList(""), "-- Select District -- ", new { @class = "form-control", id = "district" })
                 @Html.ValidationMessageFor(model => model.district, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -121,7 +117,7 @@
         <div class="form-group">
             @Html.Label("ตำบล")
             <div class="col-md-10">
-
+                @Html.DropDownListFor(x => x.subdistrict, new SelectList(""), "-- Select SubDistrict -- ", new { @class = "form-control", id = "subdistrict" })
                 @Html.ValidationMessageFor(model => model.subdistrict, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -146,15 +142,15 @@
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
     $(document).ready(function () {
-        $("#provinceID").change(function () {
+        $("#province").change(function () {
             var provinceId = $(this).val();
             debugger
             $.ajax({
-                type: "post",
+                type: "get",
                 url: "/Employee/GetDistrictList?provinceID=" + provinceId,
                 contentType: "html",
                 success: function (response) {
-                    debugger
+                    debugger;
                     $("#district").empty();
                     $("#district").append(response);
                 }
@@ -165,7 +161,7 @@
             var districtID = $(this).val();
             debugger
             $.ajax({
-                type: "post",
+                type: "get",
                 url: "/Employee/GetSubDistrictList?districtID=" + districtID,
                 contentType: "html",
                 success: function (response) {
