@@ -39,10 +39,10 @@ namespace LeaveSystemOnline
         public string tel { get; set; }
     
         public virtual AUTHOR AUTHOR { get; set; }
+        public virtual Districts Districts { get; set; }
         public virtual Provinces Provinces { get; set; }
+        public virtual Subdistricts Subdistricts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LEAVEDATA> LEAVEDATA { get; set; }
-        public virtual Districts Districts { get; set; }
-        public virtual Subdistricts Subdistricts { get; set; }
     }
 }

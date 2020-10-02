@@ -9,7 +9,7 @@ namespace LeaveSystemOnline.Controllers
 {
     public class HomeController : Controller
     {
-        LEAVE_STSTEM_ONLINEEntities2 context = new LEAVE_STSTEM_ONLINEEntities2();
+        LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
         LeaveServices services = new LeaveServices();
         public ActionResult Index()
         {
@@ -54,6 +54,8 @@ namespace LeaveSystemOnline.Controllers
                 {
                     Session["name"]= employee.firstName + " " + employee.lastName;
                     Session["author"] = employee.AUTHOR.tier;
+                    Session["id"] = employee.id;
+                    Session["depart"] = employee.department;
                     return RedirectToAction("Index");
                 }
             }

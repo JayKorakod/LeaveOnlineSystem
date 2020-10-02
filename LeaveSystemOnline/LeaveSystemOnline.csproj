@@ -133,6 +133,9 @@
     </Compile>
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeaveDataController.cs" />
+    <Compile Include="CustomModel\Response.cs" />
+    <Compile Include="CustomModel\ViewModel.cs" />
     <Compile Include="Districts.cs">
       <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
@@ -173,7 +176,10 @@
     </Compile>
     <Compile Include="Repositories\LeaveDataRepo.cs" />
     <Compile Include="Repositories\LeaveRepo.cs" />
+    <Compile Include="Repositories\LeaveTypeRepo.cs" />
+    <Compile Include="Services\LeaveDataService.cs" />
     <Compile Include="Services\LeaveServices.cs" />
+    <Compile Include="Services\LeaveTypeServices.cs" />
     <Compile Include="Subdistricts.cs">
       <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
@@ -1800,6 +1806,7 @@
     <Content Include="Views\Employee\ListEmployee.cshtml" />
     <Content Include="Views\Employee\DetailEmployee.cshtml" />
     <Content Include="Views\Employee\EditAuthorEmployee.cshtml" />
+    <Content Include="Views\LeaveData\Index.cshtml" />
     <Content Include="Views\Shared\DisplayDistrict.cshtml" />
     <Content Include="Views\Employee\DisplaySubDistrict.cshtml" />
   </ItemGroup>

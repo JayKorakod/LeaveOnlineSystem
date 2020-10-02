@@ -11,7 +11,7 @@ namespace LeaveSystemOnline.Controllers
 {
     public class EmployeeController : Controller
     {
-        LEAVE_STSTEM_ONLINEEntities2 context = new LEAVE_STSTEM_ONLINEEntities2();
+        LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
         LeaveServices services = new LeaveServices();
         LeaveRepo repo = new LeaveRepo();
 

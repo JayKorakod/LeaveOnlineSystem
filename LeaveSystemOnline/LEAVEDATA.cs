@@ -21,7 +21,6 @@ namespace LeaveSystemOnline
         public Nullable<System.DateTime> LastDayOfLeave { get; set; }
         public Nullable<int> leaveStatus_id { get; set; }
         public Nullable<int> leaveType_id { get; set; }
-        public Nullable<System.DateTime> revisionDate { get; set; }
         public string fileDocument { get; set; }
     
         public virtual EMPLOYEE EMPLOYEE { get; set; }

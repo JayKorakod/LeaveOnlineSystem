@@ -55,7 +55,6 @@
           <Property Name="LastDayOfLeave" Type="date" />
           <Property Name="leaveStatus_id" Type="int" />
           <Property Name="leaveType_id" Type="int" />
-          <Property Name="revisionDate" Type="date" />
           <Property Name="fileDocument" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="LEAVESTATUS">
@@ -254,13 +253,59 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LEAVE_STSTEM_ONLINEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LEAVE_STSTEM_ONLINEEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AUTHOR" EntityType="LEAVE_STSTEM_ONLINEModel.AUTHOR" />
+          <EntitySet Name="Districts" EntityType="LEAVE_STSTEM_ONLINEModel.Districts" />
+          <EntitySet Name="EMPLOYEE" EntityType="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" />
+          <EntitySet Name="LEAVEDATA" EntityType="LEAVE_STSTEM_ONLINEModel.LEAVEDATA" />
+          <EntitySet Name="LEAVESTATUS" EntityType="LEAVE_STSTEM_ONLINEModel.LEAVESTATUS" />
+          <EntitySet Name="LEAVETYPE" EntityType="LEAVE_STSTEM_ONLINEModel.LEAVETYPE" />
+          <EntitySet Name="Provinces" EntityType="LEAVE_STSTEM_ONLINEModel.Provinces" />
+          <EntitySet Name="Subdistricts" EntityType="LEAVE_STSTEM_ONLINEModel.Subdistricts" />
+          <AssociationSet Name="FK_EMPLOYEE_AUTHOR" Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_AUTHOR">
+            <End Role="AUTHOR" EntitySet="AUTHOR" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Districts_Provinces" Association="LEAVE_STSTEM_ONLINEModel.FK_Districts_Provinces">
+            <End Role="Provinces" EntitySet="Provinces" />
+            <End Role="Districts" EntitySet="Districts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_Districts" Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Districts">
+            <End Role="Districts" EntitySet="Districts" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subdistricts_Districts" Association="LEAVE_STSTEM_ONLINEModel.FK_Subdistricts_Districts">
+            <End Role="Districts" EntitySet="Districts" />
+            <End Role="Subdistricts" EntitySet="Subdistricts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_Provinces" Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Provinces">
+            <End Role="Provinces" EntitySet="Provinces" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_Subdistricts" Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Subdistricts">
+            <End Role="Subdistricts" EntitySet="Subdistricts" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LEAVEDATA_EMPLOYEE" Association="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LEAVEDATA_LEAVESTATUS" Association="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_LEAVESTATUS">
+            <End Role="LEAVESTATUS" EntitySet="LEAVESTATUS" />
+            <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LEAVEDATA_LEAVETYPE" Association="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_LEAVETYPE">
+            <End Role="LEAVETYPE" EntitySet="LEAVETYPE" />
+            <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="AUTHOR">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tier" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_EMPLOYEE_AUTHOR" FromRole="AUTHOR" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_AUTHOR" FromRole="AUTHOR" ToRole="EMPLOYEE" />
         </EntityType>
         <EntityType Name="Districts">
           <Key>
@@ -268,12 +313,12 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Code" Type="Int32" Nullable="false" />
-          <Property Name="NameInThai" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NameInEnglish" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameInThai" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NameInEnglish" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="ProvinceId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Provinces" Relationship="Self.FK_Districts_Provinces" FromRole="Districts" ToRole="Provinces" />
-          <NavigationProperty Name="Subdistricts" Relationship="Self.FK_Subdistricts_Districts" FromRole="Districts" ToRole="Subdistricts" />
+          <NavigationProperty Name="Provinces" Relationship="LEAVE_STSTEM_ONLINEModel.FK_Districts_Provinces" FromRole="Districts" ToRole="Provinces" />
           <NavigationProperty Name="EMPLOYEE" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Districts" FromRole="Districts" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="Subdistricts" Relationship="LEAVE_STSTEM_ONLINEModel.FK_Subdistricts_Districts" FromRole="Districts" ToRole="Subdistricts" />
         </EntityType>
         <EntityType Name="EMPLOYEE">
           <Key>
@@ -296,11 +341,11 @@
           <Property Name="department" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="tel" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AUTHOR" Relationship="Self.FK_EMPLOYEE_AUTHOR" FromRole="EMPLOYEE" ToRole="AUTHOR" />
-          <NavigationProperty Name="Provinces" Relationship="Self.FK_EMPLOYEE_Provinces" FromRole="EMPLOYEE" ToRole="Provinces" />
-          <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="EMPLOYEE" ToRole="LEAVEDATA" />
+          <NavigationProperty Name="AUTHOR" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_AUTHOR" FromRole="EMPLOYEE" ToRole="AUTHOR" />
           <NavigationProperty Name="Districts" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Districts" FromRole="EMPLOYEE" ToRole="Districts" />
+          <NavigationProperty Name="Provinces" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Provinces" FromRole="EMPLOYEE" ToRole="Provinces" />
           <NavigationProperty Name="Subdistricts" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Subdistricts" FromRole="EMPLOYEE" ToRole="Subdistricts" />
+          <NavigationProperty Name="LEAVEDATA" Relationship="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_EMPLOYEE" FromRole="EMPLOYEE" ToRole="LEAVEDATA" />
         </EntityType>
         <EntityType Name="LEAVEDATA">
           <Key>
@@ -313,11 +358,10 @@
           <Property Name="LastDayOfLeave" Type="DateTime" Precision="0" />
           <Property Name="leaveStatus_id" Type="Int32" />
           <Property Name="leaveType_id" Type="Int32" />
-          <Property Name="revisionDate" Type="DateTime" Precision="0" />
           <Property Name="fileDocument" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="LEAVEDATA" ToRole="EMPLOYEE" />
-          <NavigationProperty Name="LEAVESTATUS" Relationship="Self.FK_LEAVEDATA_LEAVESTATUS" FromRole="LEAVEDATA" ToRole="LEAVESTATUS" />
-          <NavigationProperty Name="LEAVETYPE" Relationship="Self.FK_LEAVEDATA_LEAVETYPE" FromRole="LEAVEDATA" ToRole="LEAVETYPE" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_EMPLOYEE" FromRole="LEAVEDATA" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="LEAVESTATUS" Relationship="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_LEAVESTATUS" FromRole="LEAVEDATA" ToRole="LEAVESTATUS" />
+          <NavigationProperty Name="LEAVETYPE" Relationship="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_LEAVETYPE" FromRole="LEAVEDATA" ToRole="LEAVETYPE" />
         </EntityType>
         <EntityType Name="LEAVESTATUS">
           <Key>
@@ -325,7 +369,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_LEAVESTATUS" FromRole="LEAVESTATUS" ToRole="LEAVEDATA" />
+          <NavigationProperty Name="LEAVEDATA" Relationship="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_LEAVESTATUS" FromRole="LEAVESTATUS" ToRole="LEAVEDATA" />
         </EntityType>
         <EntityType Name="LEAVETYPE">
           <Key>
@@ -335,7 +379,7 @@
           <Property Name="type" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="numOfLeave" Type="Int32" />
           <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_LEAVETYPE" FromRole="LEAVETYPE" ToRole="LEAVEDATA" />
+          <NavigationProperty Name="LEAVEDATA" Relationship="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_LEAVETYPE" FromRole="LEAVETYPE" ToRole="LEAVEDATA" />
         </EntityType>
         <EntityType Name="Provinces">
           <Key>
@@ -343,10 +387,10 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Code" Type="Int32" Nullable="false" />
-          <Property Name="NameInThai" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NameInEnglish" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Districts" Relationship="Self.FK_Districts_Provinces" FromRole="Provinces" ToRole="Districts" />
-          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_EMPLOYEE_Provinces" FromRole="Provinces" ToRole="EMPLOYEE" />
+          <Property Name="NameInThai" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NameInEnglish" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Districts" Relationship="LEAVE_STSTEM_ONLINEModel.FK_Districts_Provinces" FromRole="Provinces" ToRole="Districts" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Provinces" FromRole="Provinces" ToRole="EMPLOYEE" />
         </EntityType>
         <EntityType Name="Subdistricts">
           <Key>
@@ -354,18 +398,18 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="Int32" Nullable="false" />
-          <Property Name="NameInThai" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameInThai" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="NameInEnglish" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Latitude" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
-          <Property Name="Longitude" Type="Decimal" Precision="6" Scale="3" Nullable="false" />
+          <Property Name="Latitude" Type="Decimal" Nullable="false" Precision="6" Scale="3" />
+          <Property Name="Longitude" Type="Decimal" Nullable="false" Precision="6" Scale="3" />
           <Property Name="DistrictId" Type="Int32" Nullable="false" />
           <Property Name="ZipCode" Type="Int32" />
-          <NavigationProperty Name="Districts" Relationship="Self.FK_Subdistricts_Districts" FromRole="Subdistricts" ToRole="Districts" />
+          <NavigationProperty Name="Districts" Relationship="LEAVE_STSTEM_ONLINEModel.FK_Subdistricts_Districts" FromRole="Subdistricts" ToRole="Districts" />
           <NavigationProperty Name="EMPLOYEE" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Subdistricts" FromRole="Subdistricts" ToRole="EMPLOYEE" />
         </EntityType>
         <Association Name="FK_EMPLOYEE_AUTHOR">
-          <End Role="AUTHOR" Type="Self.AUTHOR" Multiplicity="0..1" />
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.AUTHOR" Role="AUTHOR" Multiplicity="0..1" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AUTHOR">
               <PropertyRef Name="id" />
@@ -376,8 +420,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Districts_Provinces">
-          <End Role="Provinces" Type="Self.Provinces" Multiplicity="1" />
-          <End Role="Districts" Type="Self.Districts" Multiplicity="*" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.Provinces" Role="Provinces" Multiplicity="1" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.Districts" Role="Districts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Provinces">
               <PropertyRef Name="Id" />
@@ -387,9 +431,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EMPLOYEE_Districts">
+          <End Type="LEAVE_STSTEM_ONLINEModel.Districts" Role="Districts" Multiplicity="0..1" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Districts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="district" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Subdistricts_Districts">
-          <End Role="Districts" Type="Self.Districts" Multiplicity="1" />
-          <End Role="Subdistricts" Type="Self.Subdistricts" Multiplicity="*" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.Districts" Role="Districts" Multiplicity="1" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.Subdistricts" Role="Subdistricts" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Districts">
               <PropertyRef Name="Id" />
@@ -400,108 +456,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EMPLOYEE_Provinces">
-          <End Role="Provinces" Type="Self.Provinces" Multiplicity="1" />
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.Provinces" Role="Provinces" Multiplicity="1" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Provinces">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="EMPLOYEE">
               <PropertyRef Name="province" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LEAVEDATA_EMPLOYEE">
-          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
-          <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EMPLOYEE">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="LEAVEDATA">
-              <PropertyRef Name="emp_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LEAVEDATA_LEAVESTATUS">
-          <End Role="LEAVESTATUS" Type="Self.LEAVESTATUS" Multiplicity="0..1" />
-          <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LEAVESTATUS">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="LEAVEDATA">
-              <PropertyRef Name="leaveStatus_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_LEAVEDATA_LEAVETYPE">
-          <End Role="LEAVETYPE" Type="Self.LEAVETYPE" Multiplicity="0..1" />
-          <End Role="LEAVEDATA" Type="Self.LEAVEDATA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="LEAVETYPE">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="LEAVEDATA">
-              <PropertyRef Name="leaveType_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="LEAVE_STSTEM_ONLINEEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AUTHOR" EntityType="Self.AUTHOR" />
-          <EntitySet Name="Districts" EntityType="Self.Districts" />
-          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" />
-          <EntitySet Name="LEAVEDATA" EntityType="Self.LEAVEDATA" />
-          <EntitySet Name="LEAVESTATUS" EntityType="Self.LEAVESTATUS" />
-          <EntitySet Name="LEAVETYPE" EntityType="Self.LEAVETYPE" />
-          <EntitySet Name="Provinces" EntityType="Self.Provinces" />
-          <EntitySet Name="Subdistricts" EntityType="Self.Subdistricts" />
-          <AssociationSet Name="FK_EMPLOYEE_AUTHOR" Association="Self.FK_EMPLOYEE_AUTHOR">
-            <End Role="AUTHOR" EntitySet="AUTHOR" />
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Districts_Provinces" Association="Self.FK_Districts_Provinces">
-            <End Role="Provinces" EntitySet="Provinces" />
-            <End Role="Districts" EntitySet="Districts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Subdistricts_Districts" Association="Self.FK_Subdistricts_Districts">
-            <End Role="Districts" EntitySet="Districts" />
-            <End Role="Subdistricts" EntitySet="Subdistricts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EMPLOYEE_Provinces" Association="Self.FK_EMPLOYEE_Provinces">
-            <End Role="Provinces" EntitySet="Provinces" />
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LEAVEDATA_EMPLOYEE" Association="Self.FK_LEAVEDATA_EMPLOYEE">
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-            <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LEAVEDATA_LEAVESTATUS" Association="Self.FK_LEAVEDATA_LEAVESTATUS">
-            <End Role="LEAVESTATUS" EntitySet="LEAVESTATUS" />
-            <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
-          </AssociationSet>
-          <AssociationSet Name="FK_LEAVEDATA_LEAVETYPE" Association="Self.FK_LEAVEDATA_LEAVETYPE">
-            <End Role="LEAVETYPE" EntitySet="LEAVETYPE" />
-            <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EMPLOYEE_Districts" Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Districts">
-            <End Role="Districts" EntitySet="Districts" />
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EMPLOYEE_Subdistricts" Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Subdistricts">
-            <End Role="Subdistricts" EntitySet="Subdistricts" />
-            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
-          </AssociationSet>
-        </EntityContainer>
-        <Association Name="FK_EMPLOYEE_Districts">
-          <End Type="LEAVE_STSTEM_ONLINEModel.Districts" Role="Districts" Multiplicity="0..1" />
-          <End Type="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Districts">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="EMPLOYEE">
-              <PropertyRef Name="district" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -517,108 +479,143 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_LEAVEDATA_EMPLOYEE">
+          <End Type="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="0..1" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.LEAVEDATA" Role="LEAVEDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LEAVEDATA">
+              <PropertyRef Name="emp_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LEAVEDATA_LEAVESTATUS">
+          <End Type="LEAVE_STSTEM_ONLINEModel.LEAVESTATUS" Role="LEAVESTATUS" Multiplicity="0..1" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.LEAVEDATA" Role="LEAVEDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LEAVESTATUS">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LEAVEDATA">
+              <PropertyRef Name="leaveStatus_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LEAVEDATA_LEAVETYPE">
+          <End Type="LEAVE_STSTEM_ONLINEModel.LEAVETYPE" Role="LEAVETYPE" Multiplicity="0..1" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.LEAVEDATA" Role="LEAVEDATA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LEAVETYPE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LEAVEDATA">
+              <PropertyRef Name="leaveType_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LEAVE_STSTEM_ONLINEModelStoreContainer" CdmEntityContainer="LEAVE_STSTEM_ONLINEEntities2">
+        <EntityContainerMapping StorageEntityContainer="LEAVE_STSTEM_ONLINEModelStoreContainer" CdmEntityContainer="LEAVE_STSTEM_ONLINEEntities1">
           <EntitySetMapping Name="AUTHOR">
             <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.AUTHOR">
               <MappingFragment StoreEntitySet="AUTHOR">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="tier" ColumnName="tier" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Districts">
             <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.Districts">
               <MappingFragment StoreEntitySet="Districts">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="NameInThai" ColumnName="NameInThai" />
-                <ScalarProperty Name="NameInEnglish" ColumnName="NameInEnglish" />
                 <ScalarProperty Name="ProvinceId" ColumnName="ProvinceId" />
+                <ScalarProperty Name="NameInEnglish" ColumnName="NameInEnglish" />
+                <ScalarProperty Name="NameInThai" ColumnName="NameInThai" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EMPLOYEE">
             <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.EMPLOYEE">
               <MappingFragment StoreEntitySet="EMPLOYEE">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
-                <ScalarProperty Name="identificationNo" ColumnName="identificationNo" />
-                <ScalarProperty Name="homeNo" ColumnName="homeNo" />
-                <ScalarProperty Name="soi" ColumnName="soi" />
-                <ScalarProperty Name="road" ColumnName="road" />
-                <ScalarProperty Name="subdistrict" ColumnName="subdistrict" />
-                <ScalarProperty Name="district" ColumnName="district" />
-                <ScalarProperty Name="province" ColumnName="province" />
-                <ScalarProperty Name="postalCode" ColumnName="postalCode" />
-                <ScalarProperty Name="authorization_id" ColumnName="authorization_id" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="department" ColumnName="department" />
-                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="authorization_id" ColumnName="authorization_id" />
+                <ScalarProperty Name="postalCode" ColumnName="postalCode" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="subdistrict" ColumnName="subdistrict" />
+                <ScalarProperty Name="road" ColumnName="road" />
+                <ScalarProperty Name="soi" ColumnName="soi" />
+                <ScalarProperty Name="homeNo" ColumnName="homeNo" />
+                <ScalarProperty Name="identificationNo" ColumnName="identificationNo" />
+                <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LEAVEDATA">
             <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.LEAVEDATA">
               <MappingFragment StoreEntitySet="LEAVEDATA">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="firstDayOfLeave" ColumnName="firstDayOfLeave" />
-                <ScalarProperty Name="LastDayOfLeave" ColumnName="LastDayOfLeave" />
-                <ScalarProperty Name="leaveStatus_id" ColumnName="leaveStatus_id" />
-                <ScalarProperty Name="leaveType_id" ColumnName="leaveType_id" />
-                <ScalarProperty Name="revisionDate" ColumnName="revisionDate" />
                 <ScalarProperty Name="fileDocument" ColumnName="fileDocument" />
+                <ScalarProperty Name="leaveType_id" ColumnName="leaveType_id" />
+                <ScalarProperty Name="leaveStatus_id" ColumnName="leaveStatus_id" />
+                <ScalarProperty Name="LastDayOfLeave" ColumnName="LastDayOfLeave" />
+                <ScalarProperty Name="firstDayOfLeave" ColumnName="firstDayOfLeave" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LEAVESTATUS">
             <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.LEAVESTATUS">
               <MappingFragment StoreEntitySet="LEAVESTATUS">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LEAVETYPE">
             <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.LEAVETYPE">
               <MappingFragment StoreEntitySet="LEAVETYPE">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="numOfLeave" ColumnName="numOfLeave" />
                 <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="numOfLeave" ColumnName="numOfLeave" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Provinces">
             <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.Provinces">
               <MappingFragment StoreEntitySet="Provinces">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="NameInThai" ColumnName="NameInThai" />
                 <ScalarProperty Name="NameInEnglish" ColumnName="NameInEnglish" />
+                <ScalarProperty Name="NameInThai" ColumnName="NameInThai" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subdistricts">
             <EntityTypeMapping TypeName="LEAVE_STSTEM_ONLINEModel.Subdistricts">
               <MappingFragment StoreEntitySet="Subdistricts">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="NameInThai" ColumnName="NameInThai" />
-                <ScalarProperty Name="NameInEnglish" ColumnName="NameInEnglish" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="NameInEnglish" ColumnName="NameInEnglish" />
+                <ScalarProperty Name="NameInThai" ColumnName="NameInThai" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
