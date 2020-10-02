@@ -14,6 +14,12 @@ namespace LeaveSystemOnline
     
     public partial class Subdistricts
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Subdistricts()
+        {
+            this.EMPLOYEE = new HashSet<EMPLOYEE>();
+        }
+    
         public int Id { get; set; }
         public int Code { get; set; }
         public string NameInThai { get; set; }
@@ -24,5 +30,7 @@ namespace LeaveSystemOnline
         public Nullable<int> ZipCode { get; set; }
     
         public virtual Districts Districts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EMPLOYEE> EMPLOYEE { get; set; }
     }
 }

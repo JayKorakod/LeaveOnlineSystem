@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LEAVE_STSTEM_ONLINEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="LEAVE_STSTEM_ONLINEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AUTHOR">
           <Key>
             <PropertyRef Name="id" />
@@ -34,8 +34,8 @@
           <Property Name="homeNo" Type="nvarchar" MaxLength="7" />
           <Property Name="soi" Type="nvarchar" MaxLength="30" />
           <Property Name="road" Type="nvarchar" MaxLength="30" />
-          <Property Name="subdistrict" Type="int" Nullable="false" />
-          <Property Name="district" Type="int" Nullable="false" />
+          <Property Name="subdistrict" Type="int" />
+          <Property Name="district" Type="int" />
           <Property Name="province" Type="int" Nullable="false" />
           <Property Name="postalCode" Type="nvarchar" MaxLength="5" />
           <Property Name="authorization_id" Type="int" />
@@ -120,6 +120,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EMPLOYEE_Districts">
+          <End Role="Districts" Type="Self.Districts" Multiplicity="0..1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Districts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="district" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EMPLOYEE_Provinces">
           <End Role="Provinces" Type="Self.Provinces" Multiplicity="1" />
           <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
@@ -129,6 +141,18 @@
             </Principal>
             <Dependent Role="EMPLOYEE">
               <PropertyRef Name="province" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_Subdistricts">
+          <End Role="Subdistricts" Type="Self.Subdistricts" Multiplicity="0..1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subdistricts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="subdistrict" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -197,8 +221,16 @@
             <End Role="AUTHOR" EntitySet="AUTHOR" />
             <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
           </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_Districts" Association="Self.FK_EMPLOYEE_Districts">
+            <End Role="Districts" EntitySet="Districts" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
           <AssociationSet Name="FK_EMPLOYEE_Provinces" Association="Self.FK_EMPLOYEE_Provinces">
             <End Role="Provinces" EntitySet="Provinces" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_Subdistricts" Association="Self.FK_EMPLOYEE_Subdistricts">
+            <End Role="Subdistricts" EntitySet="Subdistricts" />
             <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
           </AssociationSet>
           <AssociationSet Name="FK_LEAVEDATA_EMPLOYEE" Association="Self.FK_LEAVEDATA_EMPLOYEE">
@@ -218,8 +250,7 @@
             <End Role="Subdistricts" EntitySet="Subdistricts" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LEAVE_STSTEM_ONLINEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -242,6 +273,7 @@
           <Property Name="ProvinceId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Provinces" Relationship="Self.FK_Districts_Provinces" FromRole="Districts" ToRole="Provinces" />
           <NavigationProperty Name="Subdistricts" Relationship="Self.FK_Subdistricts_Districts" FromRole="Districts" ToRole="Subdistricts" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Districts" FromRole="Districts" ToRole="EMPLOYEE" />
         </EntityType>
         <EntityType Name="EMPLOYEE">
           <Key>
@@ -255,8 +287,8 @@
           <Property Name="homeNo" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
           <Property Name="soi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="road" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="subdistrict" Type="Int32" Nullable="false" />
-          <Property Name="district" Type="Int32" Nullable="false" />
+          <Property Name="subdistrict" Type="Int32" />
+          <Property Name="district" Type="Int32" />
           <Property Name="province" Type="Int32" Nullable="false" />
           <Property Name="postalCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="authorization_id" Type="Int32" />
@@ -267,6 +299,8 @@
           <NavigationProperty Name="AUTHOR" Relationship="Self.FK_EMPLOYEE_AUTHOR" FromRole="EMPLOYEE" ToRole="AUTHOR" />
           <NavigationProperty Name="Provinces" Relationship="Self.FK_EMPLOYEE_Provinces" FromRole="EMPLOYEE" ToRole="Provinces" />
           <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="EMPLOYEE" ToRole="LEAVEDATA" />
+          <NavigationProperty Name="Districts" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Districts" FromRole="EMPLOYEE" ToRole="Districts" />
+          <NavigationProperty Name="Subdistricts" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Subdistricts" FromRole="EMPLOYEE" ToRole="Subdistricts" />
         </EntityType>
         <EntityType Name="LEAVEDATA">
           <Key>
@@ -327,6 +361,7 @@
           <Property Name="DistrictId" Type="Int32" Nullable="false" />
           <Property Name="ZipCode" Type="Int32" />
           <NavigationProperty Name="Districts" Relationship="Self.FK_Subdistricts_Districts" FromRole="Subdistricts" ToRole="Districts" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Subdistricts" FromRole="Subdistricts" ToRole="EMPLOYEE" />
         </EntityType>
         <Association Name="FK_EMPLOYEE_AUTHOR">
           <End Role="AUTHOR" Type="Self.AUTHOR" Multiplicity="0..1" />
@@ -449,7 +484,39 @@
             <End Role="LEAVETYPE" EntitySet="LEAVETYPE" />
             <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
           </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_Districts" Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Districts">
+            <End Role="Districts" EntitySet="Districts" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_Subdistricts" Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Subdistricts">
+            <End Role="Subdistricts" EntitySet="Subdistricts" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_EMPLOYEE_Districts">
+          <End Type="LEAVE_STSTEM_ONLINEModel.Districts" Role="Districts" Multiplicity="0..1" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Districts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="district" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_Subdistricts">
+          <End Type="LEAVE_STSTEM_ONLINEModel.Subdistricts" Role="Subdistricts" Multiplicity="0..1" />
+          <End Type="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subdistricts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="subdistrict" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

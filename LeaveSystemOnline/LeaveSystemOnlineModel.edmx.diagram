@@ -20,6 +20,8 @@
         <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_EMPLOYEE" ManuallyRouted="false" />
         <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_LEAVESTATUS" ManuallyRouted="false" />
         <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_LEAVEDATA_LEAVETYPE" ManuallyRouted="false" />
+        <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Districts" />
+        <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Subdistricts" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

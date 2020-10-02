@@ -29,8 +29,8 @@
     <Property Name="homeNo" Type="nvarchar" MaxLength="7" />
     <Property Name="soi" Type="nvarchar" MaxLength="30" />
     <Property Name="road" Type="nvarchar" MaxLength="30" />
-    <Property Name="subdistrict" Type="int" Nullable="false" />
-    <Property Name="district" Type="int" Nullable="false" />
+    <Property Name="subdistrict" Type="int" />
+    <Property Name="district" Type="int" />
     <Property Name="province" Type="int" Nullable="false" />
     <Property Name="postalCode" Type="nvarchar" MaxLength="5" />
     <Property Name="authorization_id" Type="int" />
@@ -115,6 +115,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_EMPLOYEE_Districts">
+    <End Role="Districts" Type="Self.Districts" Multiplicity="0..1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Districts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="district" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_EMPLOYEE_Provinces">
     <End Role="Provinces" Type="Self.Provinces" Multiplicity="1" />
     <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
@@ -124,6 +136,18 @@
       </Principal>
       <Dependent Role="EMPLOYEE">
         <PropertyRef Name="province" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEE_Subdistricts">
+    <End Role="Subdistricts" Type="Self.Subdistricts" Multiplicity="0..1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subdistricts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="subdistrict" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -192,8 +216,16 @@
       <End Role="AUTHOR" EntitySet="AUTHOR" />
       <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
     </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_Districts" Association="Self.FK_EMPLOYEE_Districts">
+      <End Role="Districts" EntitySet="Districts" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
     <AssociationSet Name="FK_EMPLOYEE_Provinces" Association="Self.FK_EMPLOYEE_Provinces">
       <End Role="Provinces" EntitySet="Provinces" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_Subdistricts" Association="Self.FK_EMPLOYEE_Subdistricts">
+      <End Role="Subdistricts" EntitySet="Subdistricts" />
       <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
     </AssociationSet>
     <AssociationSet Name="FK_LEAVEDATA_EMPLOYEE" Association="Self.FK_LEAVEDATA_EMPLOYEE">

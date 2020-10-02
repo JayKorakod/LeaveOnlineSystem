@@ -28,8 +28,8 @@ namespace LeaveSystemOnline
         public string homeNo { get; set; }
         public string soi { get; set; }
         public string road { get; set; }
-        public int subdistrict { get; set; }
-        public int district { get; set; }
+        public Nullable<int> subdistrict { get; set; }
+        public Nullable<int> district { get; set; }
         public int province { get; set; }
         public string postalCode { get; set; }
         public Nullable<int> authorization_id { get; set; }
@@ -42,5 +42,7 @@ namespace LeaveSystemOnline
         public virtual Provinces Provinces { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LEAVEDATA> LEAVEDATA { get; set; }
+        public virtual Districts Districts { get; set; }
+        public virtual Subdistricts Subdistricts { get; set; }
     }
 }

@@ -19,6 +19,7 @@
     <Property Name="ProvinceId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Provinces" Relationship="Self.FK_Districts_Provinces" FromRole="Districts" ToRole="Provinces" />
     <NavigationProperty Name="Subdistricts" Relationship="Self.FK_Subdistricts_Districts" FromRole="Districts" ToRole="Subdistricts" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Districts" FromRole="Districts" ToRole="EMPLOYEE" />
   </EntityType>
   <EntityType Name="EMPLOYEE">
     <Key>
@@ -32,8 +33,8 @@
     <Property Name="homeNo" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
     <Property Name="soi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <Property Name="road" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-    <Property Name="subdistrict" Type="Int32" Nullable="false" />
-    <Property Name="district" Type="Int32" Nullable="false" />
+    <Property Name="subdistrict" Type="Int32" />
+    <Property Name="district" Type="Int32" />
     <Property Name="province" Type="Int32" Nullable="false" />
     <Property Name="postalCode" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
     <Property Name="authorization_id" Type="Int32" />
@@ -44,6 +45,8 @@
     <NavigationProperty Name="AUTHOR" Relationship="Self.FK_EMPLOYEE_AUTHOR" FromRole="EMPLOYEE" ToRole="AUTHOR" />
     <NavigationProperty Name="Provinces" Relationship="Self.FK_EMPLOYEE_Provinces" FromRole="EMPLOYEE" ToRole="Provinces" />
     <NavigationProperty Name="LEAVEDATA" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="EMPLOYEE" ToRole="LEAVEDATA" />
+    <NavigationProperty Name="Districts" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Districts" FromRole="EMPLOYEE" ToRole="Districts" />
+    <NavigationProperty Name="Subdistricts" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Subdistricts" FromRole="EMPLOYEE" ToRole="Subdistricts" />
   </EntityType>
   <EntityType Name="LEAVEDATA">
     <Key>
@@ -104,6 +107,7 @@
     <Property Name="DistrictId" Type="Int32" Nullable="false" />
     <Property Name="ZipCode" Type="Int32" />
     <NavigationProperty Name="Districts" Relationship="Self.FK_Subdistricts_Districts" FromRole="Subdistricts" ToRole="Districts" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Subdistricts" FromRole="Subdistricts" ToRole="EMPLOYEE" />
   </EntityType>
   <Association Name="FK_EMPLOYEE_AUTHOR">
     <End Role="AUTHOR" Type="Self.AUTHOR" Multiplicity="0..1" />
@@ -226,5 +230,37 @@
       <End Role="LEAVETYPE" EntitySet="LEAVETYPE" />
       <End Role="LEAVEDATA" EntitySet="LEAVEDATA" />
     </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_Districts" Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Districts">
+      <End Role="Districts" EntitySet="Districts" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EMPLOYEE_Subdistricts" Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_Subdistricts">
+      <End Role="Subdistricts" EntitySet="Subdistricts" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_EMPLOYEE_Districts">
+    <End Type="LEAVE_STSTEM_ONLINEModel.Districts" Role="Districts" Multiplicity="0..1" />
+    <End Type="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Districts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="district" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EMPLOYEE_Subdistricts">
+    <End Type="LEAVE_STSTEM_ONLINEModel.Subdistricts" Role="Subdistricts" Multiplicity="0..1" />
+    <End Type="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subdistricts">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="subdistrict" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>
