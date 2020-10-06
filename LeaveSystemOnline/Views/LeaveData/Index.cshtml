@@ -106,6 +106,8 @@
             var type = $("#dropdown-type").val();
             var file = $("#inputFile").get(0).files[0]
 
+            valid_date(start, end);
+
             formData.append("emp_id", enId);
             formData.append("description", des);
             formData.append("firstDayOfLeave", start);
@@ -121,13 +123,28 @@
                 contentType: false,
                 success: function ()
                 {
-                    alert("Succes");
+                    alert("บันทึกสำเร็จ");
                 },
                 error: function ()
                 {
-                    alert("error");
+                    alert("บันทึกสำเร็จ");
                 }
             });
+            reset();
+        }
+
+        function valid_date(start, date) {
+            if (start <= date) {
+                alert("กรุณาเช็ควันที่เริ่มและสิ้นสุดใหม่")
+            }
+        }
+
+        function reset() {
+            $("#text-des").val("");
+            $("#datepicker-component").val("");
+            $("#datepicker-component2").val("");
+            $("#dropdown-type").val(0);
+            $("#inputFile").val("");
         }
     </script>
 }
