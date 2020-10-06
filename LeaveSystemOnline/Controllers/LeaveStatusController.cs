@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList.Mvc;
 using PagedList;
+using LeaveSystemOnline.Repositories;
 
 namespace LeaveSystemOnline.Controllers
 {
@@ -18,6 +19,15 @@ namespace LeaveSystemOnline.Controllers
         {
             var searchStatus = context.LEAVEDATA.Where(x => x.id.ToString().Contains(search.ToString())).ToList();
             return View(searchStatus);
-        } 
+        }
+
+        [HttpPost]
+        public ActionResult cancleLeave(int id)
+        {
+            LEAVEDATA check = context.LEAVEDATA.Find(id);
+            context.LEAVEDATA.Remove(check);
+            context.SaveChanges();
+            return RedirectToAction("checkStatus");
+        }
     }
 }

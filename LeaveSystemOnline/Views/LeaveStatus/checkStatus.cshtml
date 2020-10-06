@@ -1,72 +1,87 @@
 ﻿@model IEnumerable<LeaveSystemOnline.LEAVEDATA>
-@{ 
+@{
     ViewBag.Title = "เช็คสถานะการลา";
 }
-    <p>
-        @using (Html.BeginForm("checkStatus", "LeaveStatus", FormMethod.Get))
-        {
+<p>
+    @using (Html.BeginForm("checkStatus", "LeaveStatus", FormMethod.Get))
+    {
         <input type="text" name="search" placeholder="หมายเลขใบลางาน" />
         <input type="submit" name="submit" value="Search" class="btn btn-primary" />
-        }
-    </p>
-    <table class="table">
+    }
+</p>
+@using (Html.BeginForm("cancleLeave", "LeaveStatus", FormMethod.Post, new { name = "cancleStatus", id = "cancleStatus" }))
+{
+    <input type="hidden" name="id" />
+}
+<table class="table">
+    <tr>
+        <th>
+            <p>รหัสใบลา</p>
+        </th>
+        <th>
+            <p>ประเภทการลา</p>
+        </th>
+        <th>
+            <p>วันที่เริ่มลา</p>
+        </th>
+        <th>
+            วันที่สิ้นสุดการลา
+        </th>
+        <th>
+            สถานะ
+        </th>
+        <th>
+
+        </th>
+    </tr>
+    @if (Model.Count() == 0)
+    {
         <tr>
-            <th>
-                <p>รหัสใบลา</p>
-            </th>
-            <th>
-                <p>ประเภทการลา</p>
-            </th>
-            <th>
-                <p>วันที่เริ่มลา</p>
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fileDocument)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EMPLOYEE.firstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LEAVESTATUS.status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LEAVETYPE.type)
-            </th>
+            <td colspan="7" style="color:red" align="center">
+                No Found Data
+            </td>
         </tr>
-        @if (Model.Count() == 0){
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
             <tr>
-                <td colspan="7" style="color:red" align="center">
-                    No Found Data
+                <td class="item-id">
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LEAVETYPE.type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstDayOfLeave)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastDayOfLeave)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LEAVESTATUS.status)
+                </td>
+                <td>@if (item.LEAVESTATUS.status == "รอการอนุมัติ")
+                    {
+                        <input type="button" value="ยกเลิก" class="btn btn-danger" /> 
+                    }
                 </td>
             </tr>
         }
-        else
-        {
-            foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LEAVETYPE.type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.firstDayOfLeave)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastDayOfLeave)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EMPLOYEE.firstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LEAVESTATUS.status)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LEAVETYPE.type)
-                    </td>
-                </tr>
+    }
+</table>
+
+@section Scripts
+{
+    <script>
+        $(".btn-danger").click(function () {
+            if(!confirm('ต้องการยกเลิกหรือไม่')) {
+                return false;
             }
-        }
-    </table>
+            var id = $(this).closest("tr").find(".item-id").text();
+            document.cancleStatus.id.value = id;
+            document.getElementById("cancleStatus").submit();
+        });
+    </script>
+}
