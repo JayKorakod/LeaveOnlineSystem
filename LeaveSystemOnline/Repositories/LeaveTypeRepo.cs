@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace LeaveSystemOnline.Repositories
 {
-    public class LeaveDataRepo
+    public class LeaveTypeRepo
     {
         LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
 
-        public void Create(LEAVEDATA model)
+        public IEnumerable<LEAVETYPE> GetAll()
         {
-            model.leaveStatus_id = 3;
-
-            context.LEAVEDATA.Add(model);
-            context.SaveChanges();
+            var result = context.LEAVETYPE.AsNoTracking();
+            return result;
         }
     }
 }
