@@ -11,7 +11,7 @@ namespace LeaveSystemOnline.Controllers
 {
     public class LeaveStatusController : Controller
     {
-        LEAVE_STSTEM_ONLINEEntities2 context = new LEAVE_STSTEM_ONLINEEntities2();
+        LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
         LeaveStatusServices service = new LeaveStatusServices();
         // GET: LeaveStatus
         public ActionResult checkStatus(int? search)

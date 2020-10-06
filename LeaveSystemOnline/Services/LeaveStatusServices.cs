@@ -9,7 +9,7 @@ namespace LeaveSystemOnline.Services
     public class LeaveStatusServices
     {
         LeaveStatusRepo repo = new LeaveStatusRepo();
-        LEAVE_STSTEM_ONLINEEntities2 context = new LEAVE_STSTEM_ONLINEEntities2();
+        LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
 
         public List<LEAVEDATA> checkStatus()
         {

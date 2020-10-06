@@ -11,8 +11,7 @@ namespace LeaveSystemOnline
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class EMPLOYEE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,8 +23,7 @@ namespace LeaveSystemOnline
         public int id { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime birthdate { get; set; }
+        public Nullable<System.DateTime> birthdate { get; set; }
         public string identificationNo { get; set; }
         public string homeNo { get; set; }
         public string soi { get; set; }
@@ -41,10 +39,10 @@ namespace LeaveSystemOnline
         public string tel { get; set; }
     
         public virtual AUTHOR AUTHOR { get; set; }
-        public virtual Districts Districts { get; set; }
         public virtual Provinces Provinces { get; set; }
-        public virtual Subdistricts Subdistricts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LEAVEDATA> LEAVEDATA { get; set; }
+        public virtual Districts Districts { get; set; }
+        public virtual Subdistricts Subdistricts { get; set; }
     }
 }

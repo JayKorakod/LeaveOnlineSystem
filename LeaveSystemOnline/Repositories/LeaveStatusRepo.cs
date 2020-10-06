@@ -7,7 +7,7 @@ namespace LeaveSystemOnline.Repositories
 {
     public class LeaveStatusRepo
     {
-        LEAVE_STSTEM_ONLINEEntities2 context = new LEAVE_STSTEM_ONLINEEntities2();
+        LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
 
         public IQueryable<LEAVEDATA> GetLeaveData()
         {

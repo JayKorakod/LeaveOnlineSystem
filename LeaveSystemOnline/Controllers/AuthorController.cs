@@ -10,7 +10,7 @@ namespace LeaveSystemOnline.Controllers
     public class AuthorController : Controller
     {
         AuthorServices services = new AuthorServices();
-        LEAVE_STSTEM_ONLINEEntities2 context = new LEAVE_STSTEM_ONLINEEntities2();
+        LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
         // GET: Author
         public ActionResult Index()
         {
