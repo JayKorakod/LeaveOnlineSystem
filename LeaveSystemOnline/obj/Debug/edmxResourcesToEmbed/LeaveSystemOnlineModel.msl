@@ -53,7 +53,6 @@
           <ScalarProperty Name="LastDayOfLeave" ColumnName="LastDayOfLeave" />
           <ScalarProperty Name="leaveStatus_id" ColumnName="leaveStatus_id" />
           <ScalarProperty Name="leaveType_id" ColumnName="leaveType_id" />
-          <ScalarProperty Name="revisionDate" ColumnName="revisionDate" />
           <ScalarProperty Name="fileDocument" ColumnName="fileDocument" />
         </MappingFragment>
       </EntityTypeMapping>

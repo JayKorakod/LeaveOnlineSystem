@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LeaveSystemOnline.Models;
+using PagedList.Mvc;
+using PagedList;
 
 namespace LeaveSystemOnline.Controllers
 {
@@ -30,18 +32,18 @@ namespace LeaveSystemOnline.Controllers
         [HttpPost]
         public ActionResult CreateEmployee(EMPLOYEE model)
         {
-            var iden = context.EMPLOYEE.Where(x => x.identificationNo == model.identificationNo).ToString();
-            if(iden != model.identificationNo) 
-            {
+            
                 services.CreateEmployee(model);
-            }
+                ViewBag.showAlert = true;
+                ViewBag.alertMessage = "บันทึกข้อมูลสำเร็จ";
             return View(model);
         }
 
-        public ActionResult ListEmployee()
+        public ActionResult ListEmployee(string search,int? index)
         {
-            var listEmployee = services.GetAllEmployee();
-            return View(listEmployee);
+            //var listEmployee = services.GetAllEmployee();
+            var searchEmployee = context.EMPLOYEE.Where(x => x.firstName.StartsWith(search) || search == null).ToList().ToPagedList(index ?? 1,5);
+            return View(searchEmployee);
         }
 
         public ActionResult EditAuthorEmployee(int id)
@@ -56,6 +58,13 @@ namespace LeaveSystemOnline.Controllers
             services.EditAuthor(model);
             return View(model);
         }
+
+        public List<AUTHOR> GetAuthor()
+        {
+            List<AUTHOR> authors = context.AUTHOR.ToList();
+            return authors;
+        }
+
         public List<Provinces> GetProvinces()
         {
             List<Provinces> provinces = context.Provinces.ToList();

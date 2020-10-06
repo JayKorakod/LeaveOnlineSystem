@@ -81,3 +81,7 @@ D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\obj\Debug\LeaveSystemOnline.
 D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\obj\Debug\LeaveSystemOnline.csproj.CopyComplete
 D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\obj\Debug\LeaveSystemOnline.dll
 D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\obj\Debug\LeaveSystemOnline.pdb
+D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\bin\PagedList.dll
+D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\bin\PagedList.Mvc.dll
+D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\bin\PagedList.xml
+D:\source\repos\LeaveSystemOnline\LeaveSystemOnline\bin\PagedList.Mvc.xml

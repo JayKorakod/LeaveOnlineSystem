@@ -50,7 +50,6 @@
     <Property Name="LastDayOfLeave" Type="date" />
     <Property Name="leaveStatus_id" Type="int" />
     <Property Name="leaveType_id" Type="int" />
-    <Property Name="revisionDate" Type="date" />
     <Property Name="fileDocument" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="LEAVESTATUS">

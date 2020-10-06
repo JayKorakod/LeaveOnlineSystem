@@ -56,6 +56,11 @@ namespace LeaveSystemOnline.Controllers
                     Session["author"] = employee.AUTHOR.tier;
                     return RedirectToAction("Index");
                 }
+                else
+                {
+                    ViewBag.showAlert = true;
+                    ViewBag.alertMessage = "Email หรือ Password ผิด กรุณาลองใหม่อีกครั้ง";
+                }
             }
             return View(model);
         }

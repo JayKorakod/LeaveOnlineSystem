@@ -52,6 +52,12 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -131,8 +137,10 @@
     <Compile Include="AUTHOR.cs">
       <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeaveStatusController.cs" />
     <Compile Include="Districts.cs">
       <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
@@ -171,9 +179,13 @@
     <Compile Include="Provinces.cs">
       <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\AuthorRepo.cs" />
     <Compile Include="Repositories\LeaveDataRepo.cs" />
     <Compile Include="Repositories\LeaveRepo.cs" />
+    <Compile Include="Repositories\LeaveStatusRepo.cs" />
+    <Compile Include="Services\AuthorServices.cs" />
     <Compile Include="Services\LeaveServices.cs" />
+    <Compile Include="Services\LeaveStatusServices.cs" />
     <Compile Include="Subdistricts.cs">
       <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
@@ -183,6 +195,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\Theme\404.html" />
     <Content Include="Content\Theme\500.html" />
     <Content Include="Content\Theme\assets\css\dashboard.widgets.css" />
@@ -1474,6 +1487,8 @@
     <Content Include="Content\Theme\invoice.html" />
     <Content Include="Content\Theme\lock_screen.html" />
     <Content Include="Content\Theme\login.html" />
+    <Content Include="Content\Theme\login\user.png" />
+    <Content Include="Content\Theme\menu\author.png" />
     <Content Include="Content\Theme\login\video-call.png" />
     <Content Include="Content\Theme\menu\id-card.png" />
     <Content Include="Content\Theme\modals.html" />
@@ -1795,13 +1810,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Logout.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\CreateEmployee.cshtml" />
     <Content Include="Views\Employee\ListEmployee.cshtml" />
     <Content Include="Views\Employee\DetailEmployee.cshtml" />
     <Content Include="Views\Employee\EditAuthorEmployee.cshtml" />
-    <Content Include="Views\Shared\DisplayDistrict.cshtml" />
     <Content Include="Views\Employee\DisplaySubDistrict.cshtml" />
+    <Content Include="Views\Author\ListAuthor.cshtml" />
+    <Content Include="Views\Employee\DisplayDistrict.cshtml" />
+    <Content Include="Views\LeaveStatus\checkStatus.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

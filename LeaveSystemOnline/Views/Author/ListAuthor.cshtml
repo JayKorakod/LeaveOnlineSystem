@@ -1,0 +1,28 @@
+﻿@model IEnumerable<LeaveSystemOnline.AUTHOR>
+
+<h2 align="center">
+    ข้อมูลระดับสิทธิ์การใช้งาน
+</h2>
+<table class="table table-striped">
+    <tr align="center">
+        <th>
+            <p>ลำดับที่</p>
+        </th>
+        <th>
+            <p>สิทธิ์การใช้งาน</p>
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr align="center">
+        <th>
+            @Html.DisplayFor(modelItem=>item.id)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.tier)
+        </th>
+    </tr>
+}
+
+</table>

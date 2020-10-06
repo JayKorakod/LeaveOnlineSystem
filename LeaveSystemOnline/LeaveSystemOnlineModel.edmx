@@ -55,7 +55,6 @@
           <Property Name="LastDayOfLeave" Type="date" />
           <Property Name="leaveStatus_id" Type="int" />
           <Property Name="leaveType_id" Type="int" />
-          <Property Name="revisionDate" Type="date" />
           <Property Name="fileDocument" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="LEAVESTATUS">
@@ -313,7 +312,6 @@
           <Property Name="LastDayOfLeave" Type="DateTime" Precision="0" />
           <Property Name="leaveStatus_id" Type="Int32" />
           <Property Name="leaveType_id" Type="Int32" />
-          <Property Name="revisionDate" Type="DateTime" Precision="0" />
           <Property Name="fileDocument" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="LEAVEDATA" ToRole="EMPLOYEE" />
           <NavigationProperty Name="LEAVESTATUS" Relationship="Self.FK_LEAVEDATA_LEAVESTATUS" FromRole="LEAVEDATA" ToRole="LEAVESTATUS" />
@@ -575,7 +573,6 @@
                 <ScalarProperty Name="LastDayOfLeave" ColumnName="LastDayOfLeave" />
                 <ScalarProperty Name="leaveStatus_id" ColumnName="leaveStatus_id" />
                 <ScalarProperty Name="leaveType_id" ColumnName="leaveType_id" />
-                <ScalarProperty Name="revisionDate" ColumnName="revisionDate" />
                 <ScalarProperty Name="fileDocument" ColumnName="fileDocument" />
               </MappingFragment>
             </EntityTypeMapping>

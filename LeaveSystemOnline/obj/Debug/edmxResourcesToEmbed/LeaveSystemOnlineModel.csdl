@@ -59,7 +59,6 @@
     <Property Name="LastDayOfLeave" Type="DateTime" Precision="0" />
     <Property Name="leaveStatus_id" Type="Int32" />
     <Property Name="leaveType_id" Type="Int32" />
-    <Property Name="revisionDate" Type="DateTime" Precision="0" />
     <Property Name="fileDocument" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_LEAVEDATA_EMPLOYEE" FromRole="LEAVEDATA" ToRole="EMPLOYEE" />
     <NavigationProperty Name="LEAVESTATUS" Relationship="Self.FK_LEAVEDATA_LEAVESTATUS" FromRole="LEAVEDATA" ToRole="LEAVESTATUS" />

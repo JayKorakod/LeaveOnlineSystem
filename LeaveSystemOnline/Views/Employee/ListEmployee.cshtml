@@ -1,13 +1,21 @@
-﻿@model IEnumerable<LeaveSystemOnline.EMPLOYEE>
+﻿@model IPagedList<LeaveSystemOnline.EMPLOYEE>
 
 @{
-    ViewBag.Title = "ListEmployee";
+    ViewBag.Title = "ข้อมูลพนักงาน";
 }
+@using PagedList;
+@using PagedList.Mvc;
 
-<h2>View</h2>
+    <h2>ข้อมูลพนักงาน</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("ListEmployee", "Employee", FormMethod.Get))
+    {
+        <input type="text" name="search" placeholder="Employee Name" />
+        <input type="submit" name="submit" value="Search" class="btn btn-primary" />
+        @Html.ActionLink("Refresh", "ListEmployee", "Employee", new { @class = "btn btn-danger" });
+        @Html.ActionLink("เพิ่มข้อมูลพนักงาน", "CreateEmployee","Employee", new { @class = "btn btn-warning" , @align = "right"});
+    }
 </p>
 <div style="overflow:auto">
     <div class=" no-padding    container-fixed-lg bg-white">
@@ -15,53 +23,59 @@
             <!-- START card -->
             <div class="card card-transparent">
                 <div class="card-body">
-                    <table class="table table-striped" id="tableWithExportOptions">
-                            <tr>
-                                <th>
-                                    <p>รหัสพนักงาน</p>
-                                </th>
-                                <th>
-                                    <p>ชื่อจริง</p>
-                                </th>
-                                <th>
-                                    <p>นามสกุล</p>
-                                </th>
-                                <th>
-                                    <p>วันเกิด</p>
-                                </th>
-                                <th>
-                                    <p>รหัสบัตรประชาชน</p>
-                                </th>
-                                <th>
-                                    <p>บ้านเลขที่</p>
-                                </th>
-                                <th>
-                                    <p>ซอย</p>
-                                </th>
-                                <th>
-                                    <p>ถนน</p>
-                                </th>
-                                <th>
-                                    <p>แขวง</p>
-                                </th>
-                                <th>
-                                    <p>เขต</p>
-                                </th>
-                                <th>
-                                    <p>จังหวัด</p>
-                                </th>
-                                <th>
-                                    <p>รหัสไปรษณีย์</p>
-                                </th>
-                                <th>
-                                    <p>รหัสสิทธิ์เข้าใช้งาน</p>
-                                </th>
-                                <th>
-                                    <p>รหัสผ่าน</p>
-                                </th>
-                                <th></th>
-                            </tr>
-                            @foreach (var item in Model)
+                    <table class="table" id="tableWithExportOptions">
+                        <tr>
+                            <th>
+                                <p>รหัสพนักงาน</p>
+                            </th>
+                            <th>
+                                <p>ชื่อจริง</p>
+                            </th>
+                            <th>
+                                <p>นามสกุล</p>
+                            </th>
+                            <th>
+                                <p>วันเกิด</p>
+                            </th>
+                            <th>
+                                <p>รหัสบัตรประชาชน</p>
+                            </th>
+                            <th>
+                                <p>บ้านเลขที่</p>
+                            </th>
+                            <th>
+                                <p>ซอย</p>
+                            </th>
+                            <th>
+                                <p>ถนน</p>
+                            </th>
+                            <th>
+                                <p>แขวง</p>
+                            </th>
+                            <th>
+                                <p>เขต</p>
+                            </th>
+                            <th>
+                                <p>จังหวัด</p>
+                            </th>
+                            <th>
+                                <p>รหัสไปรษณีย์</p>
+                            </th>
+                            <th>
+                                <p>รหัสสิทธิ์เข้าใช้งาน</p>
+                            </th>
+                            <th>
+                                <p>รหัสผ่าน</p>
+                            </th>
+                            <th></th>
+                        </tr>
+                        @if (Model.Count == 0)
+                        {
+                            <h1 class="text-danger">Data Not Found !!!</h1>
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
                             {
                                 <tr>
                                     <td>
@@ -74,7 +88,7 @@
                                         @Html.DisplayFor(modelItem => item.lastName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.birthdate,"ShortDateTime")
+                                        @Html.DisplayFor(modelItem => item.birthdate, "ShortDateTime")
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.identificationNo)
@@ -108,13 +122,15 @@
                                     </td>
                                     <td>
                                         @Html.ActionLink("เพิ่มสิทธิ์ผู้ใช้งาน", "EditAuthorEmployee", new { id = item.id }) |
-                                        @Html.ActionLink("Details", "DetailEmployee", new { id = item.id })
                                     </td>
                                 </tr>
                             }
-                        </table>
+                        }
+                    </table>
+
                 </div>
             </div>
         </div>
-        </div>
     </div>
+</div>
+@Html.PagedListPager(Model, index => Url.Action("ListEmployee", "Employee", new { index, search = Request.QueryString["search"] }))

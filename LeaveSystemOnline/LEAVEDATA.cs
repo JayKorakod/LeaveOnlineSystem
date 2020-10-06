@@ -11,19 +11,20 @@ namespace LeaveSystemOnline
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class LEAVEDATA
     {
         public int id { get; set; }
         public Nullable<int> emp_id { get; set; }
         public string description { get; set; }
-        public Nullable<System.DateTime> firstDayOfLeave { get; set; }
-        public Nullable<System.DateTime> LastDayOfLeave { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime firstDayOfLeave { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public DateTime LastDayOfLeave { get; set; }
         public Nullable<int> leaveStatus_id { get; set; }
         public Nullable<int> leaveType_id { get; set; }
-        public Nullable<System.DateTime> revisionDate { get; set; }
         public string fileDocument { get; set; }
-    
         public virtual EMPLOYEE EMPLOYEE { get; set; }
         public virtual LEAVESTATUS LEAVESTATUS { get; set; }
         public virtual LEAVETYPE LEAVETYPE { get; set; }

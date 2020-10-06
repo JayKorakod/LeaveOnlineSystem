@@ -119,4 +119,13 @@
         $('#form-login').validate()
     })
 </script>
+<script>
+    var showAlert = "@ViewBag.showAlert";
+    var alertMessage = "@ViewBag.alertMessage";
 
+    if (showAlert === "True") {
+        window.onload = function () {
+            alert("@ViewBag.alertMessage");
+        }
+    }
+</script>

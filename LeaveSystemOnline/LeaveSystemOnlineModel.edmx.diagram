@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="de4630b6e5af47518f0f63f9864e8888" Name="Diagram1" ZoomLevel="98">
+      <Diagram DiagramId="de4630b6e5af47518f0f63f9864e8888" Name="Diagram1" ZoomLevel="91">
         <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.AUTHOR" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.Districts" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
