@@ -4,59 +4,69 @@
     ViewBag.Title = "เพิ่มสิทธ์ผู้ใช้งาน";
 }
 
-<h2>แก้ไขสิทธิ์การใช้งาน</h2>
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>ข้อมูลพนักงาน</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.id)
 
-    <div class="form-group">
-        <p>รหัสพนักงาน</p>
-        <div class="col-md-10">
-            @Html.DisplayTextFor(model => model.id)
+    <div class="form-horizontal">
+        <h4>เพิ่มสิทธิ์ผู้ใช้งาน</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            <p>รหัสพนักงาน</p>
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>ชื่อ</p>
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.firstName)
+                @Html.DisplayTextFor(model => model.lastName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>แผนก</p>
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.department)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>สิทธิ์การใช้งาน</p>
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.AUTHOR.tier)
+                @if (ViewBag.AuthorList != null)
+                {
+                    @Html.DropDownListFor(x => x.authorization_id, ViewBag.AuthorList as SelectList, "-- เลือกสิทธิ์ผู้ใช้งาน --", new { @class = "form-control", id = "author" })
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="บันทึก" class="btn btn-primary" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <p>ชื่อ</p>
-        <div class="col-md-10">
-            @Html.DisplayTextFor(model => model.firstName)
-            @Html.DisplayTextFor(model => model.lastName)
-        </div>
-    </div>
-
-    <div class="form-group">
-        <p>แผนก</p>
-        <div class="col-md-10">
-            @Html.DisplayTextFor(model => model.department)
-        </div>
-    </div>
-
-    <div class="form-group">
-        <p>สิทธิ์การใช้งาน</p>
-        <div class="col-md-10">
-            @Html.DisplayTextFor(model => model.AUTHOR.tier)
-            @if (ViewBag.ProvinceList != null)
-            {
-                @Html.DropDownListFor(x => x.province, ViewBag.ProvinceList as SelectList, "-- Select Province --", new { @class = "form-control", id = "province" })
-            }
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
-    </div>
-</div>
+    // Hide For Update database
+    @Html.HiddenFor(model => model.firstName)
+    @Html.HiddenFor(model => model.lastName)
+    @Html.HiddenFor(model => model.birthdate)
+    @Html.HiddenFor(model => model.identificationNo)
+    @Html.HiddenFor(model => model.homeNo)
+    @Html.HiddenFor(model => model.soi)
+    @Html.HiddenFor(model => model.road)
+    @Html.HiddenFor(model => model.subdistrict)
+    @Html.HiddenFor(model => model.district)
+    @Html.HiddenFor(model => model.province)
+    @Html.HiddenFor(model => model.postalCode)
+    @Html.HiddenFor(model => model.password)
+    @Html.HiddenFor(model => model.department)
+    @Html.HiddenFor(model => model.tel)
+    @Html.HiddenFor(model => model.email)
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

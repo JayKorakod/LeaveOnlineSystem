@@ -60,7 +60,7 @@
                     <div class="form-group form-group-default">
                         <label>Email</label>
                         <div class="controls">
-                            <input required @Html.EditorFor(x => x.email, new { htmlAttributes = new { @class = "form-control" } })
+                            <input required @Html.EditorFor(x => x.email, new { htmlAttributes = new { @class = "form-control", @maxlength = "30" } })
                         </div>
                     </div>
                     <!-- END Form Control-->
@@ -68,7 +68,7 @@
                     <div class="form-group form-group-default">
                         <label>Password</label>
                         <div class="controls">
-                            <input required type="password" @Html.EditorFor(x => x.password, new { htmlAttributes = new { @class = "form-control" } })
+                            <input required type="password" @Html.EditorFor(x => x.password, new { htmlAttributes = new { @class = "form-control", @maxlength = "6" } })
                         </div>
                     </div>
                     <!-- START Form Control-->

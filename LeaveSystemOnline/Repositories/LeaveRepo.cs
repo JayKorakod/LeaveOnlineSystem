@@ -34,4 +34,4 @@ namespace LeaveSystemOnline.Repositories
             context.Entry(model).State = EntityState.Modified;
         }
     }
-}
+}   

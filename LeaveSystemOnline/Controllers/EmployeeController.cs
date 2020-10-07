@@ -48,6 +48,7 @@ namespace LeaveSystemOnline.Controllers
 
         public ActionResult EditAuthorEmployee(int id)
         {
+            ViewBag.AuthorList = new SelectList(GetAuthor(), "id", "tier");
             EMPLOYEE detail = repo.Detail(id);
             return View(detail);
         }
@@ -56,7 +57,7 @@ namespace LeaveSystemOnline.Controllers
         public ActionResult EditAuthorEmployee(EMPLOYEE model)
         {
             services.EditAuthor(model);
-            return View(model);
+            return RedirectToAction("ListEmployee");
         }
 
         public List<AUTHOR> GetAuthor()
