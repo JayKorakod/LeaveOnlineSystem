@@ -141,6 +141,8 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaveStatusController.cs" />
+    <Compile Include="CustomModel\Response.cs" />
+    <Compile Include="CustomModel\ViewModel.cs" />
     <Compile Include="Districts.cs">
       <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
@@ -183,9 +185,12 @@
     <Compile Include="Repositories\LeaveDataRepo.cs" />
     <Compile Include="Repositories\LeaveRepo.cs" />
     <Compile Include="Repositories\LeaveStatusRepo.cs" />
+    <Compile Include="Repositories\LeaveTypeRepo.cs" />
     <Compile Include="Services\AuthorServices.cs" />
+    <Compile Include="Services\LeaveDataService.cs" />
     <Compile Include="Services\LeaveServices.cs" />
     <Compile Include="Services\LeaveStatusServices.cs" />
+    <Compile Include="Services\LeaveTypeServices.cs" />
     <Compile Include="Subdistricts.cs">
       <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
@@ -1818,6 +1823,8 @@
     <Content Include="Views\Author\ListAuthor.cshtml" />
     <Content Include="Views\Employee\DisplayDistrict.cshtml" />
     <Content Include="Views\LeaveStatus\checkStatus.cshtml" />
+    <Content Include="Views\LeaveData\Index.cshtml" />
+    <Content Include="Views\LeaveType\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
