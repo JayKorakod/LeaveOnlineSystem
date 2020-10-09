@@ -12,17 +12,18 @@
             <p>สิทธิ์การใช้งาน</p>
         </th>
     </tr>
-
+    @{int idx = 1;}
 @foreach (var item in Model)
 {
     <tr align="center">
         <th>
-            @Html.DisplayFor(modelItem=>item.id)
+            @idx
         </th>
         <th>
             @Html.DisplayFor(modelItem => item.tier)
         </th>
     </tr>
+    idx++;
 }
 
 </table>

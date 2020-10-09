@@ -6,7 +6,7 @@
 @using PagedList;
 @using PagedList.Mvc;
 
-    <h2>ข้อมูลพนักงาน</h2>
+<h2>ข้อมูลพนักงาน</h2>
 
 <p>
     @using (Html.BeginForm("ListEmployee", "Employee", FormMethod.Get))
@@ -14,124 +14,61 @@
         <input type="text" name="search" placeholder="Employee Name" />
         <input type="submit" name="submit" value="Search" class="btn btn-primary" />
         @Html.ActionLink("Refresh", "ListEmployee", "Employee", new { @class = "btn btn-danger" });
-        @Html.ActionLink("เพิ่มข้อมูลพนักงาน", "CreateEmployee","Employee", new { @class = "btn btn-warning" , @align = "right"});
+        @Html.ActionLink("เพิ่มข้อมูลพนักงาน", "CreateEmployee", "Employee", new { @class = "btn btn-warning", @align = "right" });
     }
 </p>
 <div style="overflow:auto">
     <div class=" no-padding    container-fixed-lg bg-white">
         <div class="container">
-            <!-- START card -->
             <div class="card card-transparent">
                 <div class="card-body">
-                    <table class="table" id="tableWithExportOptions">
-                        <tr>
-                            <th>
-                                <p>รหัสพนักงาน</p>
-                            </th>
-                            <th>
-                                <p>ชื่อจริง</p>
-                            </th>
-                            <th>
-                                <p>นามสกุล</p>
-                            </th>
-                            <th>
-                                <p>วันเกิด</p>
-                            </th>
-                            <th>
-                                <p>รหัสบัตรประชาชน</p>
-                            </th>
-                            <th>
-                                <p>บ้านเลขที่</p>
-                            </th>
-                            <th>
-                                <p>ซอย</p>
-                            </th>
-                            <th>
-                                <p>ถนน</p>
-                            </th>
-                            <th>
-                                <p>แขวง</p>
-                            </th>
-                            <th>
-                                <p>เขต</p>
-                            </th>
-                            <th>
-                                <p>จังหวัด</p>
-                            </th>
-                            <th>
-                                <p>รหัสไปรษณีย์</p>
-                            </th>
-                            <th>
-                                <p>รหัสสิทธิ์เข้าใช้งาน</p>
-                            </th>
-                            <th>
-                                <p>รหัสผ่าน</p>
-                            </th>
-                            <th></th>
-                        </tr>
-                        @if (Model.Count == 0)
-                        {
+                    <table class="table table-striped" id="tableWithExportOptions">
+                        <thead>
                             <tr>
-                                <td colspan="14" style="color:red" align="center">
-                                    No Found Data
-                                </td>
+                                <th >รหัสพนักงาน</th>
+                                <th>ชื่อ</th>
+                                <th>นามสกุล</th>
+                                <th>วันเกิด</th>
+                                <th>รหัสบัตรประชาชน</th>
+                                <th>เบอร์โทร</th>
+                                <th>บ้านเลขที่</th>
+                                <th>ซอย</th>
+                                <th>ถนน</th>
+                                <th>ตำบล</th>
+                                <th>อำเภอ</th>
+                                <th>จังหวัด</th>
+                                <th>รหัสไปรษณีย์</th>
+                                <th>สิทธิ์การใช้งาน</th>
+                                <th>อีเมล</th>
+                                <th>รหัสผ่าน</th>
+                                <th></th>
                             </tr>
-                        }
-                        else
-                        {
-                            foreach (var item in Model)
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
                             {
                                 <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.id)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.firstName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.lastName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.birthdate, "ShortDateTime")
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.identificationNo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.homeNo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.soi)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.road)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Subdistricts.NameInThai)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Districts.NameInThai)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Provinces.NameInThai)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.postalCode)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.AUTHOR.tier)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.password)
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("เพิ่มสิทธิ์ผู้ใช้งาน", "EditAuthorEmployee", new { id = item.id })
-                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.id)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.firstName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.lastName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.birthdate)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.identificationNo)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.tel)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.homeNo)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.soi)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.road)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Subdistricts.NameInThai)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Districts.NameInThai)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Provinces.NameInThai)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.postalCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.AUTHOR.tier)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.email)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.password)</td>
+                                    <td>@Html.ActionLink("เพิ่มสิทธิ์ผู้ใช้งาน", "EditAuthorEmployee", new { id = item.id })</td>
                                 </tr>
                             }
-                        }
+                        </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
