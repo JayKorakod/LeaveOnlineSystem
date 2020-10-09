@@ -142,6 +142,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaveDataController.cs" />
     <Compile Include="Controllers\LeaveStatusController.cs" />
+    <Compile Include="Controllers\LeaveTypeController.cs" />
     <Compile Include="CustomModel\Response.cs" />
     <Compile Include="CustomModel\ViewModel.cs" />
     <Compile Include="Districts.cs">
@@ -1825,6 +1826,7 @@
     <Content Include="Views\Employee\DisplayDistrict.cshtml" />
     <Content Include="Views\LeaveStatus\checkStatus.cshtml" />
     <Content Include="Views\LeaveData\Index.cshtml" />
+    <Content Include="Views\LeaveType\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

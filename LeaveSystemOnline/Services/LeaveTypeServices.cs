@@ -12,5 +12,13 @@ namespace LeaveSystemOnline.Services
         private LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
         private LeaveTypeRepo repo = new LeaveTypeRepo();
 
+        public void Insert(LEAVETYPE obj)
+        {
+            repo.Insert(obj);
+        }
+        public void Update(LEAVETYPE obj)
+        {
+            repo.Update(obj);
+        }
     }
 }

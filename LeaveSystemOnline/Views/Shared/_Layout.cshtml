@@ -153,12 +153,12 @@
                         </li>
                         <li>
                             <a href="javascript:;">
-                                <span class="title">Forms</span>
+                                <span class="title">ประเภทการลา</span>
                                 <span class=" arrow"></span>
                             </a>
                             <ul class="">
                                 <li class="">
-                                    <a href="form_elements.html">Form Elements</a>
+                                    <a href="@Url.Action("List","LeaveType")">ประเภทการลา</a>
                                 </li>
                                 <li class="">
                                     <a href="form_layouts.html">Form Layouts</a>
@@ -256,7 +256,7 @@
         </div>
     </div>
     <!-- END PAGE CONTAINER -->
-    <div class="container body-content">
+    <div class="container">
         @RenderBody()
         <hr />
         <footer>
@@ -322,6 +322,7 @@
     <script src="~/Content/Theme/assets/plugins/quill/quill.min.js" type="text/javascript"></script>
     <script src="~/Content/Theme/assets/plugins/bootstrap-typehead/typeahead.bundle.min.js"></script>
     <script src="~/Content/Theme/assets/plugins/bootstrap-typehead/typeahead.jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- END VENDOR JS -->
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="~/Content/Theme/pages/js/pages.min.js"></script>
