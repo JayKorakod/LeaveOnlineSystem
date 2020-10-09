@@ -6,13 +6,13 @@
     <edmx:Diagrams>
       <Diagram DiagramId="de4630b6e5af47518f0f63f9864e8888" Name="Diagram1" ZoomLevel="91">
         <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.AUTHOR" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.Districts" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.Districts" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.EMPLOYEE" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.LEAVEDATA" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.LEAVESTATUS" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.LEAVETYPE" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.LEAVEDATA" Width="1.5" PointX="5.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.LEAVESTATUS" Width="1.5" PointX="7.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.LEAVETYPE" Width="1.5" PointX="5.375" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.Provinces" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.Subdistricts" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LEAVE_STSTEM_ONLINEModel.Subdistricts" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
         <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_EMPLOYEE_AUTHOR" ManuallyRouted="false" />
         <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_Districts_Provinces" ManuallyRouted="false" />
         <AssociationConnector Association="LEAVE_STSTEM_ONLINEModel.FK_Subdistricts_Districts" ManuallyRouted="false" />
