@@ -38,6 +38,8 @@ namespace LeaveSystemOnline.Repositories
         {
             var objUp = new LEAVETYPE();
 
+            objUp = context.LEAVETYPE.First(x => x.id == obj.id);
+
             objUp.type = obj.type;
             objUp.numOfLeave = obj.numOfLeave;
             objUp.description = obj.description;

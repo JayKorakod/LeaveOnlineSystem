@@ -104,36 +104,34 @@
             var type = $("#dropdown-type").val();
             var file = $("#inputFile").get(0).files[0]
 
-            valid_date(start, end);
+            
+            if (Date.parse(start) > Date.parse(end)) {
+                Alert_Warning();
+            }else if (des == '' || start == '' || end == '') {
+                Alert_Warning();
+            }else {
 
-            formData.append("emp_id", enId);
-            formData.append("description", des);
-            formData.append("firstDayOfLeave", start);
-            formData.append("LastDayOfLeave", end);
-            formData.append("leaveType_id", type);
-            formData.append("file", file);
+                formData.append("emp_id", enId);
+                formData.append("description", des);
+                formData.append("firstDayOfLeave", start);
+                formData.append("LastDayOfLeave", end);
+                formData.append("leaveType_id", type);
+                formData.append("file", file);
 
-            $.ajax({
-                type: "POST",
-                url: "@Url.Action("CreateLeaveData", "LeaveData")",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function ()
-                {
-                    alert("บันทึกสำเร็จ");
-                },
-                error: function ()
-                {
-                    alert("บันทึกสำเร็จ");
-                }
-            });
-            reset();
-        }
-
-        function valid_date(start, date) {
-            if (start <= date) {
-                alert("กรุณาเช็ควันที่เริ่มและสิ้นสุดใหม่")
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("CreateLeaveData", "LeaveData")",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function () {
+                        Alert_Success();
+                    },
+                    error: function () {
+                        Alert_Warning();
+                    }
+                });
+                reset();
             }
         }
 
@@ -143,6 +141,23 @@
             $("#datepicker-component2").val("");
             $("#dropdown-type").val(0);
             $("#inputFile").val("");
+        }
+
+        function Alert_Success() {
+            Swal.fire({
+                icon: 'success',
+                title: 'บันทึกสำเร็จ',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+
+        function Alert_Warning() {
+            Swal.fire({
+                icon: 'error',
+                title: 'ผิดพลาด',
+                text: 'กรุณาตรวจสอบข้อมูลที่กรอก',
+            })
         }
     </script>
 }

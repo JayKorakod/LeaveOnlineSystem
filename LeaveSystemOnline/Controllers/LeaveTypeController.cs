@@ -26,34 +26,41 @@ namespace LeaveSystemOnline.Controllers
             return View(list);
         }
         [HttpPost]
-        public ActionResult Insert(LEAVETYPE obj)
+        public ActionResult Insert(LEAVETYPE model)
         {
             try
             {
-                if(obj == null)
+                if (model == null)
                 {
                     ViewBag.showAlert = true;
                     ViewBag.alertMessage = "ไม่มีข้อมูล";
                 }
-                if(context.LEAVETYPE.ToList().Exists(x => x.type == obj.type))
+                if (context.LEAVETYPE.ToList().Exists(x => x.type == model.type))
                 {
                     ViewBag.showAlert = true;
                     ViewBag.alertMessage = "มีข้อมูลอยู่แล้ว";
                 }
-                service.Insert(obj);
+                service.Insert(model);
             }
             catch (Exception)
             {
 
                 throw;
             }
-            return View(obj);
+            return Json(new
+            {
+                msg = "Successfully added " + model.type
+            });
         }
         [HttpPost]
         public ActionResult Update(LEAVETYPE obj)
         {
             service.Update(obj);
-            return View(obj);
+            return Json(new
+            {
+                msg = "Successfully update " + obj.type
+            });
         }
+
     }
 }

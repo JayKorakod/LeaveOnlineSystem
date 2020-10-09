@@ -140,7 +140,9 @@
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeaveDataController.cs" />
     <Compile Include="Controllers\LeaveStatusController.cs" />
+    <Compile Include="Controllers\LeaveTypeController.cs" />
     <Compile Include="CustomModel\Response.cs" />
     <Compile Include="CustomModel\ViewModel.cs" />
     <Compile Include="Districts.cs">

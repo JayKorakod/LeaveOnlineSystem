@@ -28,9 +28,19 @@ namespace LeaveSystemOnline.Controllers
         [HttpPost]
         public ActionResult CreateLeaveData(LEAVEDATA model, HttpPostedFileBase file)
         {
-            model.fileDocument = file.FileName;
-            services.CreateLeaveData(model);
-            return View(model);
+            if(file != null)
+            {
+                model.fileDocument = file.FileName;
+                services.CreateLeaveData(model);
+            }
+            else
+            {
+                services.CreateLeaveData(model);
+            }
+            return Json(new
+            {
+                msg = "Successfully added "
+            });
         }
     }
 }

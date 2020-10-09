@@ -11,8 +11,7 @@ namespace LeaveSystemOnline
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class EMPLOYEE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,8 +23,7 @@ namespace LeaveSystemOnline
         public int id { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime birthdate { get; set; }
+        public Nullable<System.DateTime> birthdate { get; set; }
         public string identificationNo { get; set; }
         public string homeNo { get; set; }
         public string soi { get; set; }
