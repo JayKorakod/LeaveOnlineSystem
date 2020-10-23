@@ -15,5 +15,17 @@ namespace LeaveSystemOnline.Services
         {
             repo.Create(model);
         }
+        public List<LEAVEDATA> List()
+        {
+            return repo.List();
+        }
+        public List<LEAVEDATA> GetDepart(string depart)
+        {
+            return repo.GetDepart(depart);
+        }
+        public List<LEAVEDATA> GetId(int id)
+        {
+            return repo.GetId(id);
+        }
     }
 }

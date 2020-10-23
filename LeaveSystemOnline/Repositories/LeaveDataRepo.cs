@@ -16,5 +16,17 @@ namespace LeaveSystemOnline.Repositories
             context.LEAVEDATA.Add(model);
             context.SaveChanges();
         }
+        public List<LEAVEDATA> List()
+        {
+            return context.LEAVEDATA.ToList();
+        }
+        public List<LEAVEDATA> GetDepart(string depart)
+        {
+            return context.LEAVEDATA.Where(x => x.EMPLOYEE.department == depart).ToList();
+        }
+        public List<LEAVEDATA> GetId(int id)
+        {
+            return context.LEAVEDATA.Where(x => x.EMPLOYEE.id == id).ToList();
+        }
     }
 }

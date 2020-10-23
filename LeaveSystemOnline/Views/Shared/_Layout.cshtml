@@ -37,9 +37,9 @@
     <link href="~/Content/Theme/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="~/Content/Theme/assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="~/Content/Theme/assets/plugins/jquery-datatable/media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/Theme/assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Theme/assets/plugins/jquery-datatable/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
     <link class="main-stylesheet" href="~/Content/Theme/pages/css/themes/modern.css" rel="stylesheet" type="text/css" />
+
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="fixed-header horizontal-menu horizontal-app-menu " style="overflow:auto">
@@ -143,12 +143,6 @@
                                 <li class="">
                                     <a href="@Url.Action("Index","LeaveData")">ขอลางาน</a>
                                 </li>
-                                <li class="">
-                                    <a href="tree_view.html">Tree View</a>
-                                </li>
-                                <li class="">
-                                    <a href="nestables.html">Nestable</a>
-                                </li>
                             </ul>
                         </li>
                         <li>
@@ -160,42 +154,29 @@
                                 <li class="">
                                     <a href="@Url.Action("List","LeaveType")">ประเภทการลา</a>
                                 </li>
-                                <li class="">
-                                    <a href="form_layouts.html">Form Layouts</a>
-                                </li>
-                                <li class="">
-                                    <a href="form_wizard.html">Form Wizard</a>
-                                </li>
                             </ul>
                         </li>
                         <li>
+                            <a href="@Url.Action("List","ReportLeaveData")">
+                                <span class="title">รายงานการลางาน</span>
                             <a href="@Url.Action("List","Approve")">
                                 <span class="title">อนุมัติการลางาน</span>
                             </a>
                         </li>
                         <li>
-                            <a href="cards.html">
-                                <span class="title">Cards</span>
+                            <a href="@Url.Action("Index","ReportLeaveDataDepart")">
+                                <span class="title">รายงานของแผนก</span>
                             </a>
                         </li>
                         <li>
-                            <a href="views.html">
-                                <span class="title">Views</span>
+                            <a href="@Url.Action("History", "ReportLeaveDataDepart")">
+                                <span class="title">ประวัติการลา</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:;">
-                                <span class="title">Tables</span>
-                                <span class=" arrow"></span>
+                            <a href="@Url.Action("Index", "LeaveType")">
+                                <span class="title">ประเภทการลาแก้ไขไม่ได้</span>
                             </a>
-                            <ul class="">
-                                <li class="">
-                                    <a href="tables.html">Basic Tables</a>
-                                </li>
-                                <li class="">
-                                    <a href="datatables.html">Data Tables</a>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <a href="javascript:;">

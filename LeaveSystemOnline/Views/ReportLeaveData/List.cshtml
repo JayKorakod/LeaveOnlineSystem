@@ -1,0 +1,96 @@
+﻿@model IEnumerable<LeaveSystemOnline.LEAVEDATA>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var m = Model.FirstOrDefault();
+}
+
+<div class="bg-white">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb-alt">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
+            <li class="breadcrumb-item">รายงานการลา</li>
+        </ol>
+    </div>
+</div>
+<br />
+<div class="container container-fixed-lg">
+    <div class="card card-default">
+        <div class="card-body">
+            <div class="form-group">
+                <h3>รายงานการลา</h3>
+            </div>
+            <br />
+            @using (Html.BeginForm("List", "ReportLeaveData", FormMethod.Get))
+            {
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-lg-5">
+                        <input type="email" name="search" class="form-control pull-right" placeholder="Search..." />
+                    </div>
+                    <div class="col-lg-1">
+                        <input type="submit" name="submit" value="Search" class="btn btn-primary pull-right" />
+                    </div>
+                </div>
+            }
+            <br />
+            <div style="overflow:auto">
+                <table class="table table-hover table-responsive-block" id="tableWithSearch">
+                    <thead>
+                        <tr>
+                            <th class="text-center" style="width: 20px" scope="col">ลำดับ</th>
+                            <th class="text-center" scope="col">รหัสพนักงาน</th>
+                            <th class="text-center" scope="col">ชื่อพนักงาน</th>
+                            <th scope="col" class="text-center">แผนก</th>
+                            <th class="text-center" scope="col">รายละเอียด</th>
+                            <th class="text-center" scope="col">วันที่เริ่มต้นลา</th>
+                            <th class="text-center" scope="col">วันที่สิ้นสุดการลา</th>
+                            <th class="text-center" scope="col">สถานะ</th>
+                            <th class="text-center" scope="col">ประเภทการลา</th>
+                            <th scope="col" class="text-center">ไฟล์แนบ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ int idx = 1;}
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center" scope="row">@idx</td>
+                                <td class="text-center">
+                                    @item.emp_id
+                                </td>
+                                <td class="text-center">
+                                    @item.EMPLOYEE.firstName
+                                </td>
+                                <td class="text-center">
+                                    @item.EMPLOYEE.department
+                                </td>
+                                <td class="text-center">
+                                    @item.description
+                                </td>
+                                <td class="text-center">
+                                    @item.firstDayOfLeave
+                                </td>
+                                <td class="text-center">
+                                    @item.LastDayOfLeave
+                                </td>
+                                <td class="text-center">
+                                    @item.LEAVESTATUS.status
+                                </td>
+                                <td class="text-center">
+                                    @item.LEAVETYPE.type
+                                </td>
+                                <td class="text-center">
+                                    @item.fileDocument
+                                </td>
+                            </tr>
+                            idx++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

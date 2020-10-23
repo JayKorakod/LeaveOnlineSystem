@@ -16,7 +16,9 @@ namespace LeaveSystemOnline.Controllers
         // GET: LeaveType
         public ActionResult Index()
         {
-            return View();
+            List<LEAVETYPE> list = new List<LEAVETYPE>();
+            list = repo.List();
+            return View(list);
         }
         [HttpGet]
         public ActionResult List()

@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="bg-white">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb-alt">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
+            <li class="breadcrumb-item">ขอลางาน</li>
+        </ol>
+    </div>
+</div>
 @{ LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
     var selectLastRow = context.LEAVEDATA.OrderByDescending(x => x.id).Select(x => x.id).ToList().FirstOrDefault();
     var lastRow = selectLastRow + 1;
@@ -77,7 +85,7 @@
             <fieldset class="form-group">
                 <label for="basicInputFile">ไฟล์แนบ</label>
                 <div class="custom-file">
-                    <input type="file" class="form-control" accept=".pdf" id="inputFile" />
+                    <input type="file" class="form-control" accept=".pdf" id="inputFile"/>
                     <div class="help-block"></div>
                 </div>
             </fieldset>

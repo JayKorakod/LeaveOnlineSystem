@@ -144,6 +144,8 @@
     <Compile Include="Controllers\LeaveDataController.cs" />
     <Compile Include="Controllers\LeaveStatusController.cs" />
     <Compile Include="Controllers\LeaveTypeController.cs" />
+    <Compile Include="Controllers\ReportLeaveDataController.cs" />
+    <Compile Include="Controllers\ReportLeaveDataDepartController.cs" />
     <Compile Include="CustomModel\Response.cs" />
     <Compile Include="CustomModel\ViewModel.cs" />
     <Compile Include="Districts.cs">
@@ -1832,11 +1834,16 @@
     <Content Include="Views\LeaveStatus\checkStatus.cshtml" />
     <Content Include="Views\LeaveData\Index.cshtml" />
     <Content Include="Views\LeaveType\List.cshtml" />
+    <Content Include="Views\ReportLeaveData\List.cshtml" />
+    <Content Include="Views\ReportLeaveDataDepart\Index.cshtml" />
+    <Content Include="Views\ReportLeaveDataDepart\History.cshtml" />
+    <Content Include="Views\LeaveType\Index.cshtml" />
     <Content Include="Views\Approve\List.cshtml" />
     <Content Include="Views\Approve\ApproveLeave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadFile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
