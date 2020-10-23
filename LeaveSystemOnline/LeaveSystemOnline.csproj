@@ -137,6 +137,7 @@
     <Compile Include="AUTHOR.cs">
       <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\ApproveController.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -183,11 +184,13 @@
     <Compile Include="Provinces.cs">
       <DependentUpon>LeaveSystemOnlineModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\ApproveRepo.cs" />
     <Compile Include="Repositories\AuthorRepo.cs" />
     <Compile Include="Repositories\LeaveDataRepo.cs" />
     <Compile Include="Repositories\LeaveRepo.cs" />
     <Compile Include="Repositories\LeaveStatusRepo.cs" />
     <Compile Include="Repositories\LeaveTypeRepo.cs" />
+    <Compile Include="Services\ApproveServices.cs" />
     <Compile Include="Services\AuthorServices.cs" />
     <Compile Include="Services\LeaveDataService.cs" />
     <Compile Include="Services\LeaveServices.cs" />
@@ -1497,6 +1500,8 @@
     <Content Include="Content\Theme\login\user.png" />
     <Content Include="Content\Theme\menu\author.png" />
     <Content Include="Content\Theme\login\video-call.png" />
+    <Content Include="Content\Theme\menu\authorization.png" />
+    <Content Include="Content\Theme\menu\description.png" />
     <Content Include="Content\Theme\menu\id-card.png" />
     <Content Include="Content\Theme\modals.html" />
     <Content Include="Content\Theme\nestables.html" />
@@ -1827,6 +1832,8 @@
     <Content Include="Views\LeaveStatus\checkStatus.cshtml" />
     <Content Include="Views\LeaveData\Index.cshtml" />
     <Content Include="Views\LeaveType\List.cshtml" />
+    <Content Include="Views\Approve\List.cshtml" />
+    <Content Include="Views\Approve\ApproveLeave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

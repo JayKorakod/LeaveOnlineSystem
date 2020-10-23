@@ -1,0 +1,63 @@
+﻿@model List<LeaveSystemOnline.LEAVEDATA>
+
+@{ 
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container container-fixed-lg">
+    <div class="card card-default">
+        <div class="card-body">
+            <div class="form-group">
+                <h3>อนุมัติการลางาน</h3>
+            </div>
+            <table class="table" id="tableType">
+
+                <tr>
+                    <th class="text-center" style="width: 20px" scope="col">ลำดับ</th>
+                    <th class="text-center" scope="col">ชื่อ นามสกุล</th>
+                    <th class="text-center" scope="col">ประเภทการลา</th>
+                    <th class="text-center" scope="col">วันที่เริ่มลา</th>
+                    <th class="text-center" scope="col">วันที่สิ้นสุด</th>
+                    <th class="text-center" scope="col">สถานะ</th>
+                    <th class="text-center" scope="col">ไฟล์แนบ</th>
+                    <th class="text-center" scope="col"></th>
+                    <th scope="col" class="text-center"></th>
+                </tr>
+
+
+                @{ int idx = 1;}
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td class="text-center" scope="row">@idx</td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.EMPLOYEE.firstName) @Html.DisplayFor(modelItem => item.EMPLOYEE.lastName)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.LEAVETYPE.type)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.firstDayOfLeave)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.LastDayOfLeave)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.LEAVESTATUS.status)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.fileDocument)
+                </td>
+                <td><a href="@Url.Action("ApproveLeave","Approve",new { id = item.id})">
+                    <img src="@Url.Content("~/Content/Theme/menu/description.png")"/>
+                    </a>
+                </td>
+            </tr>
+                    idx++;
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

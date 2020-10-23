@@ -36,7 +36,7 @@ namespace LeaveSystemOnline.Controllers
                 services.CreateEmployee(model);
                 ViewBag.showAlert = true;
                 ViewBag.alertMessage = "บันทึกข้อมูลสำเร็จ";
-            return View(model);
+            return RedirectToAction("ListEmployee");
         }
 
         public ActionResult ListEmployee(string search,int? index)

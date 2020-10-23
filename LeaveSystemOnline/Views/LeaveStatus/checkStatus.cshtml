@@ -84,5 +84,23 @@
             document.cancleStatus.id.value = id;
             document.getElementById("cancleStatus").submit();
         });
+
+        function Alert_confirm() {
+            Swal.fire({
+                title: 'ต้องการยกเลิกใช่ไหม?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'ยืนยัน!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'ยกเลิกสำเร็จ!',
+                        'success'
+                    )
+                }
+            })
+        }
     </script>
 }

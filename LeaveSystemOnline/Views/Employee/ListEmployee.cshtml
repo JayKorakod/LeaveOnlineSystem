@@ -18,14 +18,14 @@
     }
 </p>
 <div style="overflow:auto">
-    <div class=" no-padding    container-fixed-lg bg-white">
+    <div class=" no-padding container-fixed-lg bg-white">
         <div class="container">
             <div class="card card-transparent">
                 <div class="card-body">
                     <table class="table table-striped" id="tableWithExportOptions">
                         <thead>
                             <tr>
-                                <th >รหัสพนักงาน</th>
+                                <th>รหัสพนักงาน</th>
                                 <th>ชื่อ</th>
                                 <th>นามสกุล</th>
                                 <th>วันเกิด</th>
@@ -64,7 +64,10 @@
                                     <td>@Html.DisplayFor(modelItem => item.AUTHOR.tier)</td>
                                     <td>@Html.DisplayFor(modelItem => item.email)</td>
                                     <td>@Html.DisplayFor(modelItem => item.password)</td>
-                                    <td>@Html.ActionLink("เพิ่มสิทธิ์ผู้ใช้งาน", "EditAuthorEmployee", new { id = item.id })</td>
+                                    <td> <a href="@Url.Action("EditAuthorEmployee","Employee", new { id = item.id })">
+                                         <img src="@Url.Content("~/Content/Theme/menu/authorization.png")"/>
+                                         </a> 
+                                    </td>
                                 </tr>
                             }
                         </tbody>

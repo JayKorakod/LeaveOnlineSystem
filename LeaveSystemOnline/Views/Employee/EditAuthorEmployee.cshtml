@@ -39,7 +39,6 @@
         <div class="form-group">
             <p>สิทธิ์การใช้งาน</p>
             <div class="col-md-10">
-                @Html.DisplayTextFor(model => model.AUTHOR.tier)
                 @if (ViewBag.AuthorList != null)
                 {
                     @Html.DropDownListFor(x => x.authorization_id, ViewBag.AuthorList as SelectList, "-- เลือกสิทธิ์ผู้ใช้งาน --", new { @class = "form-control", id = "author" })
@@ -49,7 +48,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="บันทึก" class="btn btn-primary" />
+                <button type="submit" value="บันทึก" class="btn btn-primary" id="save">บันทึก</button>
             </div>
         </div>
     </div>
@@ -70,3 +69,32 @@
     @Html.HiddenFor(model => model.tel)
     @Html.HiddenFor(model => model.email)
 }
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    function Alert_Success() {
+        Swal.fire({
+            icon: 'success',
+            title: 'บันทึกสำเร็จ',
+            showConfirmButton: false,
+            timer: 1500,
+        })
+    }
+
+    function Alert_Warning() {
+        Swal.fire({
+            icon: 'error',
+            title: 'ผิดพลาด',
+            text: 'กรุณาตรวจสอบข้อมูลที่กรอก',
+        })
+    }
+
+    $('#save').click(function () {
+        if ($('#author').val() != '') {
+            Alert_Success();
+        }
+        else {
+            Alert_Warning();
+        }
+    });
+</script>

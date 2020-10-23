@@ -1,0 +1,138 @@
+﻿@model LeaveSystemOnline.LEAVEDATA
+
+@{
+    ViewBag.Title = "อนุมัติการขอลางาน";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>อนุมัติการขอลางาน</h4>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            <p>ชื่อ</p>
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.EMPLOYEE.firstName)
+                @Html.DisplayTextFor(model => model.EMPLOYEE.lastName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>รหัสพนักงาน</p>
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.emp_id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>แผนก</p>
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.EMPLOYEE.department)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>ประเภทการลา</p>
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.LEAVETYPE.type)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>รายละเอียด/เหตุผลการลา</p>
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>วันที่เริ่มต้นการลา</p>
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.firstDayOfLeave)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>วันที่สิ้นสุดการลา</p>
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.LastDayOfLeave)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>ไฟล์ที่แนบ</p>
+            <div class="col-md-10">
+                @Html.DisplayTextFor(model => model.fileDocument)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>อนุมัติ/ไม่อนุมัติ</p>
+            <div class="col-md-10">
+                อนุมัติ
+                @Html.RadioButtonFor(x => x.leaveStatus_id, '1', new { @id = "approve" })
+                ไม่อนุมัติ
+                @Html.RadioButtonFor(x => x.leaveStatus_id, '2', new { @id = "notapprove" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" value="บันทึก" class="btn btn-primary" id="save">บันทึก</button>
+            </div>
+        </div>
+    </div>
+    //Hide For Update
+    @Html.HiddenFor(model => model.emp_id)
+    @Html.HiddenFor(model => model.description)
+    @Html.HiddenFor(model => model.firstDayOfLeave)
+    @Html.HiddenFor(model => model.LastDayOfLeave)
+    @Html.HiddenFor(model => model.leaveType_id)
+    @Html.HiddenFor(model => model.fileDocument)
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    function Alert_Approve() {
+        Swal.fire({
+            icon: 'success',
+            title: 'อนุมัติขอลางาน',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }
+
+    function Alert_NotApprove() {
+        Swal.fire({
+            icon: 'success',
+            title: 'ไม่อนุมัติการขอลางาน',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }
+
+    function Alert_Warning() {
+        Swal.fire({
+            icon: 'error',
+            title: 'ผิดพลาด',
+            text: 'กรุณาเลือกอนุมัติหรือไม่อนุมัติลางานด้วย !',
+        })
+    }
+
+    $('#save').click(function () {
+        if ($('#approve').is(":checked")) {
+            Alert_Approve();
+        }
+        else if ($('#notapprove').is(":checked")) {
+            Alert_NotApprove();
+        }
+        else {
+            Alert_Warning();
+            return false;
+        }
+    })
+</script>
