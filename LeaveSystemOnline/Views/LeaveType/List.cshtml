@@ -18,6 +18,8 @@
 <br />
 <div class="container container-fixed-lg">
     <div class="card card-default">
+        <div class="tools">
+        </div>
         <div class="card-body">
             <div class="form-group">
                 <h3>ประเภทการลา</h3>
@@ -25,39 +27,43 @@
             <br />
             <button type="button" onclick="Add_model()" class="btn btn-lg btn-primary pull-right" style="width:100px">เพิ่ม</button>
             <br />
-            <table class="table" id="tableType">
-
-                <tr>
-                    <th class="text-center" style="width: 20px" scope="col">ลำดับ</th>
-                    <th class="text-center" scope="col">ประเภทการลา</th>
-                    <th class="text-center" scope="col">จำนวนวัน</th>
-                    <th class="text-center" scope="col">รายละเอียด</th>
-                    <th scope="col" class="text-center"></th>
-                </tr>
-
-
-                @{ int idx = 1;}
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td class="text-center" scope="row">@item.id</td>
-                        <td class="text-center">
-                            @item.type
-                        </td>
-                        <td class="text-center">
-                            @item.numOfLeave
-                        </td>
-                        <td class="text-center">
-                            @item.description
-                        </td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-lg btn-primary" style="width:100px" onclick="Update_modal('@item.id', '@item.type', '@item.numOfLeave', '@item.description')">แก้ไข</button>
-                        </td>
-                    </tr>
-                    idx++;
-                }
-
-            </table>
+            <div style="overflow:auto">
+                <div class="table-responsive">
+                    <table class="table table-hover table-responsive-block" id="tableWithSearch">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width: 100px" scope="col">ลำดับ</th>
+                                <th class="text-center" scope="col">ประเภทการลา</th>
+                                <th class="text-center" scope="col">จำนวนวัน</th>
+                                <th class="text-center" scope="col">รายละเอียด</th>
+                                <th scope="col" class="text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ int idx = 1;}
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-center" scope="row">@item.id</td>
+                                    <td class="text-center">
+                                        @item.type
+                                    </td>
+                                    <td class="text-center">
+                                        @item.numOfLeave
+                                    </td>
+                                    <td class="text-center">
+                                        @item.description
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" class="btn btn-lg btn-primary" style="width:100px" onclick="Update_modal('@item.id', '@item.type', '@item.numOfLeave', '@item.description')">แก้ไข</button>
+                                    </td>
+                                </tr>
+                                idx++;
+                            }
+                        <tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -133,6 +139,7 @@
             Check_txtDes();
 
             $('#btn-save').hide();
+            $('#btn-update').show();
         }
 
         function Add_model() {
@@ -144,6 +151,7 @@
             Check_txtDes();
 
             $('#btn-update').hide();
+            $('#btn-save').show();
         }
 
         function Save() {

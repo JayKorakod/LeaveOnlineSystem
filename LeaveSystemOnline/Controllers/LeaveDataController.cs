@@ -4,8 +4,10 @@ using LeaveSystemOnline.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 
@@ -28,8 +30,11 @@ namespace LeaveSystemOnline.Controllers
         [HttpPost]
         public ActionResult CreateLeaveData(LEAVEDATA model, HttpPostedFileBase file)
         {
-            if(file != null)
+            if(file != null && file.ContentLength > 0)
             {
+                string fileName = Path.GetFileName(file.FileName);
+                string path = Path.Combine(Server.MapPath("~/UploadFile"), fileName);
+                file.SaveAs(path);
                 model.fileDocument = file.FileName;
                 services.CreateLeaveData(model);
             }
