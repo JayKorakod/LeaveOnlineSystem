@@ -1500,11 +1500,14 @@
     <Content Include="Content\Theme\lock_screen.html" />
     <Content Include="Content\Theme\login.html" />
     <Content Include="Content\Theme\login\user.png" />
+    <Content Include="Content\Theme\menu\add-user-64.png" />
     <Content Include="Content\Theme\menu\author.png" />
     <Content Include="Content\Theme\login\video-call.png" />
     <Content Include="Content\Theme\menu\authorization.png" />
     <Content Include="Content\Theme\menu\description.png" />
     <Content Include="Content\Theme\menu\id-card.png" />
+    <Content Include="Content\Theme\menu\refresh-64.png" />
+    <Content Include="Content\Theme\menu\search-64.png" />
     <Content Include="Content\Theme\modals.html" />
     <Content Include="Content\Theme\nestables.html" />
     <Content Include="Content\Theme\notifications.html" />
@@ -1840,10 +1843,11 @@
     <Content Include="Views\LeaveType\Index.cshtml" />
     <Content Include="Views\Approve\List.cshtml" />
     <Content Include="Views\Approve\ApproveLeave.cshtml" />
+    <Content Include="UploadFile\เริ่มทำเล่มProject_1.pdf" />
+    <Content Include="UploadFile\เอกสารเซ็นแล้ว.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="UploadFile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

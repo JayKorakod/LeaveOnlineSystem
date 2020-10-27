@@ -3,27 +3,38 @@
 <h2 align="center">
     ข้อมูลระดับสิทธิ์การใช้งาน
 </h2>
-<table class="table table-striped">
-    <tr align="center">
-        <th>
-            <p>ลำดับที่</p>
-        </th>
-        <th>
-            <p>สิทธิ์การใช้งาน</p>
-        </th>
-    </tr>
-    @{int idx = 1;}
-@foreach (var item in Model)
-{
-    <tr align="center">
-        <th>
-            @idx
-        </th>
-        <th>
-            @Html.DisplayFor(modelItem => item.tier)
-        </th>
-    </tr>
-    idx++;
-}
-
-</table>
+<div class=" no-padding container-fixed-lg bg-white">
+    <div class="container">
+        <div class="card card-transparent">
+            <div class="card-body">
+                <table class="table table-striped" id="tableWithExportOptions" width="100%">
+                    <thead>
+                        <tr align="center">
+                            <th>
+                                <p>ลำดับที่</p>
+                            </th>
+                            <th>
+                                <p>สิทธิ์การใช้งาน</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int idx = 1;}
+                        @foreach (var item in Model)
+                        {
+                            <tr align="center">
+                                <th>
+                                    @idx
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.tier)
+                                </th>
+                            </tr>
+                            idx++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
