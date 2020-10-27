@@ -6,7 +6,6 @@
     var m = Model.FirstOrDefault();
 }
 
-
 <div class="bg-white">
     <div class="container">
         <ol class="breadcrumb breadcrumb-alt">
@@ -256,7 +255,19 @@
 
                 Alert_Warning();
             } else {
-                Save();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Save it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Save();
+                    }
+                })
             }
         }
 
@@ -278,7 +289,7 @@
                 icon: 'success',
                 title: 'บันทึกสำเร็จ',
                 showConfirmButton: false,
-                timer: 1500
+                timer: 3000
             })
         }
 
