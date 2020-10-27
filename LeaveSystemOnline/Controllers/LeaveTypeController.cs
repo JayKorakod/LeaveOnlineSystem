@@ -46,8 +46,8 @@ namespace LeaveSystemOnline.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                ViewBag.showAlert = true;
+                ViewBag.alertMessage = "ตรวจสอบข้อมูลอีกครั้ง";
             }
             return Json(new
             {
