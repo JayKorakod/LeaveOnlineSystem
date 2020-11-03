@@ -50,8 +50,8 @@
             </a>
             <div class="">
                 <div class="brand inline no-border d-sm-inline-block">
-                    <a href="@Url.Action("Index","Home")">
-                        <img src="~/Content/Theme/assets/img/logo_white.png" alt="logo" width="78" height="22">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="~/Content/Theme/menu/Logo.png" alt="logo" width="200" height="50">
                     </a>
                 </div>
             </div>
@@ -61,7 +61,7 @@
                     <fieldset>
                         @if (Session["name"] != null)
                         {
-                            <text> @Session["name"] </text>
+                            <span> @Session["name"] </span>
                         }
                     </fieldset>
                 </div>
@@ -78,16 +78,16 @@
 
                                 @if (Session["name"] != null)
                                 {
-                                    <b> <text> @Session["name"] </text> </b>
+                                    <span> @Session["name"] </span>
                                 }
                             </span>
-                        </a>
+</a>
+                        <div class="dropdown-divider"></div>@{ var author = Session["author"];}
+                        <a href="#" class="dropdown-item">สิทธิ์ผู้ใช้งาน : <span>@author</span></a>
+                        @*<a href="#" class="dropdown-item" id="id" hidden>@Session["id"]</a>*@
+                         @*<a href="#" class="dropdown-item" id="depart">แผนก : @Session["depart"]</a>*@
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">สิทธิ์ผู้ใช้งาน : <text>@Session["author"]</text></a>
-                        @*<a href="#" class="dropdown-item" id="id" hidden>@Session["id"]</a>
-                            <a href="#" class="dropdown-item" id="drpart" hidden>@Session["depart"]</a>*@
-                        <div class="dropdown-divider"></div>
-                        <a href="@Url.Action("Logout","Home")" class="dropdown-item">Logout</a>
+                        <a href="@Url.Action("Logout", "Home")" class="dropdown-item">Logout</a>
                         <div class="dropdown-divider"></div>
                         <span class="dropdown-item fs-12 hint-text">To day is @DateTime.Now<br /></span>
                     </div>
@@ -97,97 +97,97 @@
         </div>
         <div class="bg-white">
             <div class="container">
-                <div class="menu-bar header-sm-height" data-pages-init='horizontal-menu' data-hide-extra-li="4">
+                <div class="menu-bar header-sm-height" data-pages-init='horizontal-menu'>
                     <a href="#" class="btn-link header-icon toggle-sidebar d-lg-none" data-toggle="horizontal-menu">
                         <i class="pg-icon">close</i>
                     </a>
                     <ul>
-                        <li>
+                        <li id="menu1">
                             <a href="javascript:;">
-                                <span class="title">พนักงาน</span>
+                                <span style="font-size:18px" class="title">ผู้ใช้งาน</span>
+                                <span class=" arrow"></span>
+                            </a>
+                            <ul class="">
+                                <li class="" id="submenu1">
+                                    <a style="font-size:15px" href="@Url.Action("ListEmployee", "Employee")">ข้อมูลผู้ใช้งาน</a>
+                                </li>
+                                <li class="" id="submenu2">
+                                    <a style="font-size:15px" href="@Url.Action("CreateEmployee", "Employee")">เพิ่มข้อมูลผู้ใช้งาน</a>
+                                 <li class="" id="submenu3">
+                                    <a style="font-size:15px" href="@Url.Action("AddAuthorForEmployee", "Employee")">สิทธิ์ผู้ใช้งาน</a>
+                                </li>
+                                <li class="" id="submenu4">
+                                    <a style="font-size:15px" href="@Url.Action("ListAuthor", "Author")">ระดับสิทธิ์</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menu2">
+                            <a href="@Url.Action("List", "LeaveType")">
+                                <span style="font-size:18px" class="title">ประเภทการลา</span>
+                            </a>
+                        </li>
+                        <li id="menu3">
+                            <a href="@Url.Action("Index", "LeaveData")">
+                                <span style="font-size:18px" class="title">ขอลางาน</span>
+                            </a>
+                        </li>
+                        <li id="menu4">
+                            <a href="javascript:;">
+                                <span style="font-size:18px" class="title">ขอลางาน</span>
                                 <span class=" arrow"></span>
                             </a>
                             <ul class="">
                                 <li class="">
-                                    <a href="@Url.Action("ListEmployee","Employee")">ข้อมูลพนักงาน</a>
+                                    <a style="font-size:15px" href="@Url.Action("Index", "LeaveData")">ขอลางาน</a>
                                 </li>
-                                <li class="">
-                                    <a href="@Url.Action("CreateEmployee","Employee")">เพิ่มข้อมูลพนักงาน</a>
+                                <li id="approve" class="">
+                                    <a style="font-size:15px" href="@Url.Action("List", "Approve")">อนุมัติการลางาน</a>
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li id="menu5">
                             <a href="javascript:;">
-                                <span class="title">สิทธิ์การใช้งาน</span>
+                                <span style="font-size:18px" class="title">ตรวจสอบสถานะ</span>
                                 <span class=" arrow"></span>
                             </a>
                             <ul class="">
                                 <li class="">
-                                    <a href="@Url.Action("ListAuthor","Author")">ข้อมูลระดับสิทธิ์การใช้งาน</a>
+                                    <a style="font-size:15px" href="@Url.Action("checkStatus", "LeaveStatus")">ตรวจสอบสถานะ</a>
                                 </li>
                                 <li class="">
-                                    <a href="@Url.Action("ListEmployee","Employee")">แก้ไขสิทธิ์การใช้งาน</a>
+                                    <a style="font-size:15px" href="@Url.Action("History", "ReportLeaveDataDepart")">ประวัติการลางาน</a>
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <li id="menu6">
+                            <a href="@Url.Action("Index", "ReportLeaveDataDepart")">
+                                <span style="font-size:18px" class="title">รายงานของแผนก</span>
+                            </a>
+                        </li>
+                        <li id="menu7">
                             <a href="javascript:;">
-                                <span class="title">ขอลางาน</span>
+                                <span style="font-size:18px" class="title">รายงาน</span>
                                 <span class=" arrow"></span>
                             </a>
                             <ul class="">
                                 <li class="">
-                                    <a href="@Url.Action("checkStatus","LeaveStatus")">เช็คสถานะลางาน</a>
+                                    <a style="font-size:15px" href="@Url.Action("Index", "ReportLeaveDataDepart")">รายงานของแผนก</a>
                                 </li>
                                 <li class="">
-                                    <a href="@Url.Action("Index","LeaveData")">ขอลางาน</a>
+                                    <a style="font-size:15px" href="@Url.Action("List", "ReportLeaveData")">รายงานการลางาน</a>
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="javascript:;">
-                                <span class="title">ประเภทการลา</span>
-                                <span class=" arrow"></span>
-                            </a>
-                            <ul class="">
-                                <li class="">
-                                    <a href="@Url.Action("List","LeaveType")">ประเภทการลา</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("List","ReportLeaveData")">
-                                <span class="title">รายงานการลางาน</span>
-                            <a href="@Url.Action("List","Approve")">
-                                <span class="title">อนุมัติการลางาน</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","ReportLeaveDataDepart")">
-                                <span class="title">รายงานของแผนก</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("History", "ReportLeaveDataDepart")">
-                                <span class="title">ประวัติการลา</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index", "LeaveType")">
-                                <span class="title">ประเภทการลาแก้ไขไม่ได้</span>
-                            </a>
-                        </li>                        
                     </ul>
-                    <a href="#" class="search-link d-flex justify-content-between align-items-center d-lg-none" data-toggle="search">Tap here to search <i class="pg-search float-right"></i></a>
                 </div>
             </div>
         </div>
     </div>
     <!-- END PAGE CONTAINER -->
-    <div class="container">
+    <div class="">
         @RenderBody()
         <hr />
-        <footer>
+        <footer align="center">
             <p>&copy; @DateTime.Now.Year - Leave System Online For Project SE</p>
         </footer>
     </div>
@@ -265,8 +265,38 @@
         $(function () {
             $('#form-login').validate()
         })
+
+        $(document).ready(function () {
+            var author = "@author";
+            if (author == "Underling") {
+                $('#menu1').hide();
+                $('#menu4').hide();
+                $('#menu6').hide();
+                $('#menu7').hide();
+                $('#approve').hide();
+            }
+            else if (author == "Supervisor") {
+                $('#menu1').hide();
+                $('#menu3').hide();
+                $('#menu7').hide();
+                $('#submenu3').hide();
+                $('#submenu4').hide();
+            }
+            else if (author == "HR") {
+                $('#menu3').hide();
+                $('#menu6').hide();
+                $('#submenu3').hide();
+                $('#submenu4').hide();
+            }
+            else if (author == "Admin") {
+                $('#menu3').hide();
+                $('#menu6').hide();
+                
+            }
+
+        });
+
+
     </script>
-
-
 </body>
 </html>

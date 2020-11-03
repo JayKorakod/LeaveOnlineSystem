@@ -6,32 +6,29 @@
     var m = Model.FirstOrDefault();
 }
 
-<div class="bg-white">
-    <div class="container">
-        <ol class="breadcrumb breadcrumb-alt">
-            <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
-            <li class="breadcrumb-item">รายงานการลา</li>
-        </ol>
-    </div>
-</div>
-<br />
 <div class="container container-fixed-lg">
     <div class="card card-default">
         <div class="card-body">
-            <div class="form-group">
-                <h3>รายงานการลา</h3>
-            </div>
-            <br />
             @using (Html.BeginForm("List", "ReportLeaveData", FormMethod.Get))
             {
+                <h4 align="center">รายงานการลางาน</h4>
                 <div class="row">
-                    <div class="col-md-6">
-                    </div>
-                    <div class="col-lg-5">
-                        <input type="email" name="search" class="form-control pull-right" placeholder="ค้นหาแผนก" />
-                    </div>
-                    <div class="col-lg-1">
-                        <input type="submit" name="submit" value="Search" class="btn btn-primary pull-right" />
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <table>
+                                <tr>
+                                    <th><input type="text" name="search" class="form-control pull-right" placeholder="ค้นหาแผนก" /></th>
+                                    <th><input type="submit" name="submit" value="ค้นหา" class="btn btn-primary" /></th>
+                                    <th>
+                                        <a href="@Url.Action("List", "ReportLeaveData")">
+                                            <img src=@Url.Content("~/Content/Theme/menu/refresh-64.png") width="40" height="40" />
+                                        </a>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             }
@@ -40,16 +37,16 @@
                 <table class="table table-hover table-responsive-block" id="tableWithSearch">
                     <thead>
                         <tr>
-                            <th class="text-center" style="width: 20px" scope="col">ลำดับ</th>
-                            <th class="text-center" scope="col">รหัสพนักงาน</th>
-                            <th class="text-center" scope="col">ชื่อพนักงาน</th>
-                            <th scope="col" class="text-center">แผนก</th>
-                            <th class="text-center" scope="col">รายละเอียด</th>
-                            <th class="text-center" scope="col">วันที่เริ่มต้นลา</th>
-                            <th class="text-center" scope="col">วันที่สิ้นสุดการลา</th>
-                            <th class="text-center" scope="col">สถานะ</th>
-                            <th class="text-center" scope="col">ประเภทการลา</th>
-                            <th scope="col" class="text-center">ไฟล์แนบ</th>
+                            <th class="text-center" style="font-size:16px" scope="col"><p style="font-size:18px">ลำดับ</p></th>
+                            <th class="text-center" scope="col"><p style="font-size:16px">รหัสพนักงาน</p></th>
+                            <th class="text-center" scope="col"><p style="font-size:16px">ชื่อพนักงาน</p></th>
+                            <th class="text-center" scope="col"><p style="font-size:16px">แผนก</p></th>
+                            <th class="text-center" scope="col"><p style="font-size:16px">รายละเอียด</p></th>
+                            <th class="text-center" scope="col"><p style="font-size:16px">วันที่เริ่มต้นลา</p></th>
+                            <th class="text-center" scope="col"><p style="font-size:16px">วันที่สิ้นสุดการลา</p></th>
+                            <th class="text-center" scope="col"><p style="font-size:16px">สถานะ</p></th>
+                            <th class="text-center" scope="col"><p style="font-size:16px">ประเภทการลา</p></th>
+                            <th class="text-center" scope="col"><p style="font-size:16px">ไฟล์ที่แนบ</p></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,34 +54,47 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td class="text-center" scope="row">@idx</td>
+                                <td class="text-center" scope="row"><p style="font-size:14px">@idx</p></td>
                                 <td class="text-center">
-                                    @item.emp_id
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.id)</p>
                                 </td>
                                 <td class="text-center">
-                                    @item.EMPLOYEE.firstName
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.EMPLOYEE.firstName) @Html.DisplayFor(modelItem => item.EMPLOYEE.lastName)</p>
                                 </td>
                                 <td class="text-center">
-                                    @item.EMPLOYEE.department
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.EMPLOYEE.department) </p>
                                 </td>
                                 <td class="text-center">
-                                    @item.description
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.description) </p>
                                 </td>
                                 <td class="text-center">
-                                    @item.firstDayOfLeave
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.firstDayOfLeave) </p>
                                 </td>
                                 <td class="text-center">
-                                    @item.LastDayOfLeave
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LastDayOfLeave) </p>
                                 </td>
                                 <td class="text-center">
-                                    @item.LEAVESTATUS.status
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LEAVESTATUS.status) </p>
                                 </td>
                                 <td class="text-center">
-                                    @item.LEAVETYPE.type
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LEAVETYPE.type) </p>
                                 </td>
-                                <td class="text-center">
-                                    @item.fileDocument
-                                </td>
+                                @{ if (item.fileDocument != null)
+                                    {
+                                        <td class="text-center">
+                                            @Html.HiddenFor(modelItem => item.fileDocument)
+                                            <a style="font-size:14px" target="_blank" href="~/UploadFile/@{@Html.DisplayTextFor(modelItem => item.fileDocument)}">
+                                                <img src="@Url.Content("~/Content/Theme/menu/filepdf-32.png")" />
+                                            </a>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="text-center">
+                                            @Html.HiddenFor(modelItem => item.fileDocument)
+                                        </td>
+                                    }
+                                }
                             </tr>
                             idx++;
                         }

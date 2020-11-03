@@ -6,8 +6,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LeaveSystemOnline.Models;
-using PagedList.Mvc;
-using PagedList;
 
 namespace LeaveSystemOnline.Controllers
 {
@@ -39,10 +37,16 @@ namespace LeaveSystemOnline.Controllers
             return RedirectToAction("ListEmployee");
         }
 
-        public ActionResult ListEmployee(string search,int? index)
+        public ActionResult ListEmployee(string search)
         {
             //var listEmployee = services.GetAllEmployee();
-            var searchEmployee = context.EMPLOYEE.Where(x => x.firstName.StartsWith(search) || search == null).ToList().ToPagedList(index ?? 1,5);
+            var searchEmployee = context.EMPLOYEE.Where(x => x.firstName.StartsWith(search) || search == null);
+            return View(searchEmployee);
+        }
+
+        public ActionResult AddAuthorForEmployee(string search)
+        {
+            var searchEmployee = context.EMPLOYEE.Where(x => x.firstName.StartsWith(search) || search == null);
             return View(searchEmployee);
         }
 
@@ -57,7 +61,7 @@ namespace LeaveSystemOnline.Controllers
         public ActionResult EditAuthorEmployee(EMPLOYEE model)
         {
             services.EditAuthor(model);
-            return RedirectToAction("ListEmployee");
+            return RedirectToAction("AddAuthorForEmployee");
         }
 
         public List<AUTHOR> GetAuthor()

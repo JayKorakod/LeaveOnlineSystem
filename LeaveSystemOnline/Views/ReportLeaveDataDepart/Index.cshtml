@@ -5,87 +5,102 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="bg-white">
-    <div class="container">
-        <ol class="breadcrumb breadcrumb-alt">
-            <li class="breadcrumb-item"><a href="@Url.Action("Index","Home")">Home</a></li>
-            <li class="breadcrumb-item">รายงานการลาของแผนก</li>
-        </ol>
-    </div>
-</div>
-<br />
 <div class="container container-fixed-lg">
     <div class="card card-default">
         <div class="card-body">
-            <div class="form-group">
-                <h3>รายงานการลาของแผนก</h3>
-            </div>
-            <br />
             @using (Html.BeginForm("Index", "ReportLeaveDataDepart", FormMethod.Get))
             {
+                <h4 align="center">รายงานของแผนก</h4>
                  <div class="row">
-                    <div class="col-md-6"></div>
-                    <div class="col-md-5">
-                        <input type="email" name="search" class="form-control" placeholder="ค้นหาชื่อพนักงาน"/>
-                    </div>
-                    <div class="col-md-1">
-                        <input type="submit" name="submit" value="Search" class="btn btn-primary" />
+                     <div class="col-md-4"></div>
+                     <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <table>
+                                <tr>
+                                    <th><input type="text" name="search" class="form-control" placeholder="ค้นหาชื่อพนักงาน" /></th>
+                                    <th><input type="submit" name="submit" value="ค้นหา" class="btn btn-primary" /></th>
+                                    <th>
+                                        <a href="@Url.Action("Index", "ReportLeaveDataDepart")">
+                                            <img src=@Url.Content("~/Content/Theme/menu/refresh-64.png") width="40" height="40" />
+                                        </a>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                  </div>
             }
             <br />
             <div style="overflow:auto">
                 <table class="table table-hover table-responsive-block" id="tableWithSearch">
+                    <thead>
                     <tr>
                         <th>
-                            รหัสใบลางาน
+                            <p style="font-size:16px">รหัสใบลางาน</p>
                         </th>
                         <th>
-                            ชื่อพนักงาน
+                            <p style="font-size:16px">ชื่อพนักงาน</p>
                         </th>
                         <th>
-                            วันที่เริ่มลา
+                            <p style="font-size:16px">วันที่เริ่มลา</p>
                         </th>
                         <th>
-                            วันที่สิ้นสุดการลา
+                            <p style="font-size:16px">วันที่สิ้นสุดการลา</p>
                         </th>
                         <th>
-                            ไฟล์แนบ
+                            <p style="font-size:16px">ไฟล์ที่แนบ</p>
                         </th>
                         <th>
-                            ประเภท
+                            <p style="font-size:16px">ประเภท</p>
                         </th>
                         <th>
-                            สถานะ
+                            <p style="font-size:16px">สถานะ</p>
                         </th>
                     </tr>
+                        </thead>
+                    <tbody>
 
                     @foreach (var item in Model)
                     {
                         <tr>
                             <td>
-                                @item.id
+                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.id)</p>
                             </td>
                             <td>
-                                @item.EMPLOYEE.firstName
+                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.EMPLOYEE.firstName)</p>
                             </td>
                             <td>
-                                @item.firstDayOfLeave
+                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.firstDayOfLeave)</p>
                             </td>
                             <td>
-                                @item.LastDayOfLeave
+                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LastDayOfLeave)</p>
+                            </td>
+                            @{ if (item.fileDocument != null)
+                                {
+                                    <td>
+                                        @Html.HiddenFor(modelItem => item.fileDocument)
+                                        <a style="font-size:14px" target="_blank" href="~/UploadFile/@{@Html.DisplayTextFor(modelItem => item.fileDocument)}">
+                                            <img src="@Url.Content("~/Content/Theme/menu/filepdf-32.png")" />
+                                        </a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @Html.HiddenFor(modelItem => item.fileDocument)
+                                    </td>
+                                }
+                            }
+                            <td>
+                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LEAVETYPE.type)</p>
                             </td>
                             <td>
-                                @item.fileDocument
-                            </td>
-                            <td>
-                                @item.LEAVETYPE.type
-                            </td>
-                            <td>
-                                @item.LEAVESTATUS.status
+                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LEAVESTATUS.status)</p>
                             </td>
                         </tr>
                     }
+                        </tbody>
                 </table>
             </div>
         </div>

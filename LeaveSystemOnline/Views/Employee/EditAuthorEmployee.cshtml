@@ -11,86 +11,81 @@
     <div class="container container-fixed-lg">
         <div class="card card-default">
             <div class="card-body">
-                <h2 align="center">เพิ่มสิทธิ์ผู้ใช้งาน</h2><br />
+                <br />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.id)
-
-                <div class="col-10" align="center">
-                    <label>รหัสพนักงาน : </label>
-                    @Html.DisplayTextFor(model => model.id)
+                <div class="form-group">
+                    <label style="font-size:16px">รหัสพนักงาน</label>
+                    <input style="font-size:16px; color:black" type="text" class="form-control" readonly value="@Html.DisplayTextFor(model => model.id)" />
                 </div>
-
-                <div class="col-11" align="center">
-                    <label>ชื่อ นามสกุล :</label>
-                    @Html.DisplayTextFor(model => model.firstName)
-                    @Html.DisplayTextFor(model => model.lastName)
+                <div class="form-group">
+                    <label style="font-size:16px">ชื่อ-นามสกุล</label>
+                    <input style="font-size: 16px; color: black" type="text" class="form-control" readonly value="@Html.DisplayTextFor(model => model.firstName) @Html.DisplayTextFor(model => model.lastName)" />
                 </div>
-
-                <div class="col-10" align="center">
-                    <label>แผนก : </label>
-                    @Html.DisplayTextFor(model => model.department)
+                <div class="form-group">
+                    <label style="font-size:16px">แผนก</label>
+                    <input style="font-size: 16px; color: black" type="text" class="form-control" readonly value="@Html.DisplayTextFor(model => model.department)" />
                 </div>
-
-                <div class="col-12" align="center">
-                    <label>สิทธิ์การใช้งาน</label>
-                        @if (ViewBag.AuthorList != null)
-                        {
-                            @Html.DropDownListFor(x => x.authorization_id, ViewBag.AuthorList as SelectList, "เลือกสิทธิ์ผู้ใช้งาน", new { @class = "col-2", id = "author" })
-                        }
+                <div class="form-group">
+                    <label style="font-size:16px">สิทธิ์การใช้งาน</label>
+                    @if (ViewBag.AuthorList != null)
+                    {
+                        @Html.DropDownListFor(x => x.authorization_id, ViewBag.AuthorList as SelectList, "เลือกสิทธิ์ผู้ใช้งาน", new { id = "author", @class = "form-control" })
+                    }
                 </div>
-
-                <div align="center">
+                <div align="right">
                     <div class="col-md-offset-2 col-md-10">
                         <button type="submit" value="บันทึก" class="btn btn-primary" id="save">บันทึก</button>
                     </div>
                 </div>
             </div>
-            </div>
         </div>
-            // Hide For Update database
-            @Html.HiddenFor(model => model.firstName)
-            @Html.HiddenFor(model => model.lastName)
-            @Html.HiddenFor(model => model.birthdate)
-            @Html.HiddenFor(model => model.identificationNo)
-            @Html.HiddenFor(model => model.homeNo)
-            @Html.HiddenFor(model => model.soi)
-            @Html.HiddenFor(model => model.road)
-            @Html.HiddenFor(model => model.subdistrict)
-            @Html.HiddenFor(model => model.district)
-            @Html.HiddenFor(model => model.province)
-            @Html.HiddenFor(model => model.postalCode)
-            @Html.HiddenFor(model => model.password)
-            @Html.HiddenFor(model => model.department)
-            @Html.HiddenFor(model => model.tel)
-            @Html.HiddenFor(model => model.email)
-            }
+    </div>
+        
+    // Hide For Update database
+    @Html.HiddenFor(model => model.firstName)
+    @Html.HiddenFor(model => model.lastName)
+    @Html.HiddenFor(model => model.birthdate)
+    @Html.HiddenFor(model => model.identificationNo)
+    @Html.HiddenFor(model => model.homeNo)
+    @Html.HiddenFor(model => model.soi)
+    @Html.HiddenFor(model => model.road)
+    @Html.HiddenFor(model => model.subdistrict)
+    @Html.HiddenFor(model => model.district)
+    @Html.HiddenFor(model => model.province)
+    @Html.HiddenFor(model => model.postalCode)
+    @Html.HiddenFor(model => model.password)
+    @Html.HiddenFor(model => model.department)
+    @Html.HiddenFor(model => model.tel)
+    @Html.HiddenFor(model => model.email)
+}
 
-            <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-            <script>
-                function Alert_Success() {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'บันทึกสำเร็จ',
-                        showConfirmButton: false,
-                        timer: 1500,
-                    })
-                }
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    function Alert_Success() {
+        Swal.fire({
+            icon: 'success',
+            title: 'บันทึกสำเร็จ',
+            showConfirmButton: false,
+            timer: 1500,
+        })
+    }
 
-                function Alert_Warning() {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'ผิดพลาด',
-                        text: 'กรุณาตรวจสอบข้อมูลที่กรอก',
-                    })
-                }
+    function Alert_Warning() {
+        Swal.fire({
+            icon: 'error',
+            title: 'ผิดพลาด',
+            text: 'กรุณาเลือกสิทธิ์การใช้งาน',
+        })
+    }
 
-                $('#save').click(function () {
-                    if ($('#author').val() != '') {
-                        Alert_Success();
-                    }
-                    else {
-                        Alert_Warning();
-                        return false;
-                    }
-                });
-            </script>
+    $('#save').click(function () {
+        if ($('#author').val() != '') {
+            Alert_Success();
+        }
+        else {
+            Alert_Warning();
+            return false;
+        }
+    });
+</script>

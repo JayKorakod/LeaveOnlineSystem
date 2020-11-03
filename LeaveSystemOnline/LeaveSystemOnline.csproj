@@ -1504,10 +1504,14 @@
     <Content Include="Content\Theme\menu\author.png" />
     <Content Include="Content\Theme\login\video-call.png" />
     <Content Include="Content\Theme\menu\authorization.png" />
+    <Content Include="Content\Theme\menu\Background.jpg" />
     <Content Include="Content\Theme\menu\description.png" />
+    <Content Include="Content\Theme\menu\filepdf-32.png" />
     <Content Include="Content\Theme\menu\id-card.png" />
+    <Content Include="Content\Theme\menu\Logo.png" />
     <Content Include="Content\Theme\menu\refresh-64.png" />
     <Content Include="Content\Theme\menu\search-64.png" />
+    <Content Include="Content\Theme\menu\shipping-64.png" />
     <Content Include="Content\Theme\modals.html" />
     <Content Include="Content\Theme\nestables.html" />
     <Content Include="Content\Theme\notifications.html" />
@@ -1845,6 +1849,14 @@
     <Content Include="Views\Approve\ApproveLeave.cshtml" />
     <Content Include="UploadFile\เริ่มทำเล่มProject_1.pdf" />
     <Content Include="UploadFile\เอกสารเซ็นแล้ว.pdf" />
+    <Content Include="Views\Employee\AddAuthorForEmployee.cshtml" />
+    <Content Include="UploadFile\ทุนพัฒนาวิชาการ.pdf" />
+    <Content Include="UploadFile\ทุนอุดหนุนลดหย่อนค่าเล่าเรียน2_63.pdf" />
+    <Content Include="UploadFile\อว 11 ยูแทกไทย.pdf" />
+    <Content Include="UploadFile\ระบบจัดการจองตั๋วคอนเสิร์ตออนไลน์.pdf" />
+    <Content Include="UploadFile\Wutthichai_C_Book_Final.pdf" />
+    <Content Include="UploadFile\Workshop2 6004022630018 .pdf" />
+    <Content Include="UploadFile\Agile_model.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

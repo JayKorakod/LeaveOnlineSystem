@@ -60,9 +60,9 @@
                     <p>อนุมัติ/ไม่อนุมัติ</p>
                     <div class="col-md-10">
                         อนุมัติ
-                        @Html.RadioButtonFor(x => x.leaveStatus_id, '1', new { @id = "approve" })
+                        @Html.RadioButtonFor(x => x.leaveStatus_id, 1, new { @id = "radio1" })
                         ไม่อนุมัติ
-                        @Html.RadioButtonFor(x => x.leaveStatus_id, '2', new { @id = "notapprove" })
+                        @Html.RadioButtonFor(x => x.leaveStatus_id, 2, new { @id = "radio2" })
                     </div>
                 </div>
 
@@ -112,16 +112,19 @@
         })
     }
 
-    $('#save').click(function () {
-        if ($('#approve').is(":checked")) {
-            Alert_Approve();
-        }
-        else if ($('#notapprove').is(":checked")) {
-            Alert_NotApprove();
-        }
-        else {
-            Alert_Warning();
-            return false;
-        }
+    $(document).ready(function () {
+        $('#save').click(function () {
+            if ($('#radio1').is(":checked")) {
+                Alert_Approve();
+            }
+            else if ($('#radio2').is(":checked")) {
+                Alert_NotApprove();
+            }
+            else {
+                Alert_Warning();
+                return false;
+            }
+        })
     })
+
 </script>

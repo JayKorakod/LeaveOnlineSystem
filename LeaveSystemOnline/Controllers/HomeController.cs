@@ -61,7 +61,6 @@ namespace LeaveSystemOnline.Controllers
                 else
                 {
                     ViewBag.showAlert = true;
-                    ViewBag.alertMessage = "Email หรือ Password ผิด กรุณาลองใหม่อีกครั้ง";
                 }
             }
             return View(model);

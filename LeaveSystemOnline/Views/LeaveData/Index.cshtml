@@ -13,43 +13,41 @@
 <div class="container container-fixed-lg">
     <div class="card card-default">
         <div class="card-body">
-            <div class="form-group">
-                <h3>ขอลางาน</h3>
-            </div>
+            <h4 align="center">ขอลางาน</h4>
             <br />
             <div>
-                <label>หมายเลขใบขอลางาน <b>@lastRow</b></label>
+                <label style="font-size:16px">หมายเลขใบขอลางาน : <b>@lastRow</b></label>
             </div>
             <div class="form-group">
-                <label>ชื่อ</label>
-                <input style="color:black" type="email" class="form-control" readonly value="@Session["name"]" />
+                <label style="font-size:16px">ชื่อ</label>
+                <input style="font-size:16px; color:black" type="text" class="form-control" readonly value="@Session["name"]" />
             </div>
             <div class="form-group">
-                <label>รหัสพนักงาน</label>
-                <input style="color:black" type="email" class="form-control" readonly value="@Session["id"]" id="txtid" />
+                <label style="font-size:16px">รหัสพนักงาน</label>
+                <input style="font-size: 16px; color: black" type="text" class="form-control" readonly value="@Session["id"]" id="txtid" />
             </div>
             <div class="form-group">
-                <label>แผนก</label>
-                <input style="color:black" type="email" class="form-control" readonly value="@Session["depart"]" />
+                <label style="font-size:16px">แผนก</label>
+                <input style="font-size: 16px; color: black" type="text" class="form-control" readonly value="@Session["depart"]" />
             </div>
             <div class="form-group">
-                <label>ประเภทลางาน</label>
-                @Html.DropDownList("data", ViewBag.data as SelectList, htmlAttributes: new { @class = "form-control", id = "dropdown-type" })
+                <label style="font-size:16px">ประเภทลางาน</label>
+                @Html.DropDownList("data", ViewBag.data as SelectList, htmlAttributes: new { @class = "form-control", id = "dropdown-type", @style = "font-size: 20px;" })
             </div>
             <div class="form-group bg-primary-light padding-15">
-                <span>
+                <span style="font-size:16px">
                     **เงื่อนไขการลา : พนักงานที่ประสงค์จะลาหยุดงาน จะต้องกรอกข้อมูลการลางานในระบบ และยื่นขออนุญาตเป็นการล่วงหน้า
                     ต่อผู้บังคับบัญชา ตามระดับขั้น และจะหยุดได้ก็ต่อเมื่อผู้บังคับบัญชาอนุมัติแล้วเท่านั้น
                 </span>
             </div>
             <div class="form-group">
-                <label>รายละเอียด/เหตุผลการลา</label>
-                <textarea class="form-control" rows="4" id="text-des" placeholder="กรุณากรอกข้อมูล"></textarea>
+                <label style="font-size:16px">รายละเอียด/เหตุผลการลา</label>
+                <textarea class="form-control" rows="4" id="text-des" placeholder="กรุณากรอกข้อมูล" style="font-size:16px"></textarea>
             </div>
             <div class="form-group form-group-default input-group">
                 <div class="form-input-group">
-                    <label>วันที่เริ่มต้นการลา</label>
-                    <input type="email" class="form-control" placeholder="MM/dd/YYYY" id="datepicker-component" name="startdate" />
+                    <label style="font-size:16px">วันที่เริ่มต้นการลา</label>
+                    <input style="font-size:16px" type="text" class="form-control" placeholder="dd/mm/yyyy" id="datepicker-component" name="startdate" />
                 </div>
                 <div class="input-group-append">
                     <span class="input-group-text">
@@ -59,8 +57,8 @@
             </div>
             <div class="form-group form-group-default input-group">
                 <div class="form-input-group">
-                    <label>วันที่สิ้นสุดการลา</label>
-                    <input type="email" class="form-control" placeholder="MM/dd/YYYY" id="datepicker-component2" name="enddate" />
+                    <label style="font-size:16px">วันที่สิ้นสุดการลา</label>
+                    <input style="font-size:16px" type="text" class="form-control" placeholder="dd/mm/yyyy" id="datepicker-component2" name="enddate" />
                 </div>
                 <div class="input-group-append">
                     <span class="input-group-text">
@@ -69,14 +67,14 @@
                 </div>
             </div>
             <fieldset class="form-group">
-                <label for="basicInputFile">ไฟล์แนบ</label>
+                <label for="basicInputFile" style="font-size:16px">ไฟล์แนบ</label>
                 <div class="custom-file">
-                    <input type="file" class="form-control" accept=".pdf" id="inputFile" />
+                    <input type="file" class="form-control" accept=".pdf" id="inputFile" style="font-size:16px" />
                     <div class="help-block"></div>
                 </div>
             </fieldset>
             <br />
-            <button class="btn btn-primary pull-right" style="width:100px;height:50px" onclick="btnSave(event)">บันทึก</button>
+            <button class="btn btn-primary pull-right" onclick="btnSave(event)">บันทึก</button>
         </div>
     </div>
 </div>

@@ -3,167 +3,157 @@
     ViewBag.Title = "เพิ่มข้อมูลผู้ใช้งาน";
 }
 
-<h2 align="center">เพิ่มข้อมูลพนักงาน</h2>
-<br />
-
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-
-<div align="center" class="container-fluid">
-    <div class="row">
-        <div class="col-sm-4">
-            <h3>ข้อมูลส่วนตัว</h3>
+    <div align="center" class="container container-fixed-lg">
+        <div class="card card-default">
+            <h4 align="center">เพิ่มข้อมูลผู้ใช้งาน</h4>
+            <h5>ข้อมูลส่วนตัว</h5>
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                <div class="col-sm-8">
-                    @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control", @maxlength = "30", @id = "fname", @placeholder = "ชื่อ" } })
+                <div class="col-sm-12">
+                    @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control", @maxlength = "30", @id = "fname", @placeholder = "ชื่อ", @style = "font-size: 16px;" } })
                 </div>
             </div>
 
             <div class="form-group">
-                <div class="col-sm-8">
-                    @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control", @maxlength = "30", @id = "lname", @placeholder = "นามสกุล" } })
-                </div>
-            </div>
-                <div class="form-group">
-                    <div class="col-sm-8">
-                        @Html.EditorFor(model => model.birthdate, new { htmlAttributes = new { @class = "form-control", @id = "datepicker-component2", @placeholder = "วันเกิด(mm/dd/yyyy)" } })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-8">
-                        @Html.EditorFor(model => model.identificationNo, new { htmlAttributes = new { @class = "form-control", @maxlength = "13", @id = "iden", @placeholder = "รหัสบัตรประชาชน" } })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-8">
-                        @Html.EditorFor(model => model.tel, new { htmlAttributes = new { @class = "form-control", @maxlength = "10", @id = "tel", @placeholder = "เบอร์โทรศัพท์" } })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-8">
-                        @{
-                            List<SelectListItem> listDepartment = new List<SelectListItem>();
-                            listDepartment.Add(new SelectListItem
-                            {
-                                Text = "วิศวกรรม",
-                                Value = "วิศวกรรม"
-                            });
-                            listDepartment.Add(new SelectListItem
-                            {
-                                Text = "เทคโนโลยีสารสนเทศ",
-                                Value = "เทคโนโลยีสารสนเทศ"
-                            });
-                            listDepartment.Add(new SelectListItem
-                            {
-                                Text = "จัดซื้อ",
-                                Value = "จัดซื้อ"
-                            });
-                            listDepartment.Add(new SelectListItem
-                            {
-                                Text = "คลังสินค้า",
-                                Value = "คลังสินค้า"
-                            });
-                            listDepartment.Add(new SelectListItem
-                            {
-                                Text = "บุคคล",
-                                Value = "บุคคล"
-                            });
-                            listDepartment.Add(new SelectListItem
-                            {
-                                Text = "การตลาด",
-                                Value = "การตลาด"
-                            });
-                            listDepartment.Add(new SelectListItem
-                            {
-                                Text = "รักษาความปลอดภัย",
-                                Value = "รักษาความปลอดภัย"
-                            });
-                            listDepartment.Add(new SelectListItem
-                            {
-                                Text = "ฝ่ายผลิต",
-                                Value = "ฝ่ายผลิต"
-                            });
-                        }
-                        @Html.DropDownListFor(model => model.department, listDepartment, "เลือกแผนก", new { @class = "form-control", @id = "department", @placeholder = "แผนก" })
-                    </div>
+                <div class="col-sm-12">
+                    @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control", @maxlength = "30", @id = "lname", @placeholder = "นามสกุล", @style = "font-size: 16px;" } })
                 </div>
             </div>
 
-            <div class="col-sm-4">
-                <h3>ที่อยู่</h3>
-                <div class="form-group">
-                    <div class="col-md-8">
-                        @Html.EditorFor(model => model.homeNo, new { htmlAttributes = new { @class = "form-control", @maxlength = "7", @id = "homeno", @placeholder = "บ้านเลขที่" } })
-                    </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    @Html.EditorFor(model => model.identificationNo, new { htmlAttributes = new { @class = "form-control", @maxlength = "13", @id = "iden", @placeholder = "รหัสบัตรประชาชน", @style = "font-size: 16px;" } })
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-md-8">
-                        @Html.EditorFor(model => model.soi, new { htmlAttributes = new { @class = "form-control", @maxlength = "30", @id = "soi", @placeholder = "ซอย" } })
-                    </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" placeholder="วันเกิด dd/mm/yyyy" id="datepicker-component" name="birthdate" style="font-size:16px" />
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-md-8">
-                        @Html.EditorFor(model => model.road, new { htmlAttributes = new { @class = "form-control", @maxlength = "30", @id = "road", @placeholder = "ถนน" } })
-                    </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    @Html.EditorFor(model => model.tel, new { htmlAttributes = new { @class = "form-control", @maxlength = "10", @id = "tel", @placeholder = "เบอร์โทรศัพท์", @style = "font-size: 16px;" } })
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-md-8">
-                        @if (ViewBag.ProvinceList != null)
+            <div class="form-group">
+                <div class="col-sm-12">
+                    @{
+                        List<SelectListItem> listDepartment = new List<SelectListItem>();
+                        listDepartment.Add(new SelectListItem
                         {
-                            @Html.DropDownListFor(x => x.province, ViewBag.ProvinceList as SelectList, "เลือกจังหวัด", new { @class = "form-control", id = "province" })
-                        }
-                    </div>
+                            Text = "วิศวกรรม",
+                            Value = "วิศวกรรม"
+                        });
+                        listDepartment.Add(new SelectListItem
+                        {
+                            Text = "เทคโนโลยีสารสนเทศ",
+                            Value = "เทคโนโลยีสารสนเทศ"
+                        });
+                        listDepartment.Add(new SelectListItem
+                        {
+                            Text = "จัดซื้อ",
+                            Value = "จัดซื้อ"
+                        });
+                        listDepartment.Add(new SelectListItem
+                        {
+                            Text = "คลังสินค้า",
+                            Value = "คลังสินค้า"
+                        });
+                        listDepartment.Add(new SelectListItem
+                        {
+                            Text = "บุคคล",
+                            Value = "บุคคล"
+                        });
+                        listDepartment.Add(new SelectListItem
+                        {
+                            Text = "การตลาด",
+                            Value = "การตลาด"
+                        });
+                        listDepartment.Add(new SelectListItem
+                        {
+                            Text = "รักษาความปลอดภัย",
+                            Value = "รักษาความปลอดภัย"
+                        });
+                        listDepartment.Add(new SelectListItem
+                        {
+                            Text = "ฝ่ายผลิต",
+                            Value = "ฝ่ายผลิต"
+                        });
+                    }
+                    @Html.DropDownListFor(model => model.department, listDepartment, "เลือกแผนก", new { @class = "form-control", @id = "department", @placeholder = "แผนก", @style = "font-size: 16px;" })
                 </div>
-
-                <div class="form-group">
-                    <div class="col-md-8">
-                        @Html.DropDownListFor(x => x.district, new SelectList(""), "เลือกตำบล", new { @class = "form-control", id = "district" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-8">
-                        @Html.DropDownListFor(x => x.subdistrict, new SelectList(""), "เลือกอำเภอ", new { @class = "form-control", id = "subdistrict" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-8">
-                        @Html.EditorFor(model => model.postalCode, new { htmlAttributes = new { @class = "form-control", @maxlength = "5", @id = "postal", @placeholder = "รหัสไปรษณีย์" } })
-                    </div>
+            </div>
+            <h3>ที่อยู่</h3>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.homeNo, new { htmlAttributes = new { @class = "form-control", @maxlength = "7", @id = "homeno", @placeholder = "บ้านเลขที่", @style = "font-size:16px" } })
                 </div>
             </div>
 
-            <div class="col-sm-4">
-                <h3>อีเมลและรหัสผ่าน</h3>
-                <div class="form-group">
-                    <div class="col-md-8">
-                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @maxlength = "30", @id = "email", @placeholder = "sample@email.com" } })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-8">
-                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @maxlength = "6", @type = "password", @id = "password", @placeholder = "รหัสผ่าน" } })
-                    </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.soi, new { htmlAttributes = new { @class = "form-control", @maxlength = "30", @id = "soi", @placeholder = "ซอย", @style = "font-size:16px" } })
                 </div>
             </div>
-        </div>
 
-    <div class="form-group" align="center">
-        <div class="col-md-offset-2 col-md-3">
-            <button type="submit" value="บันทึก" class="btn btn-primary" id="save">บันทึก</button>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.road, new { htmlAttributes = new { @class = "form-control", @maxlength = "30", @id = "road", @placeholder = "ถนน", @style = "font-size:16px" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @if (ViewBag.ProvinceList != null)
+                    {
+                        @Html.DropDownListFor(x => x.province, ViewBag.ProvinceList as SelectList, "เลือกจังหวัด", new { @class = "form-control", id = "province", @style = "font-size:16px", })
+                    }
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.DropDownListFor(x => x.district, new SelectList(""), "เลือกตำบล", new { @class = "form-control", id = "district" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.DropDownListFor(x => x.subdistrict, new SelectList(""), "เลือกอำเภอ", new { @class = "form-control", id = "subdistrict" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.postalCode, new { htmlAttributes = new { @class = "form-control", @maxlength = "5", @id = "postal", @placeholder = "รหัสไปรษณีย์", @style = "font-size:16px" } })
+                </div>
+            </div>
+            <h3>อีเมลและรหัสผ่าน</h3>
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @maxlength = "30", @id = "email", @placeholder = "sample@email.com", @style = "font-size:16px" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @maxlength = "6", @type = "password", @id = "password", @placeholder = "รหัสผ่าน", @style = "font-size:16px" } })
+                </div>
+            </div>
+            <br />
+            <div class="form-group" align="right">
+                <div class="col-md-offset-2 col-md-3">
+                    <button type="submit" value="บันทึก" class="btn btn-primary" id="save">บันทึก</button>
+                </div>
+            </div>
+
         </div>
     </div>
-</div>
 }
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
@@ -206,35 +196,50 @@
     })
 </script>
 <script>
-    $("#save").click(function () {
-        if ($('#fname').val() == '' || $('#lname').val() == '' || $('#datepicker-component2').val() == '' || $('#iden').val() == '' ||
-            $('#tel').val() == '' || $('#department').val() == '' || $('#homeno').val() == '' || $('#soi').val() == '' || $('#road').val() == '' ||
-            $('#province').val() == '' || $('#district').val() == '' || $('#subdistrict').val() == '' || $('#postal').val() == '' ||
-            $('#email').val() == '' || $('#password').val() == '') {
-            Alert_Warning();
-            return false;
-        }
-        else {
-            Alert_Success();
-        }
-    });
 
-    function Alert_Success() {
-        Swal.fire({
-            icon: 'success',
-            title: 'บันทึกสำเร็จ',
-            showConfirmButton: false,
-            timer: 1500,
-        })
-    }
+            function Save(event) {
+                event.preventDefault();
+                var formData = new FormData();
+                var birthdate = $("#datepicker-component")
+                formData.append("birthdate", birthdate);
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("CreateEmployee","Employee")",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                })
+            }
 
-    function Alert_Warning() {
-        Swal.fire({
-            icon: 'error',
-            title: 'ผิดพลาด',
-            text: 'กรุณาตรวจสอบข้อมูลที่กรอก',
-        })
-    }
+            $("#save").click(function () {
+                if ($('#fname').val() == '' || $('#lname').val() == '' || $('#datepicker-component').val() == '' || $('#iden').val() == '' ||
+                    $('#tel').val() == '' || $('#department').val() == '' || $('#homeno').val() == '' || $('#soi').val() == '' || $('#road').val() == '' ||
+                    $('#province').val() == '' || $('#district').val() == '' || $('#subdistrict').val() == '' || $('#postal').val() == '' ||
+                    $('#email').val() == '' || $('#password').val() == '') {
+                    Alert_Warning();
+                    return false;
+                }
+                else {
+                    Alert_Success();
+                }
+            });
+
+            function Alert_Success() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'บันทึกสำเร็จ',
+                    showConfirmButton: false,
+                    timer: 1500,
+                })
+            }
+
+            function Alert_Warning() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'ผิดพลาด',
+                    text: 'กรุณาตรวจสอบข้อมูลที่กรอก',
+                })
+            }
 </script>
 
 @section Scripts {

@@ -1,84 +1,90 @@
-﻿@model IPagedList<LeaveSystemOnline.EMPLOYEE>
+﻿@model IEnumerable<LeaveSystemOnline.EMPLOYEE>
 
 @{
     ViewBag.Title = "ข้อมูลพนักงาน";
+    var author = Session["author"];
 }
-@using PagedList;
-@using PagedList.Mvc;
 
-<h2>ข้อมูลพนักงาน</h2>
-
-<p>
-    @using (Html.BeginForm("ListEmployee", "Employee", FormMethod.Get))
-    {   
-        <input type="text" name="search" placeholder="ชื่อพนักงาน" />
-        <input type="image" src="~/Content/Theme/menu/search-64.png" border="0" alt="Submit" width="40" height="40"/>
-            <a href="@Url.Action("ListEmployee","Employee")">
-                <img src=@Url.Content("~/Content/Theme/menu/refresh-64.png") width="40" height="40" />
-            </a>
-            <a href="@Url.Action("CreateEmployee","Employee")">
-                <img src="@Url.Content("~/Content/Theme/menu/add-user-64.png")" width="40" height="40" />
-            </a>
-    }
-</p>
-<div style="overflow:auto">
-    <div class=" no-padding container-fixed-lg bg-white">
-        <div class="container">
-            <div class="card card-transparent">
-                <div class="card-body">
-                    <table class="table table-striped" id="tableWithExportOptions">
-                        <thead>
+<div class="container container-fixed-lg">
+    <div class="card card-default">
+        <div class="card-body">
+                @using (Html.BeginForm("ListEmployee", "Employee", FormMethod.Get))
+                {
+                    <h4 align="center">ข้อมูลผู้ใช้งาน</h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <table>
+                                    <tr>
+                                        <th><input type="text" class="form-control" name="search" placeholder="ค้นหาด้วยชื่อพนักงาน" /></th>
+                                        <th><input type="submit" name="submit" value="ค้นหา" class="btn btn-primary" /></th>
+                                        <th>
+                                            <a href="@Url.Action("ListEmployee", "Employee")">
+                                                <img src=@Url.Content("~/Content/Theme/menu/refresh-64.png") width="40" height="40" />
+                                            </a>
+                                        </th>
+                                        <th>
+                                            <a href="@Url.Action("CreateEmployee", "Employee")">
+                                                <img src="@Url.Content("~/Content/Theme/menu/add-user-64.png")" width="40" height="40" />
+                                            </a>
+                                        </th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                }
+            <div style="overflow:auto">
+                <table class="table table-hover table-responsive-block" id="tableWithSearch">
+                    <thead>
+                        <tr>
+                            <th><p style="font-size:16px">รหัสพนักงาน</p></th>
+                            <th><p style="font-size:16px">ชื่อ</p></th>
+                            <th><p style="font-size:16px">นามสกุล</p></th>
+                            <th><p style="font-size:16px">วันเกิด</p></th>
+                            <th><p style="font-size:16px">รหัสบัตรประชาชน</p></th>
+                            <th><p style="font-size:16px">เบอร์โทร</p></th>
+                            <th><p style="font-size:16px">บ้านเลขที่</p></th>
+                            <th><p style="font-size:16px">ซอย</p></th>
+                            <th><p style="font-size:16px">ถนน</p></th>
+                            <th><p style="font-size:16px">ตำบล</p></th>
+                            <th><p style="font-size:16px">อำเภอ</p></th>
+                            <th><p style="font-size:16px">จังหวัด</p></th>
+                            <th><p style="font-size:16px">รหัสไปรษณีย์</p></th>
+                            <th><p style="font-size:16px">สิทธิ์การใช้งาน</p></th>
+                            <th><p style="font-size:16px">อีเมล</p></th>
+                            <th><p style="font-size:16px">รหัสผ่าน</p></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
                             <tr>
-                                <th>รหัสพนักงาน</th>
-                                <th>ชื่อ</th>
-                                <th>นามสกุล</th>
-                                <th>วันเกิด</th>
-                                <th>รหัสบัตรประชาชน</th>
-                                <th>เบอร์โทร</th>
-                                <th>บ้านเลขที่</th>
-                                <th>ซอย</th>
-                                <th>ถนน</th>
-                                <th>ตำบล</th>
-                                <th>อำเภอ</th>
-                                <th>จังหวัด</th>
-                                <th>รหัสไปรษณีย์</th>
-                                <th>สิทธิ์การใช้งาน</th>
-                                <th>อีเมล</th>
-                                <th>รหัสผ่าน</th>
-                                <th></th>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.id)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.firstName)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.lastName)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.birthdate)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.identificationNo)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.tel)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.homeNo)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.soi)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.road)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.Subdistricts.NameInThai)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.Districts.NameInThai)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.Provinces.NameInThai)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.postalCode)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.AUTHOR.tier)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.email)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.password)</p></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>@Html.DisplayFor(modelItem => item.id)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.firstName)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.lastName)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.birthdate)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.identificationNo)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.tel)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.homeNo)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.soi)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.road)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Subdistricts.NameInThai)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Districts.NameInThai)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Provinces.NameInThai)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.postalCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.AUTHOR.tier)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.email)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.password)</td>
-                                    <td> <a href="@Url.Action("EditAuthorEmployee","Employee", new { id = item.id })">
-                                         <img src="@Url.Content("~/Content/Theme/menu/authorization.png")"/>
-                                         </a> 
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
-@Html.PagedListPager(Model, index => Url.Action("ListEmployee", "Employee", new { index, search = Request.QueryString["search"] }))

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<LeaveSystemOnline.EMPLOYEE>
+
+@{
+    ViewBag.Title = "ข้อมูลพนักงาน";
+}
+
+<div class="container container-fixed-lg">
+    <div class="card card-default">
+        <div class="card-body">
+
+            @using (Html.BeginForm("AddAuthorForEmployee", "Employee", FormMethod.Get))
+            {
+            <h4 align="center">สิทธิ์ผู้ใช้งาน</h4>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <table>
+                                <tr>
+                                    <th><input type="text" class="form-control" name="search" placeholder="ค้นหาด้วยชื่อพนักงาน" /></th>
+                                    <th><input type="submit" name="submit" value="ค้นหา" class="btn btn-primary" /></th>
+                                    <th>
+                                        <a href="@Url.Action("AddAuthorForEmployee", "Employee")">
+                                            <img src="@Url.Content("~/Content/Theme/menu/refresh-64.png")" width="40" height="40" />
+                                        </a>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div style="overflow:auto">
+                <table class="table table-hover table-responsive-block" id="tableWithSearch">
+                    <thead>
+                        <tr>
+                            <th><p style="font-size:16px">รหัสพนักงาน</p></th>
+                            <th><p style="font-size:16px">ชื่อ</p></th>
+                            <th><p style="font-size:16px">นามสกุล</p></th>         
+                            <th><p style="font-size:16px">สิทธิ์การใช้งาน</p></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.id)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.firstName)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.lastName)</p></td>
+                                <td><p style="font-size:14px">@Html.DisplayFor(modelItem => item.AUTHOR.tier)</p></td>
+                                <td>
+                                    <a href="@Url.Action("EditAuthorEmployee", "Employee", new { id = item.id })">
+                                        <img src="@Url.Content("~/Content/Theme/menu/authorization.png")" />
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

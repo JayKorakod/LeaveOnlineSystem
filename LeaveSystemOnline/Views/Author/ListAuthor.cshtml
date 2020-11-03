@@ -1,12 +1,10 @@
 ﻿@model IEnumerable<LeaveSystemOnline.AUTHOR>
 
-<h2 align="center">
-    ข้อมูลระดับสิทธิ์การใช้งาน
-</h2>
 <div class=" no-padding container-fixed-lg bg-white">
     <div class="container">
         <div class="card card-transparent">
             <div class="card-body">
+                <h4 align="center">ระดับสิทธิ์</h4>
                 <table class="table table-striped" id="tableWithExportOptions" width="100%">
                     <thead>
                         <tr align="center">
@@ -24,10 +22,10 @@
                         {
                             <tr align="center">
                                 <th>
-                                    @idx
+                                    <p style="font-size:16px">@idx</p>
                                 </th>
                                 <th>
-                                    @Html.DisplayFor(modelItem => item.tier)
+                                    <p style="font-size:14px"> @Html.DisplayFor(modelItem => item.tier)</p>
                                 </th>
                             </tr>
                             idx++;
