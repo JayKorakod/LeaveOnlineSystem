@@ -37,6 +37,9 @@
                     <thead>
                     <tr>
                         <th>
+                            <p style="font-size:16px">ลำดับ</p>
+                        </th>
+                        <th>
                             <p style="font-size:16px">รหัสใบลางาน</p>
                         </th>
                         <th>
@@ -60,47 +63,49 @@
                     </tr>
                         </thead>
                     <tbody>
-
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.id)</p>
-                            </td>
-                            <td>
-                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.EMPLOYEE.firstName)</p>
-                            </td>
-                            <td>
-                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.firstDayOfLeave)</p>
-                            </td>
-                            <td>
-                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LastDayOfLeave)</p>
-                            </td>
-                            @{ if (item.fileDocument != null)
-                                {
-                                    <td>
-                                        @Html.HiddenFor(modelItem => item.fileDocument)
-                                        <a style="font-size:14px" target="_blank" href="~/UploadFile/@{@Html.DisplayTextFor(modelItem => item.fileDocument)}">
-                                            <img src="@Url.Content("~/Content/Theme/menu/filepdf-32.png")" />
-                                        </a>
-                                    </td>
+                        @{ int idx = 1;}
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><p style="font-size:14px">@idx</p></td>
+                                <td>
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.id)</p>
+                                </td>
+                                <td>
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.EMPLOYEE.firstName) @Html.DisplayFor(modelItem => item.EMPLOYEE.lastName)</p>
+                                </td>
+                                <td>
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.firstDayOfLeave)</p>
+                                </td>
+                                <td>
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LastDayOfLeave)</p>
+                                </td>
+                                @{ if (item.fileDocument != null)
+                                    {
+                                        <td>
+                                            @Html.HiddenFor(modelItem => item.fileDocument)
+                                            <a style="font-size:14px" target="_blank" href="~/UploadFile/@{@Html.DisplayTextFor(modelItem => item.fileDocument)}">
+                                                <img src="@Url.Content("~/Content/Theme/menu/filepdf-32.png")" />
+                                            </a>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.HiddenFor(modelItem => item.fileDocument)
+                                        </td>
+                                    }
                                 }
-                                else
-                                {
-                                    <td>
-                                        @Html.HiddenFor(modelItem => item.fileDocument)
-                                    </td>
-                                }
-                            }
-                            <td>
-                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LEAVETYPE.type)</p>
-                            </td>
-                            <td>
-                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LEAVESTATUS.status)</p>
-                            </td>
-                        </tr>
-                    }
-                        </tbody>
+                                <td>
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LEAVETYPE.type)</p>
+                                </td>
+                                <td>
+                                    <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LEAVESTATUS.status)</p>
+                                </td>
+                            </tr>
+                            idx++;
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>

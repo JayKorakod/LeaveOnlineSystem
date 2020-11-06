@@ -81,11 +81,11 @@
                                     <span> @Session["name"] </span>
                                 }
                             </span>
-</a>
+                        </a>
                         <div class="dropdown-divider"></div>@{ var author = Session["author"];}
                         <a href="#" class="dropdown-item">สิทธิ์ผู้ใช้งาน : <span>@author</span></a>
-                        @*<a href="#" class="dropdown-item" id="id" hidden>@Session["id"]</a>*@
-                         @*<a href="#" class="dropdown-item" id="depart">แผนก : @Session["depart"]</a>*@
+                        <a href="#" class="dropdown-item" id="depart">แผนก : @Session["depart"]</a>
+                        <a href="mailto:s6004022630018@email.kmutnb.ac.th">ติดต่อแอดมิน</a>
                         <div class="dropdown-divider"></div>
                         <a href="@Url.Action("Logout", "Home")" class="dropdown-item">Logout</a>
                         <div class="dropdown-divider"></div>

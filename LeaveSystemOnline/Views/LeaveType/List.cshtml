@@ -13,7 +13,9 @@
         </div>
         <div class="card-body">
             <h4 align="center">ประเภทการลา</h4>
-            <br />@{ if (author.ToString() == "Underling") { } else {
+            <br />@{ if (author.ToString() == "Underling") { }
+                    else if(author.ToString() == "Supervisor") { }
+                    else {
             <button type="button" onclick="Add_model()" class="btn btn-lg btn-primary pull-right" style="width:100px" id="add">เพิ่ม</button> } }
             <br />
             <div style="overflow:auto">

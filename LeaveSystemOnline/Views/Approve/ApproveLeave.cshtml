@@ -12,52 +12,55 @@
         <h2 align="center">อนุมัติการขอลางาน</h2>
         <div class="row">
             <div class="col-sm-2"></div>
-            <div class="col-sm-7">
+            <div class="col-sm-8">
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.id)
-                <table border="1">
+                <table class="table table-hover table-responsive-block">
                     <tr>
-                        <th>ชื่อ-นามสกุล</th>
-                        <th>
-                            @Html.DisplayTextFor(model => model.EMPLOYEE.firstName)
-                            @Html.DisplayTextFor(model => model.EMPLOYEE.lastName)
+                        <th><p>ชื่อ-นามสกุล</p></th>
+                        <th><p>
+                            @Html.DisplayFor(model => model.EMPLOYEE.firstName)
+                            @Html.DisplayFor(model => model.EMPLOYEE.lastName)
+                            </p>
                         </th>
                     </tr>
                     <tr>
-                        <th>รหัสพนักงาน</th>
-                        <th>@Html.DisplayTextFor(model => model.emp_id)</th>
+                        <th><p>รหัสพนักงาน</p></th>
+                        <th><p>@Html.DisplayFor(model => model.emp_id)</p></th>
                     </tr>
                     <tr>
-                        <th>แผนก</th>
-                        <th>@Html.DisplayTextFor(model => model.EMPLOYEE.department)</th>
+                        <th><p>แผนก</p></th>
+                        <th><p>@Html.DisplayFor(model => model.EMPLOYEE.department)</p></th>
                     </tr>
                     <tr>
-                        <th>ประเภทการลา</th>
-                        <th>@Html.DisplayTextFor(model => model.LEAVETYPE.type)</th>
+                        <th><p>ประเภทการลา</p></th>
+                        <th><p>@Html.DisplayFor(model => model.LEAVETYPE.type)</p></th>
                     </tr>
                     <tr>
-                        <th>รายละเอียก/เหตุผลการลา</th>
-                        <th>@Html.DisplayTextFor(model => model.description)</th>
+                        <th><p>รายละเอียก/เหตุผลการลา</p></th>
+                        <th><p>@Html.DisplayFor(model => model.description)</p></th>
                     </tr>
                     <tr>
-                        <th>วันที่เริ่มต้นลา</th>
-                        <th>@Html.DisplayTextFor(model => model.firstDayOfLeave)</th>
+                        <th><p>วันที่เริ่มต้นลา</p></th>
+                        <th><p>@Html.DisplayFor(model => model.firstDayOfLeave)</p></th>
                     </tr>
                     <tr>
-                        <th>วันที่สิ้นสุดการลา</th>
-                        <th>@Html.DisplayTextFor(model => model.LastDayOfLeave)</th>
+                        <th><p>วันที่สิ้นสุดการลา</p></th>
+                        <th><p>@Html.DisplayFor(model => model.LastDayOfLeave)</p></th>
                     </tr>
                     <tr>
-                        <th>ไฟล์ที่แนบ</th>
+                        <th><p>ไฟล์ที่แนบ</p></th>
                         <th>
                             @Html.HiddenFor(model => model.fileDocument)
-                            <a href="~/UploadFile/@{@Html.DisplayTextFor(model=>model.fileDocument)}">@{@Html.DisplayTextFor(model => model.fileDocument)}</a>
+                            <a target="_blank" href="~/UploadFile/@{@Html.DisplayTextFor(model=>model.fileDocument)}">
+                                <img src="@Url.Content("~/Content/Theme/menu/description.png")" />
+                            </a>
                         </th>
                     </tr>
                 </table>
                 <br />
                 <div class="form-group">
-                    <p>อนุมัติ/ไม่อนุมัติ</p>
+                    <p style="font-size:14px">อนุมัติ/ไม่อนุมัติ</p>
                     <div class="col-md-10">
                         อนุมัติ
                         @Html.RadioButtonFor(x => x.leaveStatus_id, 1, new { @id = "radio1" })
