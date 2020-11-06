@@ -38,7 +38,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="~/Content/Theme/assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
     <link class="main-stylesheet" href="~/Content/Theme/pages/css/themes/modern.css" rel="stylesheet" type="text/css" />
-
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="fixed-header horizontal-menu horizontal-app-menu " style="overflow:auto">
@@ -113,7 +113,7 @@
                                 </li>
                                 <li class="" id="submenu2">
                                     <a style="font-size:15px" href="@Url.Action("CreateEmployee", "Employee")">เพิ่มข้อมูลผู้ใช้งาน</a>
-                                 <li class="" id="submenu3">
+                                <li class="" id="submenu3">
                                     <a style="font-size:15px" href="@Url.Action("AddAuthorForEmployee", "Employee")">สิทธิ์ผู้ใช้งาน</a>
                                 </li>
                                 <li class="" id="submenu4">
@@ -192,7 +192,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
@@ -291,7 +291,7 @@
             else if (author == "Admin") {
                 $('#menu3').hide();
                 $('#menu6').hide();
-                
+
             }
 
         });

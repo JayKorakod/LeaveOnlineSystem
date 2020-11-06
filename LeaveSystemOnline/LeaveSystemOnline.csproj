@@ -1805,6 +1805,8 @@
       <DependentUpon>LeaveSystemOnlineModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Highcharts\exporting.js" />
+    <Content Include="Scripts\Highcharts\highcharts.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -1857,6 +1859,9 @@
     <Content Include="UploadFile\Wutthichai_C_Book_Final.pdf" />
     <Content Include="UploadFile\Workshop2 6004022630018 .pdf" />
     <Content Include="UploadFile\Agile_model.pdf" />
+    <Content Include="UploadFile\เล่มสัมมนา 30018.pdf" />
+    <Content Include="UploadFile\Daily Report.pdf" />
+    <Content Include="Views\ReportLeaveData\ShowPieChart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
