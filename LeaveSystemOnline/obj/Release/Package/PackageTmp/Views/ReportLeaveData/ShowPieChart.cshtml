@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "ShowPieChart";
+}
+
+<script src="~/Scripts/Highcharts/exporting.js"></script>
+<script src="~/Scripts/Highcharts/highcharts.js"></script>
+<div class="container container-fixed-lg">
+    <div class="card card-default">
+        <div class="card-body">
+            <div class="jumbotron">
+                <div id="container" style="min-width:310px; height:400px; max-width:600px; margin:0 auto"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.getJSON("/ReportLeaveData/PieChart", function (data) {
+            Highcharts.chart('container', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'ยอดการลางานของแต่ละแผนก'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: [{
+                name: 'วิศวกรรม',
+                y: data.Engineer
+            }, {
+                name: 'เทคโนโลยีสารสนเทศ',
+                y: data.IT
+            }, {
+                name: 'จัดซื้อ',
+                y: data.Purchase
+            }, {
+                name: 'คลังสินค้า',
+                y: data.Warehouse
+            }, {
+                name: 'บุคคล',
+                y: data.HR
+            }, {
+                name: 'การตลาด',
+                y: data.Marketing
+            }, {
+                name: 'รักษาความปลอดภัย',
+                y: data.Security
+            }, {
+                name: 'ฝ่ายผลิต',
+                y: data.Production
+            }]
+        }]
+    });
+        });
+    });
+</script>
+

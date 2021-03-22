@@ -1,0 +1,99 @@
+﻿@model IEnumerable<LeaveSystemOnline.LEAVEDATA>
+
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container container-fixed-lg">
+    <div class="card card-default">
+        <div class="card-body">
+            @using (Html.BeginForm("History", "ReportLeaveDataDepart", FormMethod.Get))
+            {
+                <h4 align="center">ประวัติการลางาน</h4>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <table>
+                                <tr>
+                                    <th><input type="text" name="search" class="form-control" placeholder="ค้นหารหัสใบลา" /></th>
+                                    <th><input type="submit" name="submit" value="ค้นหา" class="btn btn-primary" /></th>
+                                    <th>
+                                        <a href="@Url.Action("History", "ReportLeaveDataDepart")">
+                                            <img src=@Url.Content("~/Content/Theme/menu/refresh-64.png") width="40" height="40" />
+                                        </a>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+             }
+             <br />
+             <div style="overflow:auto">
+                 <table class="table table-hover table-responsive-block" id="tableWithSearch">
+                     <thead>
+                         <tr>
+                             <th>
+                                 <p style="font-size:16px">รหัสใบลางาน</p>
+                             </th>
+                             <th>
+                                 <p style="font-size:16px">วันที่เริ่มลา</p>
+                             </th>
+                             <th>
+                                 <p style="font-size:16px">วันที่สิ้นสุดการลา</p>
+                             </th>
+                             <th>
+                                 <p style="font-size:16px">ไฟล์ที่แนบ</p>
+                             </th>
+                             <th>
+                                 <p style="font-size:16px">ประเภท</p>
+                             </th>
+                             <th>
+                                 <p style="font-size:16px">สถานะ</p>
+                             </th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         @foreach (var item in Model)
+                         {
+                         <tr>
+                             <td>
+                                 <p style="font-size:14px">@Html.DisplayFor(modelItem => item.id)</p>
+                             </td>
+                             <td>
+                                 <p style="font-size:14px">@Html.DisplayFor(modelItem => item.firstDayOfLeave)</p>
+                             </td>
+                             <td>
+                                 <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LastDayOfLeave)</p>
+                             </td>
+                             @{ if (item.fileDocument != null)
+                                 {
+                                     <td>
+                                         @Html.HiddenFor(modelItem => item.fileDocument)
+                                         <a target="_blank" href="~/UploadFile/@{@Html.DisplayTextFor(modelItem => item.fileDocument)}">
+                                             <img src="@Url.Content("~/Content/Theme/menu/filepdf-32.png")" />
+                                         </a>
+                                     </td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                             }
+                             <td>
+                                 <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LEAVETYPE.type)</p>
+                             </td>
+                             <td>
+                                 <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LEAVESTATUS.status)</p>
+                             </td>
+                         </tr>
+                         }
+                     </tbody>
+                 </table>
+             </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+﻿@model LeaveSystemOnline.Subdistricts
+
+<option value="">-- Select SubDistrict</option>
+
+@if (ViewBag.SubDistrict != null)
+{
+    foreach (var item in ViewBag.SubDistrict)
+    {
+        <option value="@item.Value"> @item.Text</option>
+    }
+}

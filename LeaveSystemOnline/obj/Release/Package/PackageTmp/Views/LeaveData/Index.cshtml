@@ -1,0 +1,160 @@
+﻿@model LeaveSystemOnline.CustomModel.ViewModel
+
+@{
+    ViewBag.Title = "ListLeaveType";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ LEAVE_STSTEM_ONLINEEntities1 context = new LEAVE_STSTEM_ONLINEEntities1();
+    var selectLastRow = context.LEAVEDATA.OrderByDescending(x => x.id).Select(x => x.id).ToList().FirstOrDefault();
+    var lastRow = selectLastRow + 1;
+}
+
+<div class="container container-fixed-lg">
+    <div class="card card-default">
+        <div class="card-body">
+            <h4 align="center">ขอลางาน</h4>
+            <br />
+            <div>
+                <label style="font-size:16px">หมายเลขใบขอลางาน : <b>@lastRow</b></label>
+            </div>
+            <div class="form-group">
+                <label style="font-size:16px">ชื่อ</label>
+                <input style="font-size:16px; color:black" type="text" class="form-control" readonly value="@Session["name"]" />
+            </div>
+            <div class="form-group">
+                <label style="font-size:16px">รหัสพนักงาน</label>
+                <input style="font-size: 16px; color: black" type="text" class="form-control" readonly value="@Session["id"]" id="txtid" />
+            </div>
+            <div class="form-group">
+                <label style="font-size:16px">แผนก</label>
+                <input style="font-size: 16px; color: black" type="text" class="form-control" readonly value="@Session["depart"]" />
+            </div>
+            <div class="form-group">
+                <label style="font-size:16px">ประเภทลางาน</label>
+                @Html.DropDownList("data", ViewBag.data as SelectList, htmlAttributes: new { @class = "form-control", id = "dropdown-type", @style = "font-size: 20px;" })
+            </div>
+            <div class="form-group bg-primary-light padding-15">
+                <span style="font-size:16px">
+                    **เงื่อนไขการลา : พนักงานที่ประสงค์จะลาหยุดงาน จะต้องกรอกข้อมูลการลางานในระบบ และยื่นขออนุญาตเป็นการล่วงหน้า
+                    ต่อผู้บังคับบัญชา ตามระดับขั้น และจะหยุดได้ก็ต่อเมื่อผู้บังคับบัญชาอนุมัติแล้วเท่านั้น
+                </span>
+            </div>
+            <div class="form-group">
+                <label style="font-size:16px">รายละเอียด/เหตุผลการลา</label>
+                <textarea class="form-control" rows="4" id="text-des" placeholder="กรุณากรอกข้อมูล" style="font-size:16px"></textarea>
+            </div>
+            <div class="form-group form-group-default input-group">
+                <div class="form-input-group">
+                    <label style="font-size:16px">วันที่เริ่มต้นการลา</label>
+                    <input style="font-size:16px" type="text" class="form-control" placeholder="dd/mm/yyyy" id="datepicker-component" name="startdate" />
+                </div>
+                <div class="input-group-append">
+                    <span class="input-group-text">
+                        <i class="pg-icon">calendar</i>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group form-group-default input-group">
+                <div class="form-input-group">
+                    <label style="font-size:16px">วันที่สิ้นสุดการลา</label>
+                    <input style="font-size:16px" type="text" class="form-control" placeholder="dd/mm/yyyy" id="datepicker-component2" name="enddate" />
+                </div>
+                <div class="input-group-append">
+                    <span class="input-group-text">
+                        <i class="pg-icon">calendar</i>
+                    </span>
+                </div>
+            </div>
+            <fieldset class="form-group">
+                <label for="basicInputFile" style="font-size:16px">ไฟล์แนบ</label>
+                <div class="custom-file">
+                    <input type="file" class="form-control" accept=".pdf" id="inputFile" style="font-size:16px" />
+                    <div class="help-block"></div>
+                </div>
+            </fieldset>
+            <br />
+            <button class="btn btn-primary pull-right" onclick="btnSave(event)">บันทึก</button>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+
+        $(function(){
+             $('#dropdown-type').select2();
+        });
+
+        function btnSave(event) {
+            event.preventDefault();
+
+            var formData = new FormData();
+
+            var enId = $("#txtid").val();
+            var des = $("#text-des").val();
+            var start = $("#datepicker-component").val();
+            var end = $("#datepicker-component2").val();
+            var type = $("#dropdown-type").val();
+            var file = $("#inputFile").get(0).files[0]
+
+
+            if (Date.parse(start) > Date.parse(end)) {
+                Alert_Warning();
+            }else if (des == '' || start == '' || end == '') {
+                Alert_Warning();
+            }else {
+
+                formData.append("emp_id", enId);
+                formData.append("description", des);
+                formData.append("firstDayOfLeave", start);
+                formData.append("LastDayOfLeave", end);
+                formData.append("leaveType_id", type);
+                formData.append("file", file);
+
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("CreateLeaveData", "LeaveData")",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function () {
+                        Alert_Success();
+                    },
+                    error: function () {
+                        Alert_Warning();
+                    }
+                });
+                reset();
+            }
+        }
+
+        function reset() {
+            $("#text-des").val("");
+            $("#datepicker-component").val("");
+            $("#datepicker-component2").val("");
+            $("#dropdown-type").val(0);
+            $("#inputFile").val("");
+        }
+
+        function Alert_Success() {
+            Swal.fire({
+                icon: 'success',
+                title: 'บันทึกสำเร็จ',
+                showConfirmButton: false,
+                timer: 3000
+            })
+        }
+
+        function Alert_Warning() {
+            Swal.fire({
+                icon: 'error',
+                title: 'ผิดพลาด',
+                text: 'กรุณาตรวจสอบข้อมูลที่กรอก',
+            })
+        }
+    </script>
+}

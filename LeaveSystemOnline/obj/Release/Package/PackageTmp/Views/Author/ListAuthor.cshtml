@@ -1,0 +1,38 @@
+﻿@model IEnumerable<LeaveSystemOnline.AUTHOR>
+
+<div class=" no-padding container-fixed-lg bg-white">
+    <div class="container">
+        <div class="card card-transparent">
+            <div class="card-body">
+                <h4 align="center">ระดับสิทธิ์</h4>
+                <table class="table table-striped" id="tableWithExportOptions" width="100%">
+                    <thead>
+                        <tr align="center">
+                            <th>
+                                <p>ลำดับที่</p>
+                            </th>
+                            <th>
+                                <p>สิทธิ์การใช้งาน</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int idx = 1;}
+                        @foreach (var item in Model)
+                        {
+                            <tr align="center">
+                                <th>
+                                    <p style="font-size:16px">@idx</p>
+                                </th>
+                                <th>
+                                    <p style="font-size:14px"> @Html.DisplayFor(modelItem => item.tier)</p>
+                                </th>
+                            </tr>
+                            idx++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

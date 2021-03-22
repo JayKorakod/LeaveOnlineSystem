@@ -1,0 +1,74 @@
+﻿@model List<LeaveSystemOnline.LEAVEDATA>
+
+@{ 
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container container-fixed-lg">
+    <div class="card card-default">
+        <div class="card-body">
+            <h4 align="center">อนุมัติการลางาน</h4>
+            <table class="table table-hover table-responsive-block" id="tableWithSearch">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width: 20px" scope="col"><p style="font-size:16px">ลำดับ</p></th>
+                        <th class="text-center" scope="col"><p style="font-size:16px">ชื่อ-นามสกุล</p></th>
+                        <th class="text-center" scope="col"><p style="font-size:16px">ประเภทการลา</p></th>
+                        <th class="text-center" scope="col"><p style="font-size:16px">วันที่เริ่มลา</p></th>
+                        <th class="text-center" scope="col"><p style="font-size:16px">วันที่สิ้นสุดการลา</p></th>
+                        <th class="text-center" scope="col"><p style="font-size:16px">สถานะ</p></th>
+                        <th class="text-center" scope="col"><p style="font-size:16px">ไฟล์ที่แนบมา</p></th>
+                        <th scope="col" class="text-center"><p style="font-size:16px">รายละเอียด</p></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int idx = 1;}
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center" scope="row">@idx</td>
+                            <td class="text-center">
+                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.EMPLOYEE.firstName) @Html.DisplayFor(modelItem => item.EMPLOYEE.lastName)</p>
+                            </td>
+                            <td class="text-center">
+                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LEAVETYPE.type)</p>
+                            </td>
+                            <td class="text-center">
+                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.firstDayOfLeave)</p>
+                            </td>
+                            <td class="text-center">
+                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LastDayOfLeave)</p>
+                            </td>
+                            <td class="text-center">
+                                <p style="font-size:14px">@Html.DisplayFor(modelItem => item.LEAVESTATUS.status)</p>
+                            </td>
+                            @{ if (item.fileDocument != null)
+                                {
+                                    <td class="text-center">
+                                        @Html.HiddenFor(modelItem => item.fileDocument)
+                                        <a style="font-size:14px" target="_blank" href="~/UploadFile/@{@Html.DisplayTextFor(modelItem => item.fileDocument)}">
+                                            <img src="@Url.Content("~/Content/Theme/menu/filepdf-32.png")" />
+                                        </a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td class="text-center">
+                                        @Html.HiddenFor(modelItem => item.fileDocument)
+                                    </td>
+                                }
+                            }
+                            <td>
+                                <a href="@Url.Action("ApproveLeave","Approve",new { id = item.id})">
+                                    <img src="@Url.Content("~/Content/Theme/menu/description.png")" />
+                                </a>
+                            </td>
+                        </tr>
+                        idx++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

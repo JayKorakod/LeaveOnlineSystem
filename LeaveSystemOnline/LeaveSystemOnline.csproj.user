@@ -21,6 +21,7 @@
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <ProjectView>ShowAllFiles</ProjectView>
     <WebStackScaffolding_DbContextTypeFullName>LeaveSystemOnline.LEAVE_STSTEM_ONLINEEntities1</WebStackScaffolding_DbContextTypeFullName>
+    <NameOfLastUsedPublishProfile>FolderProfile</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
